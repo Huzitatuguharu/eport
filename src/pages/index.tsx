@@ -3,35 +3,51 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-// import styles from '../styles/Home.module.css'
+import * as React from 'react';
+import ReactMapGL, { Marker } from 'react-map-gl';
+import MapGL from 'react-map-gl';
 
+
+import { MAP } from '../components/mapbox';
 import { supabase } from '../lib/Supabase';
 
-const API_KEY = process.env.NEXT_PUBLIC_MAPBOX_KEY;
-
-const Home: NextPage = () => {
-  const [place, setPlace] = useState([]);
-  const onClickgetdata = async () => {
-  const { data, error } = await supabase.from('airport').select();
-
-  console.log(data);
+type airport = {
+  id: number
+iata: string
+icao: string
+latitude: number
+longitude: number
+lounge: number
+name: string
+prefecture: string
+rural: string
+url:string
 
   };
-  // const [todos, setTodos] = useState([]);
-  // const onClickFetchData = () => {
-  //   axios.get('https://jsonplaceholder.typicode.com/todos').then((res) => {
-  //     setTodos(res.data);
-  //     console.log(res);
-  //     console.log(todos);
-  //   });
-  // };
+
+  DAQABAAABgQC8CUIhLvhRhRG8ENO!!
+
+const onClickgetdata = async () => {
+  const { data, error } = await supabase.from('Airport1').select();
+  console.log(data);
+
+}
+
+
+
+
+
+const Home: NextPage = () => {
+
+
 
   return (
     <>
       <div>
-        aaxanfak
         <button onClick={onClickgetdata}>取得</button>
       </div>
+
+      <MAP latitude={37} longitude={130} />
     </>
   );
 };

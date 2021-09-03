@@ -11,31 +11,26 @@ import MapGL from 'react-map-gl';
 import { MAP } from '../components/mapbox';
 import { supabase } from '../lib/Supabase';
 
-type airport = {
-  id: number
-iata: string
-icao: string
-latitude: number
-longitude: number
-lounge: number
-name: string
-prefecture: string
-rural: string
-url:string
-
+type Airport = {
+  id: number;
+  iata: string;
+  icao: string;
+  latitude: number;
+  longitude: number;
+  lounge: number;
+  name: string;
+  prefecture: string;
+  rural: string;
+  url: string;
   };
 
-  DAQABAAABgQC8CUIhLvhRhRG8ENO!!
 
 const onClickgetdata = async () => {
-  const { data, error } = await supabase.from('Airport1').select();
+  const { data,error } = await supabase
+  .from<Airport>('Airport1')
+  .select();
   console.log(data);
-
 }
-
-
-
-
 
 const Home: NextPage = () => {
 

@@ -1,6 +1,7 @@
-
 import * as React from 'react';
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
+
+import { Airport } from './Airport';
 
 type Maptype = {
   latitude: number;
@@ -10,7 +11,7 @@ type Maptype = {
 export const MAP: React.VFC<Maptype> = ({ latitude, longitude }) => {
   const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY; // Set your mapbox token here
 
-   const [showPopup, togglePopup] = React.useState(true);
+  const [showPopup, togglePopup] = React.useState(true);
 
   const [viewport, setViewport] = React.useState({
     longitude: 135,
@@ -20,16 +21,15 @@ export const MAP: React.VFC<Maptype> = ({ latitude, longitude }) => {
 
   const onclickOpen = () => {
     togglePopup(true);
-  }
+  };
 
   const onclickClose = () => {
     togglePopup(false);
   };
 
-
-
   return (
     <>
+      <Airport/>
       <button onClick={onclickOpen}>表示</button>
       <button onClick={onclickClose}>閉じる</button>
       <ReactMapGL
@@ -51,10 +51,12 @@ export const MAP: React.VFC<Maptype> = ({ latitude, longitude }) => {
             <div>You are here</div>
           </Popup>
         )}
+
         <Marker latitude={latitude} longitude={longitude}>
           <div>あ</div>
-        </Marker>
+      </Marker>
+
       </ReactMapGL>
     </>
   );
-};;
+};

@@ -12,7 +12,7 @@ import { MAP } from '../components/Mapbox';
 
 
 const Home: NextPage = () => {
- 
+
 
 
 

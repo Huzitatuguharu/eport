@@ -18,7 +18,7 @@ function Pins(props) {
         viewBox='0 0 24 24'
         style={{
           cursor: 'pointer',
-          fill: '#fff',
+          fill: '#ff7777',
           stroke: 'none',
           transform: `translate(${-SIZE / 2}px,${-SIZE}px)`,
         }}

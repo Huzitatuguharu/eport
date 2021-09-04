@@ -9,13 +9,10 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
-import CITIES from '../components/cities.json';
 import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
 import { supabase } from '../lib/Supabase';
-
-// const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY; // Set your mapbox token here
 
 const geolocateStyle = {
   top: 0,
@@ -45,18 +42,16 @@ export default function App() {
   const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY; // Set your mapbox token here
 
   const onClickgetdata = async () => {
-
     const { data, error } = await supabase.from('airport').select();
     console.log(data);
-    let arr2 = data.map(aaa => aaa.name);
+    let arr2 = data.map((aaa) => aaa.name);
     console.log(arr2);
 
-//  {data.map((airport) =>(
-//           // titleとidを取得する。${}で変数の指定
-//           <p>{ `${airport.tnametle}(ユーザー：${todo.id})`}</p>
-//         ))}
+    //  {data.map((airport) =>(
+    //           // titleとidを取得する。${}で変数の指定
+    //           <p>{ `${airport.tnametle}(ユーザー：${todo.id})`}</p>
+    //         ))}
     setAirportdata(data);
-
   };
 
   useEffect(() => {
@@ -67,9 +62,11 @@ export default function App() {
   const [viewport, setViewport] = useState({
     latitude: 35,
     longitude: 135,
-    zoom: 3.5,
-    bearing: 0,
-    pitch: 0,
+    zoom: 4.5,
+    // 北から反時計回りに度で測定された、マップの初期方位（回転）
+    bearing: -10,
+    // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
+    pitch: 30,
   });
 
   // 初期値nullにしない！！
@@ -77,15 +74,18 @@ export default function App() {
   console.log(airportdata);
 
   const [popupInfo, setPopupInfo] = useState(null);
-console.log('popupInfo', popupInfo);
+  console.log('popupInfo', popupInfo);
 
   return (
     <>
+      <h1>空港マップ</h1>
+      <p>クリックすると空港名が表示されます</p>
       <ReactMapGL
         {...viewport}
         width='100vw'
-        height='100vh'
-        mapStyle='mapbox://styles/mapbox/dark-v9'
+        height='80vh'
+        // satellite、light 、dark 、streets 、outdoors
+        mapStyle='mapbox://styles/mapbox/light-v10'
         onViewportChange={setViewport}
         mapboxApiAccessToken={TOKEN}
       >

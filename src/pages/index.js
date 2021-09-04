@@ -43,13 +43,13 @@ const scaleControlStyle = {
 
 export default function App() {
   const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY; // Set your mapbox token here
+
   const onClickgetdata = async () => {
+
     const { data, error } = await supabase.from('airport').select();
     console.log(data);
-
     let arr2 = data.map(aaa => aaa.name);
-
-console.log(arr2);
+    console.log(arr2);
 
 //  {data.map((airport) =>(
 //           // titleとidを取得する。${}で変数の指定
@@ -77,6 +77,7 @@ console.log(arr2);
   console.log(airportdata);
 
   const [popupInfo, setPopupInfo] = useState(null);
+console.log('popupInfo', popupInfo);
 
   return (
     <>
@@ -109,7 +110,7 @@ console.log(arr2);
         <ScaleControl style={scaleControlStyle} />
       </ReactMapGL>
 
-      <ControlPanel />
+      {/* <ControlPanel /> */}
     </>
   );
 }

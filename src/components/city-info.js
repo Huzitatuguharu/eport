@@ -5,7 +5,12 @@ function CityInfo(props) {
   const AirportName = `${info.name}`;
   const AirportICAO = `${info.icao}`;
   const AirportIATA = `${info.iata}`;
+  // console.log('ラウンジ', info.lounge);
 
+  // const AirportLounge = info.lounge;
+
+  // var AirportLoungeMark = AirportLounge == 0 ? '×' : '〇';
+  // console.log(AirportLoungeMark); // "ビール"
 
   return (
     <div className='container'>
@@ -13,6 +18,13 @@ function CityInfo(props) {
         <p>空港👀　{AirportName} </p>
         <p>ICAO🐈　{AirportICAO} </p>
         <p>IATA🐕　{AirportIATA} </p>
+        {/* {
+    if (`${info.lounge}== "0") {
+     ` <p>ラウンジ🤖　× </p>`
+        } else if (`${info.lounge} == "1") {
+      ` <p>ラウンジ🤖　〇 </p>`
+    }
+  } */}
       </div>
       <style jsx>{`
         div {

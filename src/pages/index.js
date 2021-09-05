@@ -40,26 +40,24 @@ const scaleControlStyle = {
 };
 
 export default function App() {
-  const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY; // Set your mapbox token here
+  // mapboxのトークン
+  const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
 
-  const onClickgetdata = async () => {
+  // 初期値nullにしない！！
+  const [airportdata, setAirportdata] = useState([]);
+
+  // ここからSupabaseに接続
+  const getairportdata = async () => {
     const { data, error } = await supabase.from('airport').select();
-    console.log(data);
-    let arr2 = data.map((aaa) => aaa.name);
-    console.log(arr2);
-
-    //  {data.map((airport) =>(
-    //           // titleとidを取得する。${}で変数の指定
-    //           <p>{ `${airport.tnametle}(ユーザー：${todo.id})`}</p>
-    //         ))}
     setAirportdata(data);
   };
 
   useEffect(() => {
-    onClickgetdata();
+    getairportdata();
     console.log('useEffectが実行されました');
   }, []);
 
+  // 地図のviewportの設定
   const [viewport, setViewport] = useState({
     latitude: 35,
     longitude: 135,
@@ -70,17 +68,17 @@ export default function App() {
     pitch: 30,
   });
 
-  // 初期値nullにしない！！
-  const [airportdata, setAirportdata] = useState([]);
-  console.log(airportdata);
-
+  // popupInfoの切り替え
   const [popupInfo, setPopupInfo] = useState(null);
   console.log('popupInfo', popupInfo);
 
   return (
     <>
       <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet"/>
+        <link
+          href='https://fonts.googleapis.com/css2?family=Rampart+One&display=swap'
+          rel='stylesheet'
+        />
       </Head>
       <h1>空港マップ</h1>
       <p>クリックすると空港名が表示されます</p>
@@ -105,6 +103,8 @@ export default function App() {
             latitude={popupInfo.latitude}
             // mapをクリックするとpoopup閉じる
             closeOnClick={false}
+            // Closeボタン推したらsetPopupInfoのリセット
+            // onClose={() => setPopupInfo(null)}
             onClose={setPopupInfo}
             className='container'
           >

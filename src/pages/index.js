@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
@@ -78,6 +79,9 @@ export default function App() {
 
   return (
     <>
+      <Head>
+        <link href="https://fonts.googleapis.com/css2?family=Rampart+One&display=swap" rel="stylesheet"/>
+      </Head>
       <h1>空港マップ</h1>
       <p>クリックすると空港名が表示されます</p>
       <ReactMapGL
@@ -94,11 +98,15 @@ export default function App() {
         {popupInfo && (
           <Popup
             tipSize={5}
+            // popupの配置
             anchor='top'
+            // 緯度経度
             longitude={popupInfo.longitude}
             latitude={popupInfo.latitude}
+            // mapをクリックするとpoopup閉じる
             closeOnClick={false}
             onClose={setPopupInfo}
+            className='container'
           >
             <CityInfo info={popupInfo} />
           </Popup>
@@ -109,7 +117,7 @@ export default function App() {
         <NavigationControl style={navStyle} />
         <ScaleControl style={scaleControlStyle} />
       </ReactMapGL>
-
+      <style jsx>{``}</style>
       {/* <ControlPanel /> */}
     </>
   );

@@ -5,18 +5,17 @@ function CityInfo(props) {
   const displayName = `${info.name}`;
 
   return (
-    <div className='container'>
+    <div>
       <div>
-        <p>{displayName} </p>
+        {displayName} |{' '}
+        <a
+          target='_new'
+          href={`http://en.wikipedia.org/w/index.php?title=Special:Search&search=${displayName}`}
+        >
+          Wikipedia
+        </a>
       </div>
-      <style jsx>{`
-        div {
-          margin: 40px;
-        }
-        p {
-          color: #0080c0;
-        }
-      `}</style>
+     
     </div>
   );
 }

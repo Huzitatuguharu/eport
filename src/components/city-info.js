@@ -11,8 +11,8 @@ function CityInfo(props) {
     <div className='container'>
       <div>
         <p>空港👀　{AirportName} </p>
-        <p>IA{AirportICAO} </p>
-        <p>{AirportIATA} </p>
+        <p>ICAO🐈　{AirportICAO} </p>
+        <p>IATA🐕　{AirportIATA} </p>
       </div>
       <style jsx>{`
         div {

@@ -2,12 +2,17 @@ import * as React from 'react';
 
 function CityInfo(props) {
   const { info } = props;
-  const displayName = `${info.name}`;
+  const AirportName = `${info.name}`;
+  const AirportICAO = `${info.icao}`;
+  const AirportIATA = `${info.iata}`;
+
 
   return (
     <div className='container'>
       <div>
-        <p>{displayName} </p>
+        <p>空港👀　{AirportName} </p>
+        <p>IA{AirportICAO} </p>
+        <p>{AirportIATA} </p>
       </div>
       <style jsx>{`
         div {

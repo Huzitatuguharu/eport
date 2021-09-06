@@ -1,15 +1,28 @@
 body {
   margin: 0;
   /* background: #000; */
-  font-family: 'Hiragino Sans','ヒラギノ角ゴシック','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic''ＭＳ ゴシック','Helvetica Neue','Helvetica','Arial',sans-serif;
+  font-family: 'Kiwi Maru', serif;
+
+  font-family: 'Kiwi Maru','Hiragino Sans','ヒラギノ角ゴシック','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic''ＭＳ ゴシック','Helvetica Neue','Helvetica','Arial',sans-serif;
 }
+
+.icon{
+display: inline-flex;
+vertical-align: middle;
+margin: 0px 8px 0px;
+}
+
 #map {
-  width: 100vw;
-  height: 100vh;
+  width: 80%;
+  height: 80vh;
 }
 
 h1 {
-  font-family: 'Rampart One', cursive;
+  font-weight: 500;
+}
+
+.wrapper{
+  margin: 24px;
 }
 .control-panel {
   position: absolute;

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
+
 import ReactMapGL, {
   Popup,
   NavigationControl,
@@ -14,9 +15,11 @@ import ReactMapGL, {
 import useSWR from 'swr';
 
 import CityInfo from '../components/city-info';
+
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
-import { supabase } from '../lib/Supabase';
+import TopInfo from '../components/topinfo';
+import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {
   top: 0,
@@ -91,17 +94,6 @@ export default function App() {
     console.log('useEffectが実行されました');
   }, [fromairport]);
 
-  if (fromairport != null) {
-    console.log(fromairport);
-    // setFromdata(fromairport);
-    // console.log(fromdata);
-
-    // useEffect(() => {
-    //   console.log('gettoairportdataが実行されました');
-    //   gettoairportdata();
-    // }, [fromairport]);
-  }
-
   // fromairport一致するtoairport
   // toairportの空港idから緯度経度取得
 
@@ -129,15 +121,16 @@ export default function App() {
     <>
       <Head>
         <link
-          href='https://fonts.googleapis.com/css2?family=Rampart+One&display=swap'
+          href='https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap'
           rel='stylesheet'
         />
       </Head>
-      <h1>空港マップ</h1>
-      <p>クリックすると空港名が表示されます</p>
-      <Link href='https://code-kitchen.dev/html/a/'>
-        <a>Webサイト</a>
-      </Link>
+      <div className='wrapper'>
+        <h1>空港マップ</h1>
+        <p>クリックすると空港名が表示されます</p>
+        {popupInfo && <TopInfo info={popupInfo} />}
+      </div>
+
       <ReactMapGL
         {...viewport}
         width='100vw'
@@ -153,7 +146,7 @@ export default function App() {
           <Popup
             tipSize={3}
             // popupの配置
-            anchor='top'
+            // anchor='center'
             // 緯度経度
             longitude={popupInfo.longitude}
             latitude={popupInfo.latitude}
@@ -166,8 +159,6 @@ export default function App() {
             className='container'
           >
             <CityInfo info={popupInfo} />
-            <button onClick={() => getroutedata()}>決定</button>
-            <p>{popupInfo.id}</p>
           </Popup>
         )}
 

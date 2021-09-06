@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 
 import ReactMapGL, { Marker, Popup } from 'react-map-gl';
-import { supabase } from '../lib/Supabase';
+import { supabase } from '../lib/createSupabaseClient';
 
 type Airport = {
   id: number;

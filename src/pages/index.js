@@ -12,13 +12,15 @@ import ReactMapGL, {
   ScaleControl,
   GeolocateControl,
 } from 'react-map-gl';
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 
 import CityInfo from '../components/city-info';
 
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
+import SelectedPins from '../components/selectedpins';
 import TopInfo from '../components/topinfo';
+import { useGetairportdata } from '../hooks/useGetairportdata';
 import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {
@@ -57,6 +59,17 @@ export default function App() {
   const [popupInfo, setPopupInfo] = useState(null);
   console.log('popupInfo', popupInfo);
 
+  useEffect(
+    () => async () => {
+      const { data, error } = await supabase.from('airport').select();
+      console.log('data', data);
+      const airportdata = data;
+      console.log('data', airportdata);
+
+      return airportdata;
+    },
+    [],
+  );
   // ここからSupabaseに接続
   const getairportdata = async () => {
     const { data, error } = await supabase.from('airport').select();
@@ -66,33 +79,6 @@ export default function App() {
   useEffect(() => {
     getairportdata();
   }, []);
-
-  // ここから路線のロジック
-  // popupInfoのidをfromairport
-
-  const fromairport = popupInfo?.id;
-  console.log(fromairport);
-
-  // ここからSupabaseに接続,setFromdata
-  //  latitude: number;
-  //  longitude: number;
-  const gettroutedata = async () => {
-    const abc = {
-      number: 1,
-      name: 2,
-    };
-    const { data, error } = await supabase
-      .from('airport')
-      .select('latitude,longitude')
-      .eq('id', abc.name);
-    console.log(data);
-    setTodata(data);
-  };
-
-  useEffect(() => {
-    gettroutedata();
-    console.log('useEffectが実行されました');
-  }, [fromairport]);
 
   // fromairport一致するtoairport
   // toairportの空港idから緯度経度取得
@@ -142,25 +128,7 @@ export default function App() {
       >
         <Pins data={airportdata} onClick={setPopupInfo} />
 
-        {popupInfo && (
-          <Popup
-            tipSize={3}
-            // popupの配置
-            // anchor='center'
-            // 緯度経度
-            longitude={popupInfo.longitude}
-            latitude={popupInfo.latitude}
-            // mapをクリックするとpoopup閉じる
-            closeOnClick={true}
-            closeOnMove={true}
-            // Closeボタン推したらsetPopupInfoのリセット
-            // onClose={() => setPopupInfo(null)}
-            onClose={setPopupInfo}
-            className='container'
-          >
-            <CityInfo info={popupInfo} />
-          </Popup>
-        )}
+        {popupInfo && <SelectedPins data={popupInfo} />}
 
         <GeolocateControl style={geolocateStyle} />
         <FullscreenControl style={fullscreenControlStyle} />

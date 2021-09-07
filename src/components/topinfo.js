@@ -14,6 +14,7 @@ function TopInfo(props) {
 
   const AirportLounge = info.lounge;
   const AirportLoungeMark = AirportLounge == 0 ? '×' : '〇';
+  console.log(AirportLoungeMark);
 
   return (
     <div className='container'>
@@ -25,14 +26,21 @@ function TopInfo(props) {
             {info.name}
           </a>
         </Link>
-        <AiFillStar className='icon' />
+        <IoIosAirplane className='icon' />
+        {/* <AiFillStar className='icon' /> */}
         {info.icao}
-        <AiFillStar className='icon' />
+        <IoIosAirplane className='icon' />
+        {/* <AiFillStar className='icon' /> */}
         {info.iata}
+        <IoIosAirplane className='icon' />
+        {/* <AiFillStar className='icon' /> */}
+        ラウンジ　
+        {AirportLoungeMark}
       </p>
+
       <style jsx>{`
         p {
-          color: #0080c0;
+          color: #333;
         }
       `}</style>
     </div>

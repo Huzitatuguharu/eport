@@ -1,37 +1,26 @@
-import { useState, useEffect } from 'react';
-import useSWR, { SWRConfig } from 'swr';
+// import React from 'react';
+import useSWR from 'swr';
 
-// import { supabase } from '../lib/createSupabaseClient';
+const fetcher = (url) => fetch(url).then((res) => res.json());
 
-// const fetcher = (...args) => fetch(...args).then((res) => res.json());
-// function useUser() {
-//   const { data, error } = useSWR('./api/airport.ts', fetcher);
-//   console.log(data);
-//   return {
-//     airportdata: data,
-//     isLoading: !error && !data,
-//     isError: error,
-//   };
-// }
+export default function App() {
+//    const { data, error } = useSWR('./api/airport', fetcher);
+// console.log(data);
+//    if (error) return <div>failed to load</div>;
+//    if (!data) return <div>loading...</div>;
 
-export default function FirstPost() {
+//    return <div>hello {data.name}!</div>;
+  const { data, error } = useSWR('./api/airport', fetcher);
+  console.log(data);
+
+  if (error) return 'An error has occurred.';
+  if (!data) return 'Loading...';
   return (
     <div>
-      <Children theme={{ background: 'yellow' }} large />
+      <h1>{data[0].name}</h1>
+      {/* <p>{data.description}</p> */}
+      {/* <strong>👁 {data.subscribers_count}</strong> <strong>✨ {data.stargazers_count}</strong>{' '} */}
+      {/* <strong>🍴 {data.forks_count}</strong> */}
     </div>
   );
 }
-
-export const Children = (props) => {
-  return (
-    <div>
-      <p>Children Component</p>
-      <style jsx>{`
-        p {
-          padding: ${'large' in props ? '50' : '20'}px;
-          background: ${props.theme.background};
-        }
-      `}</style>
-    </div>
-  );
-};

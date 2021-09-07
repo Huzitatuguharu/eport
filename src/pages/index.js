@@ -14,6 +14,7 @@ import ReactMapGL, {
 } from 'react-map-gl';
 
 import useSWR, { SWRConfig } from 'swr';
+import useSWRImmutable from 'swr/immutable';
 import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
@@ -57,17 +58,9 @@ export default function App() {
   const [popupInfo, setPopupInfo] = useState(null);
   console.log('popupInfo', popupInfo);
 
-  useEffect(
-    () => async () => {
-      const { data, error } = await supabase.from('airport').select();
-      console.log('data', data);
-      const airportdata = data;
-      console.log('data', airportdata);
 
-      return airportdata;
-    },
-    [],
-  );
+
+
   // ここからSupabaseに接続
   const getairportdata = async () => {
     const { data, error } = await supabase.from('airport').select();
@@ -77,6 +70,9 @@ export default function App() {
   useEffect(() => {
     getairportdata();
   }, []);
+
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
+  const { data, error } = useSWR('./api/airport.ts', fetcher);
 
   // fromairport一致するtoairport
   // toairportの空港idから緯度経度取得

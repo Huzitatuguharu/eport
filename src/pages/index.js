@@ -12,15 +12,13 @@ import ReactMapGL, {
   ScaleControl,
   GeolocateControl,
 } from 'react-map-gl';
+
 import useSWR, { SWRConfig } from 'swr';
-
 import CityInfo from '../components/city-info';
-
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
 import TopInfo from '../components/topinfo';
-import { useGetairportdata } from '../hooks/useGetairportdata';
 import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {

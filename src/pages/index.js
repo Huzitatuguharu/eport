@@ -20,6 +20,7 @@ import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
 import TopInfo from '../components/topinfo';
+import Toairportpin from '../components/toairportpins';
 import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {
@@ -52,14 +53,12 @@ export default function App() {
 
   // 初期値nullにしない！！
   const [airportdata, setAirportdata] = useState([]);
-  const [todata, setTodata] = useState([]);
+
+  const [fromairport, setFromairport] = useState([]);
 
   // popupInfo
   const [popupInfo, setPopupInfo] = useState(null);
   console.log('popupInfo', popupInfo);
-
-
-
 
   // ここからSupabaseに接続
   const getairportdata = async () => {
@@ -71,20 +70,7 @@ export default function App() {
     getairportdata();
   }, []);
 
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error } = useSWR('./api/airport.ts', fetcher);
 
-  // fromairport一致するtoairport
-  // toairportの空港idから緯度経度取得
-
-  // 緯度経度をピンに渡す
-
-  // const { data, error } = await supabase.from('route').select(`
-  //   toairport,
-  //   route (
-  //     to
-  //   )
-  // `);
 
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
@@ -94,6 +80,29 @@ export default function App() {
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
+
+  // App.getInitialProps = async getInitialProps () {
+  //     const data = await fetcher('./api/airport');
+  //   return { data }
+  // }
+
+  // function App (props) {
+  //   const initialData = props.data
+  //   const { data } = useSWR('/api/data', fetcher, { initialData })
+
+  //   return <div>{data}</div>
+  // }
+
+  // const fetcher = (url) => fetch(url).then((res) => res.json());
+  // const { data, error } = useSWR('./api/airport', fetcher, revalidationOptions);
+  // console.log(data);
+  // if (error) return 'An error has occurred.';
+  // if (!data) return 'Loading...';
+  // if (data) {
+  //   useEffect(() => {
+  //     setAirportdata(data);
+  //   });
+  // }
 
   return (
     <>
@@ -122,6 +131,8 @@ export default function App() {
             <Pins data={airportdata} onClick={setPopupInfo} />
 
             {popupInfo && <SelectedPins data={popupInfo} />}
+            {popupInfo && <Toairportpin data={popupInfo} alldata={airportdata}/>}
+
 
             <GeolocateControl style={geolocateStyle} />
             <FullscreenControl style={fullscreenControlStyle} />

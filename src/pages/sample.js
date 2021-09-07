@@ -1,26 +1,39 @@
-// import React from 'react';
-import useSWR from 'swr';
+import useSWR, { SWRConfig } from 'swr';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
+const API = 'http://localhost:3000/src/pages/api/airport';
 
-export default function App() {
-//    const { data, error } = useSWR('./api/airport', fetcher);
-// console.log(data);
-//    if (error) return <div>failed to load</div>;
-//    if (!data) return <div>loading...</div>;
+export async function getStaticProps() {
+  // `getStaticProps` はサーバー側で実行されます
+  const repoInfo = await fetcher(API);
+  return {
+    props: {
+      fallback: {
+        [API]: repoInfo,
+      },
+    },
+  };
+}
 
-//    return <div>hello {data.name}!</div>;
-  const { data, error } = useSWR('./api/airport', fetcher);
-  console.log(data);
+function Repo() {
+  const { data, error } = useSWR(API);
+  // `data` は `fallback` を利用して常に利用可能です。
+  console.log('Is data ready?', !!data);
 
   if (error) return 'An error has occurred.';
   if (!data) return 'Loading...';
   return (
     <div>
       <h1>{data[0].name}</h1>
-      {/* <p>{data.description}</p> */}
-      {/* <strong>👁 {data.subscribers_count}</strong> <strong>✨ {data.stargazers_count}</strong>{' '} */}
-      {/* <strong>🍴 {data.forks_count}</strong> */}
     </div>
+  );
+}
+
+export default function Page({ fallback }) {
+  // `SWRConfig` の範囲内の SWR フックは、設定の値を使用します。
+  return (
+    <SWRConfig value={{ fallback }}>
+      <Repo />
+    </SWRConfig>
   );
 }

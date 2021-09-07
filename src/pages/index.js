@@ -94,11 +94,9 @@ export default function App() {
   const [viewport, setViewport] = useState({
     latitude: 35,
     longitude: 135,
-    zoom: 4.5,
+    zoom: 3.8,
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
-    bearing: -10,
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
-    pitch: 30,
   });
 
   return (
@@ -110,30 +108,45 @@ export default function App() {
         />
       </Head>
       <div className='wrapper'>
-        <h1>空港マップ</h1>
-        <p>クリックすると空港名が表示されます</p>
-        {popupInfo && <TopInfo info={popupInfo} />}
+        <div className='toparea'>
+          <h1>空港マップ</h1>
+
+          {popupInfo && <TopInfo info={popupInfo} />}
+        </div>
+        <div className='map'>
+          <ReactMapGL
+            {...viewport}
+            width='80%'
+            height='80vh'
+            // satellite、light 、dark 、streets 、outdoors
+            mapStyle='mapbox://styles/mapbox/light-v10'
+            onViewportChange={setViewport}
+            mapboxApiAccessToken={TOKEN}
+          >
+            <Pins data={airportdata} onClick={setPopupInfo} />
+
+            {popupInfo && <SelectedPins data={popupInfo} />}
+
+            <GeolocateControl style={geolocateStyle} />
+            <FullscreenControl style={fullscreenControlStyle} />
+            <NavigationControl style={navStyle} />
+            <ScaleControl style={scaleControlStyle} />
+          </ReactMapGL>
+        </div>
       </div>
 
-      <ReactMapGL
-        {...viewport}
-        width='100vw'
-        height='80vh'
-        // satellite、light 、dark 、streets 、outdoors
-        mapStyle='mapbox://styles/mapbox/light-v10'
-        onViewportChange={setViewport}
-        mapboxApiAccessToken={TOKEN}
-      >
-        <Pins data={airportdata} onClick={setPopupInfo} />
+      <style jsx>{`
+        .toparea {
+          display: flex;
+          align-items: center;
 
-        {popupInfo && <SelectedPins data={popupInfo} />}
-
-        <GeolocateControl style={geolocateStyle} />
-        <FullscreenControl style={fullscreenControlStyle} />
-        <NavigationControl style={navStyle} />
-        <ScaleControl style={scaleControlStyle} />
-      </ReactMapGL>
-      <style jsx>{``}</style>
+          margin: 20px;
+        }
+        // .wrapper {
+        //   display: block;
+        //   margin: 20px;
+        // }
+      `}</style>
       {/* <ControlPanel /> */}
     </>
   );

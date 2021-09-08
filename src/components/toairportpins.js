@@ -11,14 +11,15 @@ export const Toairportpin = (props) => {
   const { data, alldata } = props;
   const fromairport = data.id;
 
-  let toairportlists = [];
-  // let [toairportlists, setToairportlists] = useState([]);
+  const [toairportlists, setToairportlists] = useState([]);
+
+  // let toairportlists=[];
 
   useEffect(() => {
     getToairportdata(fromairport, alldata);
   }, [fromairport]);
 
-  console.log('toairportlists2', toairportlists);
+  console.log('toairportlists1', toairportlists);
 
   // ここからSupabaseに接続
   const getToairportdata = async (fromairport, alldata) => {
@@ -30,9 +31,12 @@ export const Toairportpin = (props) => {
       toairportlists.push(matchairport);
       console.log(matchairport);
     }
+    console.log('toairportlists2',toairportlists);
+    setToairportlists(toairportlists);
+
+   
   };
-console.log(toairportlists);
-  return (
+ return (
     <Marker
       // key={`marker-${index}`}
       // longitude={matchairport[0].longitude}

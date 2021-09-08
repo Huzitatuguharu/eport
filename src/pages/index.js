@@ -19,8 +19,8 @@ import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
-import TopInfo from '../components/topinfo';
 import Toairportpin from '../components/toairportpins';
+import TopInfo from '../components/topinfo';
 import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {
@@ -70,8 +70,6 @@ export default function App() {
     getairportdata();
   }, []);
 
-
-
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
     latitude: 35,
@@ -111,6 +109,10 @@ export default function App() {
           href='https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap'
           rel='stylesheet'
         />
+        <link
+          rel='icon'
+          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>👀</text></svg>'
+        ></link>
       </Head>
       <div className='wrapper'>
         <div className='toparea'>
@@ -131,8 +133,7 @@ export default function App() {
             <Pins data={airportdata} onClick={setPopupInfo} />
 
             {popupInfo && <SelectedPins data={popupInfo} />}
-            {popupInfo && <Toairportpin data={popupInfo} alldata={airportdata}/>}
-
+            {popupInfo && <Toairportpin data={popupInfo} alldata={airportdata} />}
 
             <GeolocateControl style={geolocateStyle} />
             <FullscreenControl style={fullscreenControlStyle} />

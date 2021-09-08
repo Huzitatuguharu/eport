@@ -11,10 +11,8 @@ import { supabase } from '../lib/createSupabaseClient';
 
 function TopInfo(props) {
   const { info } = props;
-
   const AirportLounge = info.lounge;
   const AirportLoungeMark = AirportLounge == 0 ? 'なし🙅' : 'あり🙆';
-  console.log(AirportLoungeMark);
 
   return (
     <div className='container'>

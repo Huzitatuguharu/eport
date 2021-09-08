@@ -1,42 +1,49 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 import { supabase } from '../lib/createSupabaseClient';
+import { Toairportpinchild } from './toairpotpinchild';
 
-// Important for perf: the markers never change, avoid rerender when the map viewport changes
-function Toairportpin(props) {
+export const Toairportpin = (props) => {
   const { data, alldata } = props;
   const fromairport = data.id;
-  console.log('fromairport1', fromairport);
-  console.log(alldata);
+
+  let toairportlists = [];
+  // let [toairportlists, setToairportlists] = useState([]);
+
+  useEffect(() => {
+    getToairportdata(fromairport, alldata);
+  }, [fromairport]);
+
+  console.log('toairportlists2', toairportlists);
 
   // ここからSupabaseに接続
-  const getToairportdata = async () => {
+  const getToairportdata = async (fromairport, alldata) => {
     const { data, error } = await supabase.from('route').select('to').eq('from', fromairport);
-
-    console.log('fromairport2', data);
     const toairports = data.map((value) => value['to']);
 
-    console.log('toairports', toairports);
     for (let i = 0; i < toairports.length; i++) {
-      const myFirstPokemon = alldata.find(({ id }) => id === toairports[i]);
-      console.log(myFirstPokemon); // { id: 0, name: 'Pikachu' }
+      const matchairport = alldata.find(({ id }) => id === toairports[i]);
+      toairportlists.push(matchairport);
+      console.log(matchairport);
     }
   };
-
-  getToairportdata();
-
+console.log(toairportlists);
   return (
-    <Marker longitude={data.longitude} latitude={data.latitude}>
-      <IconContext.Provider value={{ color: '#333', size: '8px' }}>
+    <Marker
+      // key={`marker-${index}`}
+      // longitude={matchairport[0].longitude}
+      // latitude={matchairport[1].latitude}
+      longitude={135}
+      latitude={35}
+    >
+      <IconContext.Provider value={{ color: '#fff333', size: '24px' }}>
         <RiMapPin3Fill></RiMapPin3Fill>
+        <style jsx>{``}</style>
       </IconContext.Provider>
-
-      <style jsx>{``}</style>
     </Marker>
   );
-}
-
-export default React.memo(Toairportpin);
+};

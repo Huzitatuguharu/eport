@@ -4,13 +4,9 @@ import { IconContext } from 'react-icons';
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 
-
-
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 function SelectedPins(props) {
   const { data } = props;
-  // const longitude = data.longitude;
-  // const latitude = data.latitude;
 
   return (
     <Marker longitude={data.longitude} latitude={data.latitude}>

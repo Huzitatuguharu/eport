@@ -19,7 +19,7 @@ import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
-import Toairportpin from '../components/toairportpins';
+import { Toairportpin } from '../components/toairportpins';
 import TopInfo from '../components/topinfo';
 import { supabase } from '../lib/createSupabaseClient';
 
@@ -54,11 +54,10 @@ export default function App() {
   // 初期値nullにしない！！
   const [airportdata, setAirportdata] = useState([]);
 
-  const [fromairport, setFromairport] = useState([]);
-
   // popupInfo
   const [popupInfo, setPopupInfo] = useState(null);
-  console.log('popupInfo', popupInfo);
+
+
 
   // ここからSupabaseに接続
   const getairportdata = async () => {
@@ -70,6 +69,8 @@ export default function App() {
     getairportdata();
   }, []);
 
+
+
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
     latitude: 35,
@@ -78,29 +79,6 @@ export default function App() {
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
-
-  // App.getInitialProps = async getInitialProps () {
-  //     const data = await fetcher('./api/airport');
-  //   return { data }
-  // }
-
-  // function App (props) {
-  //   const initialData = props.data
-  //   const { data } = useSWR('/api/data', fetcher, { initialData })
-
-  //   return <div>{data}</div>
-  // }
-
-  // const fetcher = (url) => fetch(url).then((res) => res.json());
-  // const { data, error } = useSWR('./api/airport', fetcher, revalidationOptions);
-  // console.log(data);
-  // if (error) return 'An error has occurred.';
-  // if (!data) return 'Loading...';
-  // if (data) {
-  //   useEffect(() => {
-  //     setAirportdata(data);
-  //   });
-  // }
 
   return (
     <>

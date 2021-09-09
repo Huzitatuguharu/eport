@@ -57,7 +57,13 @@ export default function App() {
   // popupInfo
   const [popupInfo, setPopupInfo] = useState(null);
 
+  let [fromairportlists, setFromairportlists] = useState(null);
 
+  let [toairportlists, setToairportlists] = useState(null);
+
+  useEffect(() => {
+    getairportdata();
+  }, []);
 
   // ここからSupabaseに接続
   const getairportdata = async () => {
@@ -66,10 +72,32 @@ export default function App() {
   };
 
   useEffect(() => {
-    getairportdata();
-  }, []);
+    getToairportdata();
+  }, [popupInfo]);
 
+  // Supabaseに接続
+  let sample;
+  const getToairportdata = async () => {
 
+    if (popupInfo) {
+      let toairportlists = [];
+      const fromairport = popupInfo.id;
+      const { data, error } = await supabase.from('route').select().eq('from', fromairport);
+      console.log('data1', data);
+      sample = data;
+      // for (let i = 0; i < data.length; i++) {
+      //   toairportlists = airportdata.find(({ id }) => id === data[i]);
+      //   console.log(data);
+      //   console.log(airportdata);
+      //   console.log('toairportlists1', toairportlists); // { id: 0, name: 'Pikachu' }
+      // }
+      // return sample;
+      // console.log('toairportlists2', toairportlists); // { id: 0, name: 'Pikachu' }
+
+      setToairportlists(toairportlists);
+    }
+  };
+  // console.log('toairportlists2', toairportlists); // { id: 0, name: 'Pikachu' }
 
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
@@ -111,7 +139,7 @@ export default function App() {
             <Pins data={airportdata} onClick={setPopupInfo} />
 
             {popupInfo && <SelectedPins data={popupInfo} />}
-            {popupInfo && <Toairportpin data={popupInfo} alldata={airportdata} />}
+            {/* {toairportlists && <Toairportpin data={toairportlists} />} */}
 
             <GeolocateControl style={geolocateStyle} />
             <FullscreenControl style={fullscreenControlStyle} />

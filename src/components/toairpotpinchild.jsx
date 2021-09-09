@@ -8,9 +8,8 @@ import { supabase } from '../lib/createSupabaseClient';
 
 export const Toairportpinchild = (props) => {
   const { data } = props;
-  console.log('toairportlists3', data);
 
-  return data.map((city, index) => (
+  return data?.map((city, index) => (
     <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
       <IconContext.Provider value={{ color: '#fff333', size: '24px' }}>
         <RiMapPin3Fill></RiMapPin3Fill>

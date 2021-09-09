@@ -4,50 +4,52 @@ import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
+import { Toairportpinchild } from '../components/toairpotpinchild';
 import { supabase } from '../lib/createSupabaseClient';
-import { Toairportpinchild } from './toairpotpinchild';
 
 export const Toairportpin = (props) => {
   const { data, alldata } = props;
   const fromairport = data.id;
 
-  const [toairportlists, setToairportlists] = useState([]);
+  let [fromairportlists, setFromairportlists] = useState(null);
 
-  // let toairportlists=[];
+  let [toairportlists, setToairportlists] = useState(null);
 
-  useEffect(() => {
-    getToairportdata(fromairport, alldata);
-  }, [fromairport]);
 
-  console.log('toairportlists1', toairportlists);
-
-  // ここからSupabaseに接続
-  const getToairportdata = async (fromairport, alldata) => {
-    const { data, error } = await supabase.from('route').select('to').eq('from', fromairport);
-    const toairports = data.map((value) => value['to']);
-
-    for (let i = 0; i < toairports.length; i++) {
-      const matchairport = alldata.find(({ id }) => id === toairports[i]);
-      toairportlists.push(matchairport);
-      console.log(matchairport);
-    }
-    console.log('toairportlists2',toairportlists);
-    setToairportlists(toairportlists);
-
-   
-  };
- return (
-    <Marker
-      // key={`marker-${index}`}
-      // longitude={matchairport[0].longitude}
-      // latitude={matchairport[1].latitude}
-      longitude={135}
-      latitude={35}
-    >
-      <IconContext.Provider value={{ color: '#fff333', size: '24px' }}>
-        <RiMapPin3Fill></RiMapPin3Fill>
+  if (toairportlists) {
+    return (
+      <Marker longitude={toairportlists[0].longitude} latitude={toairportlists[0].latitude}>
+        <IconContext.Provider value={{ color: '#333', size: '24px' }}>
+          <RiMapPin3Fill></RiMapPin3Fill>
+        </IconContext.Provider>
         <style jsx>{``}</style>
-      </IconContext.Provider>
-    </Marker>
-  );
+      </Marker>
+    );
+  }
 };
+
+export default React.memo(Toairportpin);
+
+// async function doAsync() {
+//   return '値';
+// }
+// // doAsync関数はPromiseを返す
+// doAsync().then((value) => {
+//   console.log(value); // => "値"
+// });
+
+const Randomizer = () => {
+  const [value, setValue] = useState(123);
+
+  // 描画前に同期的に実行される
+  useLayoutEffect(() => {
+    setValue(Math.random());
+  }, []);
+
+  return <div>{value}</div>;
+};
+
+// for (let i = 0; i < toairports.length; i++) {
+//   const myFirstPokemon = alldata.find(({ id }) => id === toairports[i]);
+//   console.log(myFirstPokemon); // { id: 0, name: 'Pikachu' }
+// }

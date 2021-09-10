@@ -10,6 +10,8 @@ function Pins(props) {
   return data.map((city, index) => (
     <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
       <IconContext.Provider value={{ color: '#333', size: '8px' }}>
+        {/* <RiMapPin3Line onClick={onclickpin}></RiMapPin3Line> */}
+
         <RiMapPin3Line onClick={() => onClick(city)}></RiMapPin3Line>
         <style jsx>{``}</style>
       </IconContext.Provider>

@@ -65,6 +65,10 @@ export default function App() {
     getairportdata();
   }, []);
 
+  useEffect(() => {
+    setIsRevealpins(false);
+  }, [popupInfo]);
+
   // ここからSupabaseに接続
   const getairportdata = async () => {
     const { data, error } = await supabase.from('airport').select();
@@ -109,9 +113,9 @@ export default function App() {
     <>
       <Head>
         <link
-          href='https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300;400;500&display=swap'
+          href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap'
           rel='stylesheet'
-        />
+        ></link>
         <link
           rel='icon'
           href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>👀</text></svg>'
@@ -119,12 +123,14 @@ export default function App() {
       </Head>
       <div className='wrapper'>
         <div className='toparea'>
-          <h1>空港マップ</h1>
+          <h1>
+            <span className='text-gradient'>Airport</span>
+          </h1>
 
           {popupInfo && (
             <>
               <TopInfo info={popupInfo} />
-              <button onClick={onClickgetToairportdata}>行けるのは</button>
+              <button onClick={onClickgetToairportdata}>行先</button>
             </>
           )}
         </div>
@@ -156,6 +162,13 @@ export default function App() {
           display: flex;
           align-items: center;
           margin: 20px;
+        }
+        .text-gradient {
+          font-size: 4rem;
+          display: inline-block;
+          background: linear-gradient(45deg, #54d0ff, #9f92ff 20%, #ff7689 90%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
         }
       `}</style>
       {/* <ControlPanel /> */}

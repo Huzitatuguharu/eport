@@ -1,21 +1,15 @@
 body {
   margin: 0;
   /* background: #000; */
-  font-family: 'Kiwi Maru', serif;
-
-  font-family: 'Kiwi Maru', 'Hiragino Sans', 'ヒラギノ角ゴシック', 'メイリオ', Meiryo,
-    'ＭＳ Ｐゴシック', 'MS PGothic' 'ＭＳ ゴシック', 'Helvetica Neue', 'Helvetica', 'Arial',
-    sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック',
+    'MS PGothic' 'ＭＳ ゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 }
 
 .icon {
   display: inline-flex;
   vertical-align: middle;
   margin: 0px 8px 0px;
-}
-
-h1 {
-  font-weight: 500;
 }
 
 .wrapper {

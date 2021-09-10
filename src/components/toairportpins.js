@@ -1,11 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
-import { Toairportpinchild } from '../components/toairpotpinchild';
-import { supabase } from '../lib/createSupabaseClient';
 
 export const Toairportpin = (props) => {
   const { data } = props;

@@ -1,13 +1,8 @@
 import Link from 'next/link';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 
 // アイコン
-import { AiOutlineEnvironment } from 'react-icons/ai';
-import { AiFillStar } from 'react-icons/ai';
 import { IoIosAirplane } from 'react-icons/io';
-import { supabase } from '../lib/createSupabaseClient';
-
 
 function TopInfo(props) {
   const { info } = props;

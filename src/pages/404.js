@@ -17,6 +17,8 @@ export default function Custom404() {
       </Head>
 
       <div className='wrapper404'>
+        <h1>すまない、エラーです🙇</h1>
+
         <Link href='/'>
           <a className='text404'>ホーム画面</a>
         </Link>

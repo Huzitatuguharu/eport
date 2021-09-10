@@ -59,11 +59,17 @@ export default function App() {
 
   let [fromairportlists, setFromairportlists] = useState(null);
 
-  let [toairportlists, setToairportlists] = useState(null);
+  const [toairportlists, setToairportlists] = useState([]);
+  // let toairportlists = [];
+  const [isRevealpins, setIsRevealpins] = useState(false);
 
   useEffect(() => {
     getairportdata();
   }, []);
+
+  // useEffect(() => {
+  //   getToairportdata3();
+  // }, [popupInfo]);
 
   // ここからSupabaseに接続
   const getairportdata = async () => {
@@ -71,33 +77,47 @@ export default function App() {
     setAirportdata(data);
   };
 
-  useEffect(() => {
-    getToairportdata();
-  }, [popupInfo]);
+  // let toairportlistsid;
+  const getToairportdata1 = async () => {
+    const fromairport = popupInfo.id;
+    const { data, error } = await supabase.from('route').select().eq('from', fromairport);
+    console.log('data1', data);
+    return data;
 
-  // Supabaseに接続
-  let sample;
-  const getToairportdata = async () => {
-
-    if (popupInfo) {
-      let toairportlists = [];
-      const fromairport = popupInfo.id;
-      const { data, error } = await supabase.from('route').select().eq('from', fromairport);
-      console.log('data1', data);
-      sample = data;
-      // for (let i = 0; i < data.length; i++) {
-      //   toairportlists = airportdata.find(({ id }) => id === data[i]);
-      //   console.log(data);
-      //   console.log(airportdata);
-      //   console.log('toairportlists1', toairportlists); // { id: 0, name: 'Pikachu' }
-      // }
-      // return sample;
-      // console.log('toairportlists2', toairportlists); // { id: 0, name: 'Pikachu' }
-
-      setToairportlists(toairportlists);
-    }
+    // for (let i = 0; i < data.length; i++) {
+    //   let toairportlistsid = data.find(({ id }) => id === data[i].id);
+    //   return toairportlistsid;
+    // }
+    // console.log('toairportlistsid', toairportlistsid);
+    // // return sample;
+    // const awaittoairportlists = toairportlists;
+    // console.log('awaittoairportlists', awaittoairportlists); // { id: 0, name: 'Pikachu' }
   };
-  // console.log('toairportlists2', toairportlists); // { id: 0, name: 'Pikachu' }
+
+  const getToairportdata2 = async () => {
+    const data = await getToairportdata1();
+    console.log(data[0].to);
+    console.log(airportdata);
+    let toairportlistsid = [];
+
+    for (let i = 0; i < data.length; i++) {
+      toairportlistsid.push(airportdata.find(({ id }) => id === data[i].to));
+      console.log(toairportlistsid);
+    }
+    console.log('toairportlistsid', toairportlistsid);
+    setToairportlists(toairportlistsid);
+  };
+
+  const getToairportdata3 = async () => {
+    const data = await getToairportdata2();
+    // setToairportlists(data);
+    console.log(data);
+  };
+
+  const onClickgetToairportdata = () => {
+    getToairportdata2();
+    setIsRevealpins(true);
+  };
 
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
@@ -124,7 +144,12 @@ export default function App() {
         <div className='toparea'>
           <h1>空港マップ</h1>
 
-          {popupInfo && <TopInfo info={popupInfo} />}
+          {popupInfo && (
+            <>
+              <TopInfo info={popupInfo} />
+              <button onClick={onClickgetToairportdata}>行けるのは</button>
+            </>
+          )}
         </div>
         <div className='map'>
           <ReactMapGL
@@ -139,7 +164,7 @@ export default function App() {
             <Pins data={airportdata} onClick={setPopupInfo} />
 
             {popupInfo && <SelectedPins data={popupInfo} />}
-            {/* {toairportlists && <Toairportpin data={toairportlists} />} */}
+            {isRevealpins && <Toairportpin data={toairportlists} />}
 
             <GeolocateControl style={geolocateStyle} />
             <FullscreenControl style={fullscreenControlStyle} />

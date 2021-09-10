@@ -55,19 +55,15 @@ export default function App() {
   // popupInfo
   const [popupInfo, setPopupInfo] = useState(null);
 
-  let [fromairportlists, setFromairportlists] = useState(null);
-
+  // 行先空港リスト
   const [toairportlists, setToairportlists] = useState([]);
-  // let toairportlists = [];
+
+  // 行先空港リストの表示
   const [isRevealpins, setIsRevealpins] = useState(false);
 
   useEffect(() => {
     getairportdata();
   }, []);
-
-  // useEffect(() => {
-  //   getToairportdata3();
-  // }, [popupInfo]);
 
   // ここからSupabaseに接続
   const getairportdata = async () => {
@@ -75,21 +71,11 @@ export default function App() {
     setAirportdata(data);
   };
 
-  // let toairportlistsid;
   const getToairportdata1 = async () => {
     const fromairport = popupInfo.id;
     const { data, error } = await supabase.from('route').select().eq('from', fromairport);
     console.log('data1', data);
     return data;
-
-    // for (let i = 0; i < data.length; i++) {
-    //   let toairportlistsid = data.find(({ id }) => id === data[i].id);
-    //   return toairportlistsid;
-    // }
-    // console.log('toairportlistsid', toairportlistsid);
-    // // return sample;
-    // const awaittoairportlists = toairportlists;
-    // console.log('awaittoairportlists', awaittoairportlists); // { id: 0, name: 'Pikachu' }
   };
 
   const getToairportdata2 = async () => {
@@ -104,12 +90,6 @@ export default function App() {
     }
     console.log('toairportlistsid', toairportlistsid);
     setToairportlists(toairportlistsid);
-  };
-
-  const getToairportdata3 = async () => {
-    const data = await getToairportdata2();
-    // setToairportlists(data);
-    console.log(data);
   };
 
   const onClickgetToairportdata = () => {
@@ -176,7 +156,6 @@ export default function App() {
         .toparea {
           display: flex;
           align-items: center;
-
           margin: 20px;
         }
       `}</style>

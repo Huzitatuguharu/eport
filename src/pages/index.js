@@ -86,7 +86,6 @@ export default function App() {
 
     for (let i = 0; i < data.length; i++) {
       toairportlistsid.push(airportdata.find(({ id }) => id === data[i].to));
-      console.log(toairportlistsid);
     }
     console.log('toairportlistsid', toairportlistsid);
     setToairportlists(toairportlistsid);

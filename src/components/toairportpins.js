@@ -3,22 +3,31 @@ import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
+import { Toairportpinchild } from '../components/toairpotpinchild';
+import { supabase } from '../lib/createSupabaseClient';
 
 export const Toairportpin = (props) => {
   const { data } = props;
   console.log('aaa', data);
-  console.log('aaa', data[0]);
-  console.log('aaa', data[0].longitude);
-
-  return data.map((city, index) => (
-    <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
-      <IconContext.Provider value={{ color: '#333', size: '24px' }}>
-        <RiMapPin3Fill></RiMapPin3Fill>
-        <style jsx>{``}</style>
-      </IconContext.Provider>
-    </Marker>
-  ));
-
+  if (data) {
+    return data.map((city, index) => (
+      <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
+        <IconContext.Provider value={{ color: '#333', size: '24px' }}>
+          <RiMapPin3Fill></RiMapPin3Fill>
+          <style jsx>{``}</style>
+        </IconContext.Provider>
+      </Marker>
+    ));
+  }
+  // return (
+  //   <Marker longitude={135} latitude={35}>
+  //     {/* <Marker longitude={135} latitude={35}> */}
+  //     <IconContext.Provider value={{ color: '#333', size: '24px' }}>
+  //       <RiMapPin3Fill></RiMapPin3Fill>
+  //     </IconContext.Provider>
+  //     <style jsx>{``}</style>
+  //   </Marker>
+  // );
 };
 
 export default React.memo(Toairportpin);

@@ -19,15 +19,6 @@ export const Toairportpin = (props) => {
     </Marker>
   ));
 
-  return (
-    <Marker longitude={data[0].longitude} latitude={data[0].latitude}>
-      {/* <Marker longitude={135} latitude={35}> */}
-      <IconContext.Provider value={{ color: '#333', size: '24px' }}>
-        <RiMapPin3Fill></RiMapPin3Fill>
-      </IconContext.Provider>
-      <style jsx>{``}</style>
-    </Marker>
-  );
 };
 
 export default React.memo(Toairportpin);

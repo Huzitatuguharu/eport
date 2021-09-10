@@ -1,10 +1,7 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { IconContext } from 'react-icons';
 import { RiMapPin3Line } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
-import useSWR, { SWRConfig } from 'swr';
-
 
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 function Pins(props) {

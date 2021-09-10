@@ -13,8 +13,6 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
-import useSWR, { SWRConfig } from 'swr';
-import useSWRImmutable from 'swr/immutable';
 import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
 import Pins from '../components/pins';
@@ -181,10 +179,6 @@ export default function App() {
 
           margin: 20px;
         }
-        // .wrapper {
-        //   display: block;
-        //   margin: 20px;
-        // }
       `}</style>
       {/* <ControlPanel /> */}
     </>

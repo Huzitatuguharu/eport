@@ -11,7 +11,6 @@ function CityInfo(props) {
     <div className='container'>
       <p>{AirportName} </p>
       <style jsx>{`
-        
         p {
           color: #0080c0;
         }

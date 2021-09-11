@@ -3,17 +3,17 @@ import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
-import { Toairportpinchild } from '../components/toairpotpinchild';
 import { supabase } from '../lib/createSupabaseClient';
 
-export const Toairportpin = (props) => {
-  const { data } = props;
+export const ToAirportPins = (props) => {
+
+  const { data, onClick } = props;
   console.log('aaa', data);
   if (data) {
     return data.map((city, index) => (
       <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
         <IconContext.Provider value={{ color: '#333', size: '24px' }}>
-          <RiMapPin3Fill></RiMapPin3Fill>
+          <RiMapPin3Fill onClick={() => onClick(city)}></RiMapPin3Fill>
           <style jsx>{``}</style>
         </IconContext.Provider>
       </Marker>
@@ -30,7 +30,7 @@ export const Toairportpin = (props) => {
   // );
 };
 
-export default React.memo(Toairportpin);
+export default React.memo(ToAirportPins);
 
 // async function doAsync() {
 //   return '値';

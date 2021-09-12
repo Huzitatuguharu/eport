@@ -4,7 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-
+import { IoAirplane } from 'react-icons/io5';
 import ReactMapGL, {
   Popup,
   NavigationControl,
@@ -13,12 +13,15 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
+import ButtonGetToAirportData from '../components/button';
 import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
+
+import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
+import ToAirportInfo from '../components/toAirportInfo';
 import { ToAirportPins } from '../components/toairportpins';
-import TopInfo from '../components/topinfo';
 import { supabase } from '../lib/createSupabaseClient';
 
 const geolocateStyle = {
@@ -48,6 +51,8 @@ const scaleControlStyle = {
 export default function App() {
   // mapboxのトークン
   const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
+
+
 
   // 初期値nullにしない！！全ての空港情報
   const [airportData, setAirportData] = useState([]);
@@ -135,7 +140,7 @@ export default function App() {
       </Head>
       <div className='container'>
         {/* <!-- Left content --> */}
-        <div className='container__half'>
+        <div className='container_half_left'>
           <div className='map'>
             <ReactMapGL
               {...viewport}
@@ -154,42 +159,36 @@ export default function App() {
               {popupInfo && <SelectedPins data={popupInfo} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
               {isRevealPins && <ToAirportPins data={toAirportLists} onClick={setToAirportInfo} />}
-              {/* {toAirportInfo && (
-              <Popup
-                tipSize={5}
-                anchor='top'
-                longitude={toAirportInfo.longitude}
-                latitude={toAirportInfo.latitude}
-                closeOnClick={true}
-                onClose={setToAirportInfo}
-              >
-                <CityInfo info={toAirportInfo} />
-              </Popup>
-            )} */}
+
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
               <NavigationControl style={navStyle} />
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
+          <Link href='/contact'>
+            <a>お問い合わせ</a>
+          </Link>
         </div>
         {/* <!-- Right content --> */}
-        <div className='container__half'>
+        <div className='container_half_right'>
           {/* 空港情報表示する */}
           <div className='topArea'>
             <h1>{/* <span className='text-gradient'>Airport</span> */}</h1>
             {/* クリックしたらpopupInfoにクリックした空港のデータが入る */}
             {popupInfo && (
               <>
-                <TopInfo info={popupInfo} />
+                <FromAirportInfo info={popupInfo} />
                 {/* ボタン押したら行先空港のピンを表示する */}
-                <button onClick={onClickGetToAirportData}>行先</button>
+                <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
+                  <IoAirplane></IoAirplane>直行便
+                </button>
               </>
             )}
             {/* 行先空港のデータ */}
             {toAirportInfo && (
               <>
-                <TopInfo info={toAirportInfo} />
+                <ToAirportInfo info={toAirportInfo} />
                 {/* ボタン押したら行先空港のピンを表示する */}
               </>
             )}
@@ -200,9 +199,14 @@ export default function App() {
         {`
           .container {
             display: flex;
+            color: #333;
           }
-          .container__half {
+          .container_half_left {
             flex: 1;
+          }
+          .container_half_right {
+            flex: 1;
+            background: #6fb7ff;
           }
           .topArea {
             margin: 20px;
@@ -223,6 +227,9 @@ export default function App() {
             justify-content: center;
             align-items: center;
             flex-direction: column;
+          }
+          .ButtonClickGetToAirportData {
+            margin: 30px;
           }
         `}
       </style>

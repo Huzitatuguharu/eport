@@ -4,7 +4,7 @@ import * as React from 'react';
 // アイコン
 import { IoIosAirplane } from 'react-icons/io';
 
-function TopInfo(props) {
+function ToAirportInfo(props) {
   const { info } = props;
   const AirportLounge = info.lounge;
   const AirportLoungeMark = AirportLounge == 0 ? 'なし🙅' : 'あり🙆';
@@ -12,32 +12,27 @@ function TopInfo(props) {
   return (
     <div className='container'>
       <p>
-        {/* <AiOutlineEnvironment className='icon' /> */}
+        <p>到着</p>
         <IoIosAirplane className='icon' />
         <Link href={info.url}>
           <a rel='noopener noreferrer' target='_blank'>
             {info.name}
           </a>
         </Link>
-        <IoIosAirplane className='icon' />
-        {/* <AiFillStar className='icon' /> */}
-        {info.icao}
-        <IoIosAirplane className='icon' />
-        {/* <AiFillStar className='icon' /> */}
-        {info.iata}
-        <IoIosAirplane className='icon' />
-        {/* <AiFillStar className='icon' /> */}
-        ラウンジ　
-        {AirportLoungeMark}
+        <p>ICAO : {info.icao} </p>
+        <p>IATA : {info.iata} </p>
+        <p>ラウンジ : {AirportLoungeMark} </p>
       </p>
 
       <style jsx>{`
         p {
-          color: #333;
+          color: #ffffff;
+          font-family: vdl-v7marugothic, sans-serif;
+          font-weight: 700;
         }
       `}</style>
     </div>
   );
 }
 
-export default React.memo(TopInfo);
+export default React.memo(ToAirportInfo);

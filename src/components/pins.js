@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { IconContext } from 'react-icons';
-import { RiMapPin3Fill } from 'react-icons/ri';
+import { RiMapPin3Fill, RiMapPin3Line } from 'react-icons/ri';
 
-import { RiMapPin3Line } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 
 // Important for perf: the markers never change, avoid rerender when the map viewport changes

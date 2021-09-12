@@ -7,60 +7,10 @@ const getAirportAPI = async (req: NextApiRequest, res: NextApiResponse) => {
 
   const { data, error } = await supabase.from('airport').select();
 
+  // 401 Unauthorized、認証が必要
   if (error) return res.status(401).json({ error: error.message });
+  // 200番台は、処理が成功して正常にレスポンスができている状態
   return res.status(200).json(data);
 };
 
 export default getAirportAPI;
-
-// ここからSupabaseに接続
-// const getairportdata = async () => {
-//   const { data, error } = await supabase.from('airport').select();
-//   setAirportdata(data);
-// };
-
-// useEffect(() => {
-//   getairportdata();
-// }, []);
-
-// ここからSupabaseに接続,setFromdata
-//  latitude: number;
-//  longitude: number;
-// const gettroutedata = async () => {
-//   const abc = {
-//     number: 1,
-//     name: 2,
-//   };
-//   const { data, error } = await supabase
-//     .from('airport')
-//     .select('latitude,longitude')
-//     .eq('id', abc.name);
-//   console.log(data);
-//   setTodata(data);
-// };
-
-// useEffect(() => {
-//   gettroutedata();
-//   console.log('useEffectが実行されました');
-// }, [fromairport]);
-
-//   if (fromairport != null) {
-//     console.log(fromairport);
-//     // setFromdata(fromairport);
-//     // console.log(fromdata);
-
-//     // useEffect(() => {
-//     //   console.log('gettoairportdataが実行されました');
-//     //   gettoairportdata();
-//     // }, [fromairport]);
-//   }
-
-//     // ここからSupabaseに接続
-// const getairportdata = async () => {
-//   const { data, error } = await supabase.from('airport').select();
-//   setAirportdata(data);
-// };
-
-// useEffect(() => {
-//   getairportdata();
-// }, []);

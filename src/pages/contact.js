@@ -9,13 +9,12 @@ export default function contact() {
   const SPEARLYAPI_KEY = process.env.NEXT_PUBLIC_SPEARLYAPI_KEY;
   const SPEARLYCONTACT_KEY = process.env.NEXT_PUBLIC_SPEARLYCONTACT_KEY;
 
-  useEffect(() => getDataFromAPI(), []);
-  const [contact, setContact] = useState([]);
-
   // 関数の内容を編集
   let data;
 
   const getDataFromAPI = async () => {
+    // useEffect(() => getDataFromAPI(), []);
+    // const [contact, setContact] = useState([]);
     const requestUrl = 'https://spearly.com/api/v1/forms/';
     // const result = await axios.get(`${requestUrl}${SPEARLYCONTACT_KEY}/latest`);
 

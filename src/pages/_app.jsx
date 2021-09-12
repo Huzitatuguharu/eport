@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import adobeLoader from '../../adobeLoader';
 
 function MyApp({ Component, pageProps }) {
+  // adobeフォントの設定
   useEffect(() => {
     if (process.browser) adobeLoader(document);
   }, []);

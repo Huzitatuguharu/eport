@@ -18,39 +18,6 @@ export const ToAirportPins = (props) => {
       </Marker>
     ));
   }
-  // return (
-  //   <Marker longitude={135} latitude={35}>
-  //     {/* <Marker longitude={135} latitude={35}> */}
-  //     <IconContext.Provider value={{ color: '#333', size: '24px' }}>
-  //       <RiMapPin3Fill></RiMapPin3Fill>
-  //     </IconContext.Provider>
-  //     <style jsx>{``}</style>
-  //   </Marker>
-  // );
 };
 
 export default React.memo(ToAirportPins);
-
-// async function doAsync() {
-//   return '値';
-// }
-// // doAsync関数はPromiseを返す
-// doAsync().then((value) => {
-//   console.log(value); // => "値"
-// });
-
-// const Randomizer = () => {
-//   const [value, setValue] = useState(123);
-
-//   // 描画前に同期的に実行される
-//   useLayoutEffect(() => {
-//     setValue(Math.random());
-//   }, []);
-
-//   return <div>{value}</div>;
-// };
-
-// for (let i = 0; i < toairports.length; i++) {
-//   const myFirstPokemon = alldata.find(({ id }) => id === toairports[i]);
-//   console.log(myFirstPokemon); // { id: 0, name: 'Pikachu' }
-// }

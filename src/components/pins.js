@@ -1,5 +1,7 @@
 import * as React from 'react';
 import { IconContext } from 'react-icons';
+import { RiMapPin3Fill } from 'react-icons/ri';
+
 import { RiMapPin3Line } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 
@@ -8,14 +10,14 @@ function Pins(props) {
   const { data, onClick } = props;
 
   return data.map((city, index) => (
-    <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
-      <IconContext.Provider value={{ color: '#333', size: '8px' }}>
-        {/* <RiMapPin3Line onClick={onclickpin}></RiMapPin3Line> */}
-
-        <RiMapPin3Line onClick={() => onClick(city)}></RiMapPin3Line>
-        <style jsx>{``}</style>
-      </IconContext.Provider>
-    </Marker>
+    <>
+      <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
+        <IconContext.Provider value={{ color: '#65666e', size: '8px' }}>
+          {/* <RiMapPin3Line onClick={onclickpin}></RiMapPin3Line> */}
+          <RiMapPin3Fill onClick={() => onClick(city)}></RiMapPin3Fill>
+        </IconContext.Provider>
+      </Marker>
+    </>
   ));
 }
 

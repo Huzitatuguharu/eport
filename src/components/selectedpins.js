@@ -10,7 +10,7 @@ function SelectedPins(props) {
 
   return (
     <Marker longitude={data.longitude} latitude={data.latitude}>
-      <IconContext.Provider value={{ color: '#333', size: '8px' }}>
+      <IconContext.Provider value={{ color: '#1c74ff', size: '8px' }}>
         <RiMapPin3Fill></RiMapPin3Fill>
       </IconContext.Provider>
 

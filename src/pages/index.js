@@ -178,7 +178,7 @@ export default function App() {
                 <FromAirportInfo info={popupInfo} />
                 {/* ボタン押したら行先空港のピンを表示する */}
                 <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
-                  <IoAirplane></IoAirplane>直行便
+                  🐲 直行便
                 </button>
               </>
             )}
@@ -196,27 +196,20 @@ export default function App() {
         {`
           .container {
             display: flex;
-            color: #333;
+            color: #414b5a;
           }
           .container_half_left {
             flex: 1;
           }
           .container_half_right {
             flex: 1;
-            background: #6fb7ff;
+            background: linear-gradient(118.47deg, #e9edf0 0.61%, #e9edf0 100%);
           }
           .topArea {
             margin: 20px;
             font-family: vdl-v7marugothic, sans-serif;
             font-weight: 500;
             font-style: normal;
-          }
-          .text-gradient {
-            font-size: 4rem;
-            display: inline-block;
-            background: linear-gradient(45deg, #54d0ff, #9f92ff 20%, #ff7689 90%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
           }
           .map {
             margin: 24px;
@@ -225,15 +218,24 @@ export default function App() {
             align-items: center;
             flex-direction: column;
           }
-          .ButtonClickGetToAirportData {
-            margin: 30px;
-            background-color: #abedd8;
+          button {
+            outline: none;
             border: none;
-            padding: 8px;
-            border-radius: 8px;
+            color: #414b5a;
+            font-family: vdl-v7marugothic, sans-serif;
+            font-weight: 700;
+            margin: 30px;
+            padding: 30px;
+            background: linear-gradient(134.17deg, #eef0f5 4.98%, #e6e9ef 94.88%);
+            box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8),
+              10px 10px 20px rgba(166, 180, 200, 0.7);
+            border-radius: 20px;
             &:hover {
-              background-color: #46cdcf;
-              color: #fff;
+              background: linear-gradient(134.17deg, #eef1f5 4.98%, #e6e9ef 94.88%);
+              box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.75),
+                inset 5px 5px 10px rgba(166, 180, 200, 0.75);
+              border-radius: 40px;
+              background-color: #98fcfe;
               cursor: pointer;
             }
           }

@@ -10,7 +10,7 @@ function ToAirportInfo(props) {
   const AirportLoungeMark = AirportLounge == 0 ? 'なし🙅' : 'あり🙆';
 
   return (
-    <div className='container'>
+    <div className='airportCard'>
       <p>
         <p>到着</p>
         <IoIosAirplane className='icon' />
@@ -26,9 +26,19 @@ function ToAirportInfo(props) {
 
       <style jsx>{`
         p {
-          color: #ffffff;
+          color: #414b5a;
           font-family: vdl-v7marugothic, sans-serif;
           font-weight: 700;
+        }
+        .airportCard {
+          outline: none;
+          border: none;
+          margin: 30px;
+          padding: 30px;
+          background: linear-gradient(134.17deg, #eef0f5 4.98%, #e6e9ef 94.88%);
+          box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8),
+            10px 10px 20px rgba(166, 180, 200, 0.7);
+          border-radius: 20px;
         }
       `}</style>
     </div>

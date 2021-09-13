@@ -8,7 +8,7 @@ import { Marker } from 'react-map-gl';
 function Pins(props) {
   const { data, onClick } = props;
 
-  return data.map((city, index) => (
+  return data?.map((city, index) => (
     <>
       <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
         <IconContext.Provider value={{ color: '#65666e', size: '8px' }}>

@@ -1,31 +1,87 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import useSWR, { SWRConfig } from 'swr';
-import { supabase } from '../lib/createSupabaseClient';
+// import { useAirport } from '../hooks/useGetAirportData';
+//
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-// mapboxのトークン
-const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export function useAirport() {
+export const useAirport = () => {
+  const options = {
+    // 初期データ
+    initialData: null,
+    // pollingの期間（ミリ秒）
+    refreshInterval: 5000,
+    // windowのフォーカス時にRevalidateする
+    revalidateOnFocus: true,
+  };
   // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('../api/airport', fetcher, { refreshInterval: 1000 });
-  console.log(data);
+  const { data, error } = useSWR('./api/airport', fetcher);
+  console.log('data', data);
+  console.log('aaa');
+
   return {
     airport: data,
     isLoading: !error && !data,
     isError: error,
   };
+};
+
+function Content() {
+  const { airport, isLoading } = useAirport();
+  console.log('airport', airport);
+  
+  if (isLoading) return <p>エラー</p>;
+  return (
+    <>
+      <h1>Welcome back</h1>
+      <p>{airport[0].name}</p>
+      {airport && <p>{airport[0].name}</p>}
+    </>
+  );
 }
 
-export default function App() {
-  const { airport, isLoading, isError } = useAirport();
-
-  if (isLoading) return <p>ローディング</p>;
-  if (isError) return <p>エラー</p>;
-  return <></>;
+export default function ContentContent() {
+  return (
+    <div>
+      <Content />
+    </div>
+  );
 }
+
+// function Dashboard() {
+//   const { airport, isLoading, isError } = useAirport();
+
+//   if (isLoading) return <p>ローディング</p>;
+//   if (isError) return <p>エラー</p>;
+//   console.log(airport);
+//   return <>{airport[1].name}</>;
+// }
+
+// export default function App() {
+//   return (
+//     <SWRConfig
+//       value={{
+//         refreshInterval: 3000,
+//         fetcher: (resource, init) => fetch(resource, init).then((res) => res.json()),
+//       }}
+//     >
+//       <Dashboard />
+//     </SWRConfig>
+//   );
+// }
+
+// export function useAirport() {
+
+//   // useSWR(アクセス先,関数,オプション)
+//   const { data, error } = useSWR('../api/airport', fetcher, { refreshInterval: 1000 });
+//   console.log(data);
+//   return {
+//     airport: data,
+//     isLoading: !error && !data,
+//     isError: error,
+//   };
+// }
+
 //   // 初期値nullにしない！！全ての空港情報
 //   const [airportData, setAirportData] = useState([]);
 //   // すべての空港の情報取得

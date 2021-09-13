@@ -13,6 +13,8 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
+import useSWR, { SWRConfig } from 'swr';
+
 import ButtonGetToAirportData from '../components/button';
 import CityInfo from '../components/city-info';
 import ControlPanel from '../components/control-panel';
@@ -23,6 +25,9 @@ import SelectedPins from '../components/selectedpins';
 import ToAirportInfo from '../components/toAirportInfo';
 import { ToAirportPins } from '../components/toairportpins';
 import { supabase } from '../lib/createSupabaseClient';
+
+// mapboxのトークン
+const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
 
 const geolocateStyle = {
   top: 0,
@@ -48,24 +53,21 @@ const scaleControlStyle = {
   padding: '10px',
 };
 
-export default function App() {
-  // mapboxのトークン
-  const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
-
-
-  // 初期値nullにしない！！全ての空港情報
-  const [airportData, setAirportData] = useState([]);
-  // すべての空港の情報取得
-  useEffect(() => {
-    getAirportData();
-  }, []);
-
-  // ここからSupabaseに接続
-  const getAirportData = async () => {
-    const { data, error } = await supabase.from('airport').select();
-    setAirportData(data);
+export const useAirport = () => {
+  // useSWR(アクセス先,関数,オプション)
+  const { data, error } = useSWR('./api/airport', fetcher);
+  return {
+    airportData: data,
+    isLoading: !error && !data,
+    isError: error,
   };
+};
+
+export default function App() {
+  const { airportData, isLoading } = useAirport();
+  console.log('airport', airportData);
 
   // popupInfo
   const [popupInfo, setPopupInfo] = useState(null);
@@ -123,15 +125,11 @@ export default function App() {
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
+  if (isLoading) return <p>ロード中！！</p>;
 
   return (
     <>
       <Head>
-        {/* Googleフォント */}
-        <link
-          href='https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;700&display=swap'
-          rel='stylesheet'
-        ></link>
         {/* ファビコン */}
         <link
           rel='icon'
@@ -152,8 +150,7 @@ export default function App() {
               mapboxApiAccessToken={TOKEN}
             >
               {/* onClickでクリックしたらpopupInfoにクリックした空港のデータが入る */}
-
-              <Pins data={airportData} onClick={setPopupInfo} />
+              {airportData && <Pins data={airportData} onClick={setPopupInfo} />}
               {/* onClickでクリックした空港のピンの色が反転 */}
 
               {popupInfo && <SelectedPins data={popupInfo} />}
@@ -230,6 +227,15 @@ export default function App() {
           }
           .ButtonClickGetToAirportData {
             margin: 30px;
+            background-color: #abedd8;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            &:hover {
+              background-color: #46cdcf;
+              color: #fff;
+              cursor: pointer;
+            }
           }
         `}
       </style>

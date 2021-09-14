@@ -69,24 +69,25 @@ export default function App() {
   const { airportData, isLoading } = useAirport();
   console.log('airport', airportData);
 
-  // popupInfo
-  const [popupInfo, setPopupInfo] = useState(null);
+  // fromAirport
+  const [fromAirport, setFomAirport] = useState(null);
+  console.log('fromAirport', fromAirport);
 
   // 行先空港リスト
   const [toAirportLists, setToAirportLists] = useState([]);
 
   // 行先空港リストの表示、非表示
   const [isRevealPins, setIsRevealPins] = useState(false);
-  // 行先空港リストの表示、非表示、popupInfoが変わったらfalseにする
+  // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
   useEffect(() => {
     setIsRevealPins(false);
-  }, [popupInfo]);
+  }, [fromAirport]);
 
   // クリックしたピンをfromAirportに設定
   const getToAirportData1 = async () => {
     // 路線テーブルからfromAirportに一致する路線情報を取り出す
-    const fromAirport = popupInfo.id;
-    const { data, error } = await supabase.from('route').select().eq('from', fromAirport);
+    const fromAirportId = fromAirport.id;
+    const { data, error } = await supabase.from('route').select().eq('from', fromAirportId);
     return data;
   };
 
@@ -111,11 +112,14 @@ export default function App() {
     setIsRevealPins(true);
   };
 
+  const onClickReset = () => {
+    setFomAirport(null);
+  };
   const [toAirportInfo, setToAirportInfo] = useState(null);
-  // 行先空港リストの表示、非表示、popupInfoが変わったらfalseにする
+  // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
   useEffect(() => {
     setToAirportInfo(false);
-  }, [popupInfo]);
+  }, [fromAirport]);
 
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
@@ -125,6 +129,7 @@ export default function App() {
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
+
   if (isLoading) return <p>ロード中！！</p>;
 
   return (
@@ -149,11 +154,11 @@ export default function App() {
               onViewportChange={setViewport}
               mapboxApiAccessToken={TOKEN}
             >
-              {/* onClickでクリックしたらpopupInfoにクリックした空港のデータが入る */}
-              {airportData && <Pins data={airportData} onClick={setPopupInfo} />}
+              {/* onClickでクリックしたらfromAirportにクリックした空港のデータが入る */}
+              {airportData && <Pins data={airportData} onClick={setFomAirport} />}
               {/* onClickでクリックした空港のピンの色が反転 */}
 
-              {popupInfo && <SelectedPins data={popupInfo} />}
+              {fromAirport && <SelectedPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
               {isRevealPins && <ToAirportPins data={toAirportLists} onClick={setToAirportInfo} />}
 
@@ -172,13 +177,16 @@ export default function App() {
           {/* 空港情報表示する */}
           <div className='topArea'>
             <h1>{/* <span className='text-gradient'>Airport</span> */}</h1>
-            {/* クリックしたらpopupInfoにクリックした空港のデータが入る */}
-            {popupInfo && (
+            {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
+            {fromAirport && (
               <>
-                <FromAirportInfo info={popupInfo} />
+                <FromAirportInfo info={fromAirport} />
                 {/* ボタン押したら行先空港のピンを表示する */}
                 <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
-                  🐲 直行便
+                  直行便
+                </button>
+                <button className='ButtonReset' onClick={onClickReset}>
+                  リセット
                 </button>
               </>
             )}
@@ -203,7 +211,7 @@ export default function App() {
           }
           .container_half_right {
             flex: 1;
-            background: linear-gradient(118.47deg, #e9edf0 0.61%, #e9edf0 100%);
+            background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
           }
           .topArea {
             margin: 20px;
@@ -226,17 +234,18 @@ export default function App() {
             font-weight: 700;
             margin: 30px;
             padding: 30px;
-            background: linear-gradient(134.17deg, #eef0f5 4.98%, #e6e9ef 94.88%);
-            box-shadow: -12px -12px 20px rgba(255, 255, 255, 0.8),
-              10px 10px 20px rgba(166, 180, 200, 0.7);
             border-radius: 20px;
+            background: #cee7ed;
+            box-shadow: 14px 14px 28px #afc4c9, -14px -14px 28px #edffff;
             &:hover {
-              background: linear-gradient(134.17deg, #eef1f5 4.98%, #e6e9ef 94.88%);
-              box-shadow: inset -5px -5px 15px rgba(255, 255, 255, 0.75),
-                inset 5px 5px 10px rgba(166, 180, 200, 0.75);
-              border-radius: 40px;
-              background-color: #98fcfe;
+              border-radius: 100px;
+              background-color: #c1e1ff;
               cursor: pointer;
+            }
+            &:active {
+              border-radius: 50px;
+              background: #cee7ed;
+              box-shadow: inset 14px 14px 28px #afc4c9, inset -14px -14px 28px #edffff;
             }
           }
         `}

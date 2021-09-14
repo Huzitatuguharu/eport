@@ -11,7 +11,7 @@ export const ToAirportPins = (props) => {
   if (data) {
     return data.map((city, index) => (
       <Marker key={`marker-${index}`} longitude={city.longitude} latitude={city.latitude}>
-        <IconContext.Provider value={{ color: '#41A5D6', size: '24px' }}>
+        <IconContext.Provider value={{ color: '#819DF1', size: '24px' }}>
           <RiMapPin3Fill onClick={() => onClick(city)}></RiMapPin3Fill>
           <style jsx>{``}</style>
         </IconContext.Provider>

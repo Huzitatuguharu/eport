@@ -9,6 +9,7 @@ $breakpoint: (
 ) !default;
 
 // @mixinの定義
+// map-get($マップの名前, 取得したい値のキー)
 @mixin mq($select: md) {
   @media #{map-get($breakpoint, $select)} {
     @content;

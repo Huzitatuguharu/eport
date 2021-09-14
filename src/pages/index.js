@@ -169,11 +169,11 @@ export default function App() {
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
-          <div className='contactArea'>
+          {/* <div className='contactArea'>
             <Link href='/contact'>
               <a>お問い合わせ</a>
             </Link>
-          </div>
+          </div> */}
         </div>
         {/* <!-- Right content --> */}
         <div className='container_half_right'>

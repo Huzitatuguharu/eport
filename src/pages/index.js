@@ -230,8 +230,10 @@ export default function App() {
             outline: none;
             border: none;
             color: #414b5a;
-            font-family: vdl-v7marugothic, sans-serif;
-            font-weight: 700;
+            color: #414b5a;
+            font-family: mamelon, sans-serif;
+            font-weight: 500;
+            font-style: normal;
             margin: 30px;
             padding: 30px;
             border-radius: 20px;

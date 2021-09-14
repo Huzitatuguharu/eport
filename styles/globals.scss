@@ -1,12 +1,61 @@
-/* リセット CSS */
-@charset "UTF-8";
+// 変数の定義
+// ブレークポイントはBootstrap
+$breakpoint: (
+  'xs': 'screen and (min-width: 0)',
+  'sm': 'screen and (min-width: 544px)',
+  'md': 'screen and (min-width: 768px)',
+  'lg': 'screen and (min-width: 992px)',
+  'xl': 'screen and (min-width: 1200px)',
+) !default;
+
+// @mixinの定義
+@mixin mq($select: md) {
+  @media #{map-get($breakpoint, $select)} {
+    @content;
+  }
+}
+
+// カラーパレット
+$color_dark: #333 !default;
+$color_light: #fafafa !default;
+$color_blue_light: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+
+// 背景色
+$backgroundColor_base: $color_blue_light !default;
+
+// テキストカラー
+$fontColor_base: $color_dark !default;
+
+// フォントファミリー
+$fontFamily_sansSerif: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans',
+  meiryo, sans-serif !default;
+$fontFamily_mincho: 'Noto Serif JP', serif !default;
+$fontFamily_monospace: Consolas, Menlo, Courier, monospace !default;
+
+// フォントサイズ
+$fontSize_xsmall: rem(12);
+$fontSize_small: rem(14);
+$fontSize_middle: rem(16);
+$fontSize_large: rem(18);
+$fontSize_xlarge: rem(24);
+
+// 行間
+$lineHeight_small: 1.15 !default;
+$lineHeight_middle: 1.5 !default;
+$lineHeight_large: 1.75 !default;
+$lineHeight_xlarge: 2 !default;
+
+$lineHeight_default: $lineHeight_middle !default;
+
 /**
  * このベースCSSは Normalize.css および sanitize.css を元に僕個人が複数のプロジェクトで共通で指定しておきたいスタイルをまとめたものです。
  * author: TAK(https://twitter.com/tak_dcxi)
  */
+
 /* ==========================================================================
   Document
   ========================================================================== */
+
 /**
  * 1. ボックスの縦横幅に`margin`および`border`を含む。
  * 2. ChromeとFirefoxのフォントレンダリングを合わせる。
@@ -15,18 +64,12 @@
  * 5. スマートフォンを横向きにした時の文字の巨大化を防ぐ。
  */
 html {
-  box-sizing: border-box;
-  /* 1 */
-  -webkit-font-smoothing: antialiased;
-  /* 2 */
-  -moz-osx-font-smoothing: grayscale;
-  /* 2 */
-  height: 100%;
-  /* 3 */
-  -webkit-tap-highlight-color: transparent;
-  /* 4 */
-  -webkit-text-size-adjust: 100%;
-  /* 5 */
+  box-sizing: border-box; /* 1 */
+  -webkit-font-smoothing: antialiased; /* 2 */
+  -moz-osx-font-smoothing: grayscale; /* 2 */
+  height: 100%; /* 3 */
+  -webkit-tap-highlight-color: transparent; /* 4 */
+  -webkit-text-size-adjust: 100%; /* 5 */
   width: 100%;
 }
 
@@ -37,10 +80,8 @@ html {
 *,
 ::before,
 ::after {
-  box-sizing: inherit;
-  /* 1 */
-  margin: 0;
-  /* 2 */
+  box-sizing: inherit; /* 1 */
+  margin: 0; /* 2 */
 }
 
 /**
@@ -48,43 +89,35 @@ html {
  * 2. 原則的に文章は禁則処理を行う。
  */
 body {
-  background-color: #fafafa;
-  color: #333;
-  font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', meiryo,
-    sans-serif;
-  line-height: 1.5;
-  min-height: 100%;
-  /* 1 */
-  overflow-wrap: break-word;
-  /* 2 */
+  background-color: $backgroundColor_base;
+  color: $fontColor_base;
+  font-family: $fontFamily_sansSerif;
+  line-height: $lineHeight_default;
+  min-height: 100%; /* 1 */
+  overflow-wrap: break-word; /* 2 */
   padding: 0;
   width: 100%;
-}
 
-@media screen and (min-width: 0) {
-  body {
-    font-size: 0.875rem;
+  @include mq(xs) {
+    font-size: $fontSize_small;
   }
-}
 
-@media screen and (min-width: 768px) {
-  body {
-    font-size: 1rem;
+  @include mq(md) {
+    font-size: $fontSize_middle;
   }
 }
 
 /* ==========================================================================
   Section & Heading
   ========================================================================== */
+
 /**
  * 1. IEでは`main`は`display:inline`のように扱われるため、それを防ぐ。
  * 2. メインコンテンツ内は横スクロールを無効にして、横スクロールバーが出るのを防止する。
  */
 main {
-  display: block;
-  /* 1 */
-  overflow-x: hidden;
-  /* 2 */
+  display: block; /* 1 */
+  overflow-x: hidden; /* 2 */
 }
 
 /**
@@ -97,15 +130,14 @@ h3,
 h4,
 h5,
 h6 {
-  font-size: 1em;
-  /* 1 */
-  font-weight: normal;
-  /* 2 */
+  font-size: 1em; /* 1 */
+  font-weight: normal; /* 2 */
 }
 
 /* ==========================================================================
   Text
   ========================================================================== */
+
 /**
  * ブラウザ標準のスタイルをリセットする。詳細度が0.1.1なので上書き時は注意。
  * Read it: https://zenn.dev/tak_dcxi/articles/f464f90a24f754b15dd9
@@ -127,12 +159,14 @@ strong {
 /**
  * 日本語では斜体を使用することが少ないのでリセットする。
  */
-[lang='ja'] i,
-[lang='ja'] cite,
-[lang='ja'] em,
-[lang='ja'] address,
-[lang='ja'] dfn {
-  font-style: normal;
+i,
+cite,
+em,
+address,
+dfn {
+  [lang='ja'] & {
+    font-style: normal;
+  }
 }
 
 /**
@@ -148,8 +182,8 @@ small {
 code,
 kbd,
 samp {
-  font-family: Consolas, Menlo, Courier, monospace;
-  font-size: 1rem;
+  font-family: $fontFamily_monospace;
+  font-size: rem(16);
 }
 
 /**
@@ -174,23 +208,22 @@ sup {
 /* ==========================================================================
   Link
   ========================================================================== */
+
 /**
  * 1. 昔のブラウザではリンクに背景色がつくこともある。
  * 2. テキストカラーは原則的に親要素のそれを継承する。
  * 3. 多くのデザインでは`a`の下線は不要なことが多いので下線を取り除いているが、CMS案件では顧客がリンクを仕込むことを考慮して適宜下線を復活させるように。
  */
 a {
-  background-color: transparent;
-  /* 1 */
-  color: inherit;
-  /* 2 */
-  text-decoration: none;
-  /* 3 */
+  background-color: transparent; /* 1 */
+  color: inherit; /* 2 */
+  text-decoration: none; /* 3 */
 }
 
 /* ==========================================================================
   Grouping
   ========================================================================== */
+
 /**
  * 原則的にブラウザ標準のリストマーカーは不要になることが多いのでリセットしておくが、別途箇条書き用のスタイルは用意しておく。
  */
@@ -231,13 +264,14 @@ hr {
  * ブラウザ標準のスタイルをリセットする。
  */
 pre {
-  font-family: Consolas, Menlo, Courier, monospace;
-  font-size: 1rem;
+  font-family: $fontFamily_monospace;
+  font-size: rem(16);
 }
 
 /* ==========================================================================
   Replaced element
   ========================================================================== */
+
 /**
  * 縦位置を揃える。
  */
@@ -255,12 +289,9 @@ video {
  * 2. 画像は原則的にフルード化する。`width`属性が付与されている場合は`max-width`は無効化されるが、保険のためにつけておく。
  */
 img {
-  border: 0;
-  /* 1 */
-  height: auto;
-  /* 2 */
-  max-width: 100%;
-  /* 2 */
+  border: 0; /* 1 */
+  height: auto; /* 2 */
+  max-width: 100%; /* 2 */
 }
 
 /**
@@ -288,6 +319,7 @@ iframe {
 /* ==========================================================================
   Form
   ========================================================================== */
+
 /**
  * `input``button``select`のスタイルをリセットする。
  * CMS案件などで顧客側でこれらが差し込まれた際にタイプセレクタでリセットしてしまうと困ることもあったのでclassで指定してオプトアウトできるようにしておく。
@@ -343,10 +375,8 @@ button,
 [type='submit'],
 [type='reset'],
 [type='button'] {
-  -webkit-appearance: button;
-  /* 1 */
-  cursor: pointer;
-  /* 2 */
+  -webkit-appearance: button; /* 1 */
+  cursor: pointer; /* 2 */
 }
 
 /**
@@ -402,10 +432,8 @@ input[type='text'] {
  * 2. Safariでのアウトラインの位置を調整。
  */
 [type='search'] {
-  -webkit-appearance: textfield;
-  /* 1 */
-  outline-offset: -2px;
-  /* 2 */
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
 }
 
 /**
@@ -420,10 +448,8 @@ input[type='text'] {
  * 2. Safariでのフォント周りの差異を調整する。
  */
 ::-webkit-file-upload-button {
-  -webkit-appearance: button;
-  /* 1 */
-  font: inherit;
-  /* 2 */
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
 }
 
 /**
@@ -448,14 +474,10 @@ fieldset {
  * 3. paddingは不要なことが多いのでリセットする。
  */
 legend {
-  color: inherit;
-  /* 1 */
-  display: block;
-  /* 2 */
-  padding: 0;
-  /* 3 */
-  white-space: normal;
-  /* 2 */
+  color: inherit; /* 1 */
+  display: block; /* 2 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 2 */
 }
 
 /**
@@ -468,6 +490,7 @@ progress {
 /* ==========================================================================
   Accessibility
   ========================================================================== */
+
 /**
  * キーボードでアクセスできない要素のフォーカスインジケーターを無効化する。
  */
@@ -520,6 +543,7 @@ progress {
  * 「視差効果を減らす」を設定している場合はアニメーション時間を短くする。
  * 有識者によると`none`より`1ms`で指定したほうが良いらしい。
  */
+
 /* prettier-ignore */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -534,65 +558,55 @@ progress {
 /* ==========================================================================
   Other
   ========================================================================== */
+
 /**
  * サポート外のブラウザでも隠せるものは隠しておく
  */
 template {
   display: none;
 }
-
 [hidden] {
   display: none;
 }
 
-body {
-  margin: 0;
-  font-family: 'Hiragino Sans', 'ヒラギノ角ゴシック', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック',
-    'MS PGothic' 'ＭＳ ゴシック', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+.map {
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
-html {
-  visibility: hidden;
-}
-html.wf-active {
-  visibility: visible;
+.container {
+  background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+  color: #414b5a;
 }
 
-.icon_depature {
-  transform: rotate(-25deg);
-  display: inline-flex;
-  vertical-align: middle;
-  margin: 0px 8px 0px;
+.container_half_right {
+  background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+}
+.container_half_left {
+  padding: 24px;
+
 }
 
-.control-panel {
-  position: absolute;
-  top: 0;
-  right: 0;
-  max-width: 320px;
-  background: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  padding: 12px 24px;
-  margin: 20px;
-  font-size: 13px;
-  line-height: 2;
-  color: #6b6b76;
-  text-transform: uppercase;
-  outline: none;
-}
+@media screen and (min-width: 960px) {
+  /* 960px以上に適用されるCSS（PC用） */
 
-.mapboxgl-popup-content {
-  background-color: rgba(255, 255, 128, 0.5);
-  border: #333;
-}
+  .container {
+    display: flex;
+  }
+  .container_half_left {
+    flex: 1;
+  }
 
-@import url('https://fonts.googleapis.com/css?family=Rubik:700&display=swap');
-* {
-  box-sizing: border-box;
+  .container_half_right {
+    flex: 1;
+  }
 }
-*::before,
-*::after {
-  box-sizing: border-box;
+// @mixinの定義
+@mixin mq($select: md) {
+  @media #{map-get($breakpoint, $select)} {
+    @content;
+  }
 }
-
-/*その他と主な共通部分は省略*/

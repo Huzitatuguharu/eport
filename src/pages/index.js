@@ -135,6 +135,7 @@ export default function App() {
   return (
     <>
       <Head>
+        <title>空港</title>
         {/* ファビコン */}
         <link
           rel='icon'
@@ -168,14 +169,16 @@ export default function App() {
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
-          <Link href='/contact'>
-            <a>お問い合わせ</a>
-          </Link>
+          <div className='contactArea'>
+            <Link href='/contact'>
+              <a>お問い合わせ</a>
+            </Link>
+          </div>
         </div>
         {/* <!-- Right content --> */}
         <div className='container_half_right'>
           {/* 空港情報表示する */}
-          <div className='topArea'>
+          <div className='infoArea'>
             <h1>{/* <span className='text-gradient'>Airport</span> */}</h1>
             {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
             {fromAirport && (
@@ -202,29 +205,11 @@ export default function App() {
       </div>
       <style jsx>
         {`
-          .container {
-            display: flex;
-            color: #414b5a;
-          }
-          .container_half_left {
-            flex: 1;
-          }
-          .container_half_right {
-            flex: 1;
-            background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
-          }
-          .topArea {
-            margin: 20px;
+          .infoArea {
+            // margin: 20px;
             font-family: vdl-v7marugothic, sans-serif;
             font-weight: 500;
             font-style: normal;
-          }
-          .map {
-            margin: 24px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
           }
           button {
             outline: none;

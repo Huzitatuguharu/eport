@@ -12,25 +12,23 @@ function ToAirportInfo(props) {
 
   return (
     <div className='airportCard'>
-      <p>
-        <div className='title'>
-          <AiFillStar size={24} color={'#333'} />
-          <span className='title_text'>到着</span>
-        </div>
-        <p className='airportName'>
-          <Link href={info.url}>
-            <a rel='noopener noreferrer' target='_blank'>
-              {info.name}
-            </a>
-          </Link>
-        </p>
-        <div className='airportInfo'>
-          <p className='airportIcao'>ICAO : {info.icao} </p>
-          <p className='airportIata'>IATA : {info.iata} </p>
-          {/* <AiFillStar className='icon' /> */}
-          <p className='airportLounge'> ラウンジ : {AirportLoungeMark} </p>
-        </div>
+      <div className='title'>
+        <AiFillStar size={24} color={'#333'} />
+        <span className='title_text'>到着</span>
+      </div>
+      <p className='airportName'>
+        <Link href={info.url}>
+          <a rel='noopener noreferrer' target='_blank'>
+            {info.name}
+          </a>
+        </Link>
       </p>
+      <div className='airportInfo'>
+        <p className='airportIcao'>ICAO : {info.icao} </p>
+        <p className='airportIata'>IATA : {info.iata} </p>
+        {/* <AiFillStar className='icon' /> */}
+        <p className='airportLounge'> ラウンジ : {AirportLoungeMark} </p>
+      </div>
 
       <style jsx>{`
         p {
@@ -46,24 +44,24 @@ function ToAirportInfo(props) {
           background: #cee7ed;
           box-shadow: 20px 20px 60px #afc4c9, -20px -20px 60px #edffff;
           border-radius: 20px;
+          display: grid;
+          gap: 0.5em;
         }
         .airportInfo {
           display: flex;
+          margin: 8px 0 0;
+          gap: 20px;
         }
         .airportName {
           font-size: 1.2em;
-          margin: 8px 0 0;
         }
         .airportIcao {
-          margin: 8px 8px 8px 0;
           color: #606f86;
         }
         .airportIata {
-          margin: 8px;
           color: #606f86;
         }
         .airportLounge {
-          margin: 8px;
           color: #606f86;
         }
         .icon {

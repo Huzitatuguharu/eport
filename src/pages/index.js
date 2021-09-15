@@ -14,12 +14,12 @@ import ReactMapGL, {
 
 import useSWR, { SWRConfig } from 'swr';
 
+import { LoadingAnime } from '../components/Loading';
 import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
 import ToAirportInfo from '../components/toAirportInfo';
 import { ToAirportPins } from '../components/toAirportpins';
-import { supabase } from '../lib/createSupabaseClient';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -59,6 +59,8 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const useAirport = () => {
   // useSWR(アクセス先,関数,オプション)
   const { data, error } = useSWR('./api/airport', fetcher, { revalidateOnMount: true });
+  console.log(data);
+
   return {
     airportData: data,
     isLoading: !error && !data,
@@ -73,9 +75,22 @@ export const useAirport = () => {
 export const useRoute = () => {
   // useSWR(アクセス先,関数,オプション)
   const { data, error } = useSWR('./api/route', fetcher, { revalidateOnMount: true });
-  console.log(data);
   return {
     routeData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+// /* ==========================================================================
+//   会社情報の取得
+//   ========================================================================== */
+
+export const useCompany = () => {
+  // useSWR(アクセス先,関数,オプション)
+  const { data, error } = useSWR('./api/company', fetcher, { revalidateOnMount: true });
+  return {
+    companyData: data,
     isLoading: !error && !data,
     isError: error,
   };
@@ -86,7 +101,8 @@ export const useRoute = () => {
 //   ========================================================================== */
 export default function App() {
   const { routeData } = useRoute();
-
+  const { companyData } = useCompany();
+  console.log('useCompany', companyData);
   const { airportData, isLoading } = useAirport();
 
   // fromAirport
@@ -108,11 +124,20 @@ export default function App() {
     const fromAirportId = fromAirport.id;
     // 路線テーブルの検索
     const data = routeData.filter(({ from }) => from === fromAirportId);
+
+    console.log(data);
     // 行先空港情報
     let toAirportsData = [];
 
     for (let i = 0; i < data.length; i++) {
       toAirportsData.push(airportData.find(({ id }) => id === data[i].to));
+    }
+
+    // 航空会社の情報
+    let toCompanyList = [];
+
+    for (let i = 0; i < data.length; i++) {
+      toAirportsData.push(airportData.find(({ id }) => id === data[i].company));
     }
     // toAirportListsIdにセットする
     setToAirportLists(toAirportsData);
@@ -144,7 +169,7 @@ export default function App() {
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
 
-  if (isLoading) return <p>ロード中！！</p>;
+  if (isLoading) return <LoadingAnime />;
 
   return (
     <>

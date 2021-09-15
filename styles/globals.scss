@@ -611,21 +611,3 @@ template {
   }
 }
 
-// @media screen and (min-width: 960px) {
-//   /* 960px以上に適用されるCSS（PC用） */
-
-//   .container {
-//   }
-//   .container_half_left {
-//   }
-
-//   .container_half_right {
-//     flex: 1;
-//   }
-// }
-// // @mixinの定義
-// @mixin mq($select: md) {
-//   @media #{map-get($breakpoint, $select)} {
-//     @content;
-//   }
-// }

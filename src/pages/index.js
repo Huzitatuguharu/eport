@@ -21,7 +21,9 @@ import ToAirportInfo from '../components/toAirportInfo';
 import { ToAirportPins } from '../components/toAirportpins';
 import { supabase } from '../lib/createSupabaseClient';
 
-// mapboxのトークン
+// /* ==========================================================================
+//  mapboxの設定
+//   ========================================================================== */
 const TOKEN = process.env.NEXT_PUBLIC_MAPBOX_KEY;
 
 const geolocateStyle = {
@@ -56,7 +58,7 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useAirport = () => {
   // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('./api/airport', fetcher);
+  const { data, error } = useSWR('./api/airport', fetcher, { revalidateOnMount: true });
   return {
     airportData: data,
     isLoading: !error && !data,
@@ -70,7 +72,7 @@ export const useAirport = () => {
 
 export const useRoute = () => {
   // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('./api/route', fetcher);
+  const { data, error } = useSWR('./api/route', fetcher, { revalidateOnMount: true });
   console.log(data);
   return {
     routeData: data,
@@ -99,16 +101,6 @@ export default function App() {
   useEffect(() => {
     setIsRevealPins(false);
   }, [fromAirport]);
-
-  // クリックしたピンをfromAirportに設定
-  // const getToAirportData1 = async () => {
-  //   // 路線テーブルからfromAirportに一致する路線情報を取り出す
-  //   const fromAirportId = fromAirport.id;
-  //   const data = await routeData.filter(({ from }) => from === fromAirportId);
-  //   console.log(data);
-  //   // const { data, error } = await supabase.from('route').select().eq('from', fromAirportId);
-  //   return data;
-  // };
 
   //  空港テーブルから行先空港情報を取り出す
   const getToAirportData = () => {
@@ -161,7 +153,7 @@ export default function App() {
         {/* ファビコン */}
         <link
           rel='icon'
-          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>👀</text></svg>'
+          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>🐈</text></svg>'
         ></link>
       </Head>
       <div className='container'>
@@ -207,12 +199,14 @@ export default function App() {
               <>
                 <FromAirportInfo info={fromAirport} />
                 {/* ボタン押したら行先空港のピンを表示する */}
-                <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
-                  直行便
-                </button>
-                <button className='ButtonReset' onClick={onClickReset}>
-                  リセット
-                </button>
+                <div className='buttonArea'>
+                  <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
+                    直行便
+                  </button>
+                  <button className='ButtonReset' onClick={onClickReset}>
+                    リセット
+                  </button>
+                </div>
               </>
             )}
             {/* 行先空港のデータ */}
@@ -233,6 +227,10 @@ export default function App() {
             font-weight: 500;
             font-style: normal;
           }
+          .buttonArea {
+            display: flex;
+            justify-content: center;
+          }
           button {
             outline: none;
             border: none;
@@ -247,14 +245,14 @@ export default function App() {
             background: #cee7ed;
             box-shadow: 14px 14px 28px #afc4c9, -14px -14px 28px #edffff;
             &:hover {
-              border-radius: 100px;
+              border-radius: 100px 30px 250px 100px;
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
-              border-radius: 50px;
               background: #cee7ed;
               box-shadow: inset 14px 14px 28px #afc4c9, inset -14px -14px 28px #edffff;
+              border-radius: 100px 30px 250px 100px;
             }
           }
         `}

@@ -26,8 +26,8 @@ function FromAirportInfo(props) {
           </Link>
         </p>
         <div className='airportInfo'>
-          <p className='airportIcao'>ICAO : {info.icao} </p>
-          <p className='airportIata'>IATA : {info.iata} </p>
+          <p className='airportIcao'> {info.icao} </p>
+          <p className='airportIata'> {info.iata} </p>
           {/* <AiFillStar className='icon' /> */}
           <p className='airportLounge'> ラウンジ : {AirportLoungeMark} </p>
         </div>
@@ -56,13 +56,16 @@ function FromAirportInfo(props) {
           margin: 8px 0 0;
         }
         .airportIcao {
-          margin: 8px ;
+          margin: 8px 8px 8px 0;
+          color: #606f86;
         }
         .airportIata {
-          margin: 8px ;
+          margin: 8px;
+          color: #606f86;
         }
         .airportLounge {
-          margin: 8px ;
+          margin: 8px;
+          color: #606f86;
         }
         .icon {
           margin-right: 8px;

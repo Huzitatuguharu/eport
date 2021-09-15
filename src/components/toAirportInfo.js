@@ -55,13 +55,16 @@ function ToAirportInfo(props) {
           margin: 8px 0 0;
         }
         .airportIcao {
-          margin: 8px;
+          margin: 8px 8px 8px 0;
+          color: #606f86;
         }
         .airportIata {
           margin: 8px;
+          color: #606f86;
         }
         .airportLounge {
           margin: 8px;
+          color: #606f86;
         }
         .icon {
           margin-right: 8px;

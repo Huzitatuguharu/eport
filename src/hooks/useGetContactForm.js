@@ -39,12 +39,11 @@ export const useContactForm = () => {
     }),
     [],
   );
-  const { data, error } = useSWR([rolesUrl2, config], fetcher);
+  const { data, error } = useSWR([rolesUrl, config], fetcher);
   console.log('data', data);
   return {
-    news: data,
+    data: data,
     isLoading: !error && !data,
     isError: error,
-    sample: 'sss',
   };
 };

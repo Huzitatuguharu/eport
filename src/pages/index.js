@@ -4,7 +4,6 @@ import Link from 'next/link';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
-import { IoAirplane } from 'react-icons/io5';
 import ReactMapGL, {
   Popup,
   NavigationControl,
@@ -15,15 +14,11 @@ import ReactMapGL, {
 
 import useSWR, { SWRConfig } from 'swr';
 
-import ButtonGetToAirportData from '../components/button';
-import CityInfo from '../components/city-info';
-import ControlPanel from '../components/control-panel';
-
 import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedpins';
 import ToAirportInfo from '../components/toAirportInfo';
-import { ToAirportPins } from '../components/toairportpins';
+import { ToAirportPins } from '../components/toAirportpins';
 import { supabase } from '../lib/createSupabaseClient';
 
 // mapboxのトークン
@@ -53,6 +48,10 @@ const scaleControlStyle = {
   padding: '10px',
 };
 
+// /* ==========================================================================
+//   airportData;の取得
+//   ========================================================================== */
+
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const useAirport = () => {
@@ -65,13 +64,31 @@ export const useAirport = () => {
   };
 };
 
+// /* ==========================================================================
+//   路線データの取得
+//   ========================================================================== */
+
+export const useRoute = () => {
+  // useSWR(アクセス先,関数,オプション)
+  const { data, error } = useSWR('./api/route', fetcher);
+  console.log(data);
+  return {
+    routeData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
+
+// /* ==========================================================================
+//   ここからページ
+//   ========================================================================== */
 export default function App() {
+  const { routeData } = useRoute();
+
   const { airportData, isLoading } = useAirport();
-  console.log('airport', airportData);
 
   // fromAirport
   const [fromAirport, setFomAirport] = useState(null);
-  console.log('fromAirport', fromAirport);
 
   // 行先空港リスト
   const [toAirportLists, setToAirportLists] = useState([]);
@@ -84,37 +101,42 @@ export default function App() {
   }, [fromAirport]);
 
   // クリックしたピンをfromAirportに設定
-  const getToAirportData1 = async () => {
-    // 路線テーブルからfromAirportに一致する路線情報を取り出す
-    const fromAirportId = fromAirport.id;
-    const { data, error } = await supabase.from('route').select().eq('from', fromAirportId);
-    return data;
-  };
+  // const getToAirportData1 = async () => {
+  //   // 路線テーブルからfromAirportに一致する路線情報を取り出す
+  //   const fromAirportId = fromAirport.id;
+  //   const data = await routeData.filter(({ from }) => from === fromAirportId);
+  //   console.log(data);
+  //   // const { data, error } = await supabase.from('route').select().eq('from', fromAirportId);
+  //   return data;
+  // };
 
-  //  空港テーブルから getToairportdata1でつくった路線情報から行先空港情報を取り出す
-  const getToAirportData2 = async () => {
-    const data = await getToAirportData1();
+  //  空港テーブルから行先空港情報を取り出す
+  const getToAirportData = () => {
+    // 出発空港のidを定数に設定する
+    const fromAirportId = fromAirport.id;
+    // 路線テーブルの検索
+    const data = routeData.filter(({ from }) => from === fromAirportId);
     // 行先空港情報
-    let toAirportListsId = [];
+    let toAirportsData = [];
 
     for (let i = 0; i < data.length; i++) {
-      toAirportListsId.push(airportData.find(({ id }) => id === data[i].to));
+      toAirportsData.push(airportData.find(({ id }) => id === data[i].to));
     }
     // toAirportListsIdにセットする
-    setToAirportLists(toAirportListsId);
+    setToAirportLists(toAirportsData);
   };
 
   //  ボタン押したら行先空港のピンを表示する */
 
-  const onClickGetToAirportData = async () => {
-    setIsRevealPins;
-    await getToAirportData2();
+  const onClickGetToAirportData = () => {
+    getToAirportData();
     setIsRevealPins(true);
   };
 
   const onClickReset = () => {
     setFomAirport(null);
   };
+
   const [toAirportInfo, setToAirportInfo] = useState(null);
   // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
   useEffect(() => {

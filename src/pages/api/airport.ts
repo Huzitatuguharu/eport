@@ -4,7 +4,6 @@ import { supabase } from '../../lib/createSupabaseClient';
 
 const getAirportAPI = async (req: NextApiRequest, res: NextApiResponse) => {
   // const id = req.query.id;
-
   const { data, error } = await supabase.from('airport').select();
 
   // 401 Unauthorized、認証が必要

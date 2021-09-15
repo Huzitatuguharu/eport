@@ -1,8 +1,16 @@
+/**
+ * このベースCSSは Normalize.css および sanitize.css を元に僕個人が複数のプロジェクトで共通で指定しておきたいスタイルをまとめたものです。
+ * author: TAK(https://twitter.com/tak_dcxi)
+ */
+
+//  TAKさんのものをさらに改変したものです
+
+
 // 変数の定義
 // ブレークポイントはBootstrap
 $breakpoint: (
   'xs': 'screen and (min-width: 0)',
-  'sm': 'screen and (min-width: 544px)',
+  'sm': 'screen and (min-width: 576px)',
   'md': 'screen and (min-width: 768px)',
   'lg': 'screen and (min-width: 992px)',
   'xl': 'screen and (min-width: 1200px)',
@@ -10,6 +18,7 @@ $breakpoint: (
 
 // @mixinの定義
 // map-get($マップの名前, 取得したい値のキー)
+
 @mixin mq($select: md) {
   @media #{map-get($breakpoint, $select)} {
     @content;
@@ -48,10 +57,6 @@ $lineHeight_xlarge: 2 !default;
 
 $lineHeight_default: $lineHeight_middle !default;
 
-/**
- * このベースCSSは Normalize.css および sanitize.css を元に僕個人が複数のプロジェクトで共通で指定しておきたいスタイルをまとめたものです。
- * author: TAK(https://twitter.com/tak_dcxi)
- */
 
 /* ==========================================================================
   Document
@@ -65,6 +70,7 @@ $lineHeight_default: $lineHeight_middle !default;
  * 5. スマートフォンを横向きにした時の文字の巨大化を防ぐ。
  */
 html {
+  visibility: hidden;
   box-sizing: border-box; /* 1 */
   -webkit-font-smoothing: antialiased; /* 2 */
   -moz-osx-font-smoothing: grayscale; /* 2 */
@@ -72,6 +78,11 @@ html {
   -webkit-tap-highlight-color: transparent; /* 4 */
   -webkit-text-size-adjust: 100%; /* 5 */
   width: 100%;
+}
+
+
+html.wf-active {
+  visibility: visible;
 }
 
 /**
@@ -581,33 +592,40 @@ template {
 .container {
   background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
   color: #414b5a;
+  @include mq(md) {
+    display: flex;
+  }
 }
+
 
 .container_half_right {
   background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+  @include mq(md) {
+    flex: 1;
+  }
 }
 .container_half_left {
   padding: 24px;
-
-}
-
-@media screen and (min-width: 960px) {
-  /* 960px以上に適用されるCSS（PC用） */
-
-  .container {
-    display: flex;
-  }
-  .container_half_left {
-    flex: 1;
-  }
-
-  .container_half_right {
+  @include mq(md) {
     flex: 1;
   }
 }
-// @mixinの定義
-@mixin mq($select: md) {
-  @media #{map-get($breakpoint, $select)} {
-    @content;
-  }
-}
+
+// @media screen and (min-width: 960px) {
+//   /* 960px以上に適用されるCSS（PC用） */
+
+//   .container {
+//   }
+//   .container_half_left {
+//   }
+
+//   .container_half_right {
+//     flex: 1;
+//   }
+// }
+// // @mixinの定義
+// @mixin mq($select: md) {
+//   @media #{map-get($breakpoint, $select)} {
+//     @content;
+//   }
+// }

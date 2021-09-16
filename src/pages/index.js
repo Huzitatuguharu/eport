@@ -272,7 +272,6 @@ export default function App() {
             outline: none;
             border: none;
             color: #414b5a;
-            color: #414b5a;
             font-family: mamelon, sans-serif;
             font-weight: 500;
             font-style: normal;

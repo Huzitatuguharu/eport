@@ -47,7 +47,7 @@ function FromAirportInfo(props) {
           border-radius: 20px;
           display: grid;
           gap: 0.15em;
-          width: 240px;
+          width: 300px;
           height: 180px;
         }
         .airportInfo {

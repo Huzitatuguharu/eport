@@ -20,7 +20,7 @@ import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedPins';
 import ToAirportInfo from '../components/toAirportInfo';
-import ToAirportPins from '../components/toAirportPins';
+import { ToAirportPins } from '../components/toAirportPins';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -261,6 +261,7 @@ export default function App() {
             flex-direction: column;
             gap: 30px 30px;
           }
+
 
           .buttonArea {
             display: flex;

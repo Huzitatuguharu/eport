@@ -229,7 +229,7 @@ export default function App() {
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
           {fromAirport && (
             <div className='infoArea'>
-              <Company companyData={companyData} />
+              {/* <Company companyData={companyData} /> */}
 
               <div className='buttonArea'>
                 <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>

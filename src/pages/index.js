@@ -16,12 +16,12 @@ import ReactMapGL, {
 import useSWR, { SWRConfig } from 'swr';
 
 import { LoadingAnime } from '../components/Loading';
+import Company from '../components/company';
 import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
 import SelectedPins from '../components/selectedPins';
 import ToAirportInfo from '../components/toAirportInfo';
 import { ToAirportPins } from '../components/toAirportPins';
-
 // /* ==========================================================================
 //  mapboxの設定
 //   ========================================================================== */
@@ -103,9 +103,7 @@ export const useCompany = () => {
 export default function App() {
   const { routeData } = useRoute();
   const { companyData } = useCompany();
-  console.log('useCompany', companyData);
   const { airportData, isLoading } = useAirport();
-
   // fromAirport
   const [fromAirport, setFomAirport] = useState(null);
 
@@ -231,6 +229,8 @@ export default function App() {
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
           {fromAirport && (
             <div className='infoArea'>
+              <Company companyData={companyData} />
+
               <div className='buttonArea'>
                 <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
                   <FaSearch size={18} color={'#414b5a'} />
@@ -261,13 +261,13 @@ export default function App() {
             flex-direction: column;
             gap: 30px 30px;
           }
-
-
           .buttonArea {
             display: flex;
             justify-content: start;
+            flex-wrap: wrap;
             gap: 2em;
           }
+
           button {
             outline: none;
             border: none;
@@ -276,20 +276,18 @@ export default function App() {
             font-family: mamelon, sans-serif;
             font-weight: 500;
             font-style: normal;
-            padding: 30px;
+            padding: 12px;
             border-radius: 20px;
             background: #edfafd;
             box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
-            width: 80px;
-            height: 80px;
-
+            width: 60px;
+            height: 58px;
             &:hover {
               border-radius: 100px 30px 250px 100px;
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
-              border-radius: 50px;
               background: #edfafd;
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
               border-radius: 100px 30px 250px 100px;

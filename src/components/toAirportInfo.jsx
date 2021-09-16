@@ -2,18 +2,19 @@ import Link from 'next/link';
 import * as React from 'react';
 
 // アイコン
-import { FaPlaneDeparture, FaCoffee } from 'react-icons/fa';
+import { FaPlaneArrival, FaCoffee } from 'react-icons/fa';
 
-function FromAirportInfo(props) {
+function ToAirportInfo(props) {
   const { info } = props;
+  console.log(info.lounge);
 
   return (
-    <div className='airportCard '>
+    <div className='airportCard'>
       <div className='title'>
-        <FaPlaneDeparture size={24} color={'#414b5a'} />
+        <FaPlaneArrival size={24} color={'#414b5a'} />
         <span className='title_text'></span>
       </div>
-      <p className='airportName fadeInAnime'>
+      <p className='airportName'>
         <Link href={info.url}>
           <a rel='noopener noreferrer' target='_blank'>
             {info.name}
@@ -21,8 +22,8 @@ function FromAirportInfo(props) {
         </Link>
       </p>
       <div className='airportInfo'>
-        <p className='airportIcao'> {info.icao} </p>
-        <p className='airportIata'> {info.iata} </p>
+        <p className='airportIcao'>{info.icao} </p>
+        <p className='airportIata'>{info.iata} </p>
         {info.lounge == 1 && (
           <p className='airportLounge'>
             <FaCoffee size={24} color={'#414b5a'} />
@@ -30,11 +31,11 @@ function FromAirportInfo(props) {
         )}
       </div>
 
-      {/* gap1つ目が行間、2つ目が列間 */}
       <style jsx>{`
         p {
           color: #414b5a;
           font-family: mamelon, sans-serif;
+
           font-weight: 500;
           font-style: normal;
         }
@@ -42,18 +43,16 @@ function FromAirportInfo(props) {
           outline: none;
           border: none;
           padding: 30px;
-          border-radius: 50px;
+          border-radius: 20px;
           background: #edfafd;
           box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
-          border-radius: 20px;
           display: grid;
-          gap: 0.3em;
+          gap: 0.15em;
           width: 240px;
-          height: 240px;
+          height: 180px;
         }
         .airportInfo {
           display: flex;
-          margin: 8px 0 0;
           gap: 20px;
         }
         .airportName {
@@ -78,4 +77,4 @@ function FromAirportInfo(props) {
   );
 }
 
-export default React.memo(FromAirportInfo);
+export default React.memo(ToAirportInfo);

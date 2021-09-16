@@ -5,9 +5,9 @@ import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 
 export const ToAirportPins = (props) => {
-    const { toAirportData, routeData, onClick } = props;
-    console.log(toAirportData);
-    console.log(routeData);
+  const { toAirportData, routeData, onClick } = props;
+  console.log('toAirportData', toAirportData);
+  console.log('routeData', routeData);
 
   if (toAirportData) {
     return toAirportData.map((city, index) => (

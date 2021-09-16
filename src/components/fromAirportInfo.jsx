@@ -2,7 +2,7 @@ import Link from 'next/link';
 import * as React from 'react';
 
 // アイコン
-import { FaPlaneDeparture, FaCoffee } from 'react-icons/fa';
+import { FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
 function FromAirportInfo(props) {
   const { info } = props;
@@ -13,31 +13,28 @@ function FromAirportInfo(props) {
         <FaPlaneDeparture size={24} color={'#414b5a'} />
         <span className='title_text'></span>
       </div>
-      <p className='airportName fadeInAnime'>
+      <div>
         <Link href={info.url}>
-          <a rel='noopener noreferrer' target='_blank'>
+          <a className='airportName' rel='noopener noreferrer' target='_blank'>
             {info.name}
+            <p>
+              <FaExternalLinkAlt size={12} color={'#414b5a'} />
+            </p>
           </a>
         </Link>
-      </p>
+      </div>
       <div className='airportInfo'>
         <p className='airportIcao'> {info.icao} </p>
         <p className='airportIata'> {info.iata} </p>
         {info.lounge == 1 && (
           <p className='airportLounge'>
-            <FaCoffee size={24} color={'#414b5a'} />
+            <FaCoffee size={18} color={'#606f86'} />
           </p>
         )}
       </div>
 
       {/* gap1つ目が行間、2つ目が列間 */}
       <style jsx>{`
-        p {
-          color: #414b5a;
-          font-family: mamelon, sans-serif;
-          font-weight: 500;
-          font-style: normal;
-        }
         .airportCard {
           outline: none;
           border: none;
@@ -56,6 +53,12 @@ function FromAirportInfo(props) {
         }
         .airportName {
           font-size: 1.3em;
+          color: #414b5a;
+          font-family: mamelon, sans-serif;
+          font-weight: 500;
+          font-style: normal;
+          display: flex;
+          gap: 16px;
         }
         .airportIcao {
           color: #606f86;

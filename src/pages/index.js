@@ -15,6 +15,7 @@ import ReactMapGL, {
 
 import useSWR, { SWRConfig } from 'swr';
 
+import AirportInfo from '../components/AirportInfo';
 import { LoadingAnime } from '../components/Loading';
 import Company from '../components/company';
 import FromAirportInfo from '../components/fromAirportInfo';
@@ -217,6 +218,12 @@ export default function App() {
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
+          <div className='contactArea'>
+            <Link href='https://www.google.com/flights?hl=ja'>
+              <a>GoogleFlight</a>
+            </Link>
+          </div>
+
           {/* <div className='contactArea'>
             <Link href='/contact'>
               <a>お問い合わせ</a>
@@ -240,10 +247,11 @@ export default function App() {
                 </button>
               </div>
               <div className='AirportInfoArea'>
-                <FromAirportInfo info={fromAirport} />
+                <AirportInfo info={fromAirport} direction={'from'} />
+
                 {/* ボタン押したら行先空港のピンを表示する */}
                 {/* 行先空港のデータ */}
-                {toAirportInfo && <ToAirportInfo info={toAirportInfo} />}
+                {toAirportInfo && <AirportInfo info={toAirportInfo} direction={'to'} />}
               </div>
             </div>
           )}

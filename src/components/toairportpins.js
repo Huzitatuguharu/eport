@@ -3,7 +3,6 @@ import { IconContext } from 'react-icons';
 
 import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
-import { supabase } from '../lib/createSupabaseClient';
 
 export const ToAirportPins = (props) => {
     const { toAirportData, routeData, onClick } = props;

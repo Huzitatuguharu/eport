@@ -2,20 +2,16 @@ import Link from 'next/link';
 import * as React from 'react';
 
 // アイコン
-import { IconContext } from 'react-icons'; //IconContextをインポート
-import { AiFillStar } from 'react-icons/ai';
-import { IoIosAirplane } from 'react-icons/io';
+import { FaPlaneDeparture, FaCoffee } from 'react-icons/fa';
 
 function FromAirportInfo(props) {
   const { info } = props;
-  const AirportLounge = info.lounge;
-  const AirportLoungeMark = AirportLounge == 0 ? 'なし🙅' : 'あり🙆';
 
   return (
     <div className='airportCard '>
       <div className='title'>
-        <AiFillStar size={24} color={'#333'} />
-        <span className='title_text'>出発</span>
+        <FaPlaneDeparture size={24} color={'#414b5a'} />
+        <span className='title_text'></span>
       </div>
       <p className='airportName fadeInAnime'>
         <Link href={info.url}>
@@ -27,8 +23,11 @@ function FromAirportInfo(props) {
       <div className='airportInfo'>
         <p className='airportIcao'> {info.icao} </p>
         <p className='airportIata'> {info.iata} </p>
-        {/* <AiFillStar className='icon' /> */}
-        <p className='airportLounge'> ラウンジ : {AirportLoungeMark} </p>
+        {info.lounge == 1 && (
+          <p className='airportLounge'>
+            <FaCoffee size={24} color={'#414b5a'} />
+          </p>
+        )}
       </div>
 
       {/* gap1つ目が行間、2つ目が列間 */}
@@ -42,13 +41,15 @@ function FromAirportInfo(props) {
         .airportCard {
           outline: none;
           border: none;
-          margin: 30px;
           padding: 30px;
-          background: #cee7ed;
-          box-shadow: 20px 20px 60px #afc4c9, -20px -20px 60px #edffff;
+          border-radius: 50px;
+          background: #edfafd;
+          box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
           border-radius: 20px;
           display: grid;
-          gap: 0.5em;
+          gap: 0.3em;
+          width: 240px;
+          height: 240px;
         }
         .airportInfo {
           display: flex;
@@ -56,13 +57,15 @@ function FromAirportInfo(props) {
           gap: 20px;
         }
         .airportName {
-          font-size: 1.2em;
+          font-size: 1.3em;
         }
         .airportIcao {
           color: #606f86;
+          font-family: 'Ubuntu', sans-serif;
         }
         .airportIata {
           color: #606f86;
+          font-family: 'Ubuntu', sans-serif;
         }
         .airportLounge {
           color: #606f86;

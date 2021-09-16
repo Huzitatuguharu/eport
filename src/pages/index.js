@@ -4,6 +4,7 @@ import Link from 'next/link';
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
+import { FaPlane, FaUndoAlt, FaSearch } from 'react-icons/fa';
 import ReactMapGL, {
   Popup,
   NavigationControl,
@@ -17,9 +18,9 @@ import useSWR, { SWRConfig } from 'swr';
 import { LoadingAnime } from '../components/Loading';
 import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
-import SelectedPins from '../components/selectedpins';
+import SelectedPins from '../components/selectedPins';
 import ToAirportInfo from '../components/toAirportInfo';
-import { ToAirportPins } from '../components/toAirportpins';
+import { ToAirportPins } from '../components/toAirportPins';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -111,6 +112,12 @@ export default function App() {
   // 行先空港リスト
   const [toAirportLists, setToAirportLists] = useState([]);
 
+  // 路線情報
+  const [selectedRouteData, setSelectedRouteData] = useState([]);
+  useEffect(() => {
+    setSelectedRouteData(false);
+  }, [fromAirport]);
+
   // 行先空港リストの表示、非表示
   const [isRevealPins, setIsRevealPins] = useState(false);
   // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
@@ -124,20 +131,14 @@ export default function App() {
     const fromAirportId = fromAirport.id;
     // 路線テーブルの検索
     const data = routeData.filter(({ from }) => from === fromAirportId);
-
+    setSelectedRouteData(data);
     console.log(data);
+    console.log(selectedRouteData);
+
     // 行先空港情報
     let toAirportsData = [];
-
     for (let i = 0; i < data.length; i++) {
       toAirportsData.push(airportData.find(({ id }) => id === data[i].to));
-    }
-
-    // 航空会社の情報
-    let toCompanyList = [];
-
-    for (let i = 0; i < data.length; i++) {
-      toAirportsData.push(airportData.find(({ id }) => id === data[i].company));
     }
     // toAirportListsIdにセットする
     setToAirportLists(toAirportsData);
@@ -180,6 +181,10 @@ export default function App() {
           rel='icon'
           href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>🐈</text></svg>'
         ></link>
+        <link
+          href='https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap'
+          rel='stylesheet'
+        ></link>
       </Head>
       <div className='container'>
         {/* <!-- Left content --> */}
@@ -200,7 +205,13 @@ export default function App() {
 
               {fromAirport && <SelectedPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
-              {isRevealPins && <ToAirportPins data={toAirportLists} onClick={setToAirportInfo} />}
+              {isRevealPins && (
+                <ToAirportPins
+                  toAirportData={toAirportLists}
+                  routeData={selectedRouteData}
+                  onClick={setToAirportInfo}
+                />
+              )}
 
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
@@ -217,44 +228,45 @@ export default function App() {
         {/* <!-- Right content --> */}
         <div className='container_half_right'>
           {/* 空港情報表示する */}
-          <div className='infoArea'>
-            <h1>{/* <span className='text-gradient'>Airport</span> */}</h1>
-            {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
-            {fromAirport && (
-              <>
+          {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
+          {fromAirport && (
+            <div className='infoArea'>
+              <div className='buttonArea'>
+                <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
+                  <FaSearch size={18} color={'#414b5a'} />
+                </button>
+                <button className='ButtonReset' onClick={onClickReset}>
+                  <FaUndoAlt size={18} color={'#414b5a'} />
+                </button>
+              </div>
+              <div className='AirportInfoArea'>
                 <FromAirportInfo info={fromAirport} />
                 {/* ボタン押したら行先空港のピンを表示する */}
-                <div className='buttonArea'>
-                  <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
-                    直行便
-                  </button>
-                  <button className='ButtonReset' onClick={onClickReset}>
-                    リセット
-                  </button>
-                </div>
-              </>
-            )}
-            {/* 行先空港のデータ */}
-            {toAirportInfo && (
-              <>
-                <ToAirportInfo info={toAirportInfo} />
-                {/* ボタン押したら行先空港のピンを表示する */}
-              </>
-            )}
-          </div>
+                {/* 行先空港のデータ */}
+                {toAirportInfo && <ToAirportInfo info={toAirportInfo} />}
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <style jsx>
         {`
           .infoArea {
-            // margin: 20px;
             font-family: vdl-v7marugothic, sans-serif;
             font-weight: 500;
             font-style: normal;
-          }
-          .buttonArea {
             display: flex;
             justify-content: center;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 30px 30px;
+          }
+
+
+          .buttonArea {
+            display: flex;
+            justify-content: start;
+            gap: 2em;
           }
           button {
             outline: none;
@@ -264,19 +276,22 @@ export default function App() {
             font-family: mamelon, sans-serif;
             font-weight: 500;
             font-style: normal;
-            margin: 30px;
             padding: 30px;
             border-radius: 20px;
-            background: #cee7ed;
-            box-shadow: 14px 14px 28px #afc4c9, -14px -14px 28px #edffff;
+            background: #edfafd;
+            box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
+            width: 80px;
+            height: 80px;
+
             &:hover {
               border-radius: 100px 30px 250px 100px;
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
-              background: #cee7ed;
-              box-shadow: inset 14px 14px 28px #afc4c9, inset -14px -14px 28px #edffff;
+              border-radius: 50px;
+              background: #edfafd;
+              box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
               border-radius: 100px 30px 250px 100px;
             }
           }

@@ -5,7 +5,6 @@
 
 //  TAKさんのものをさらに改変したものです
 
-
 // 変数の定義
 // ブレークポイントはBootstrap
 $breakpoint: (
@@ -28,7 +27,7 @@ $breakpoint: (
 // カラーパレット
 $color_dark: #333 !default;
 $color_light: #fafafa !default;
-$color_blue_light: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+$color_blue_light: linear-gradient(118.47deg, #f5fdff 0.61%, #e0f5fa 100%);
 
 // 背景色
 $backgroundColor_base: $color_blue_light !default;
@@ -57,7 +56,6 @@ $lineHeight_xlarge: 2 !default;
 
 $lineHeight_default: $lineHeight_middle !default;
 
-
 /* ==========================================================================
   Document
   ========================================================================== */
@@ -79,7 +77,6 @@ html {
   -webkit-text-size-adjust: 100%; /* 5 */
   width: 100%;
 }
-
 
 html.wf-active {
   visibility: visible;
@@ -590,16 +587,16 @@ template {
 }
 
 .container {
-  background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+  background: linear-gradient(118.47deg, #edfafd 0.61%, #edfafd 100%);
   color: #414b5a;
   @include mq(md) {
     display: flex;
   }
 }
 
-
 .container_half_right {
-  background: linear-gradient(118.47deg, #cee7ed 0.61%, #cee7ed 100%);
+  background: linear-gradient(118.47deg, #edfafd 0.61%, #edfafd 100%);
+  padding: 32px;
   @include mq(md) {
     flex: 1;
   }
@@ -610,4 +607,14 @@ template {
     flex: 1;
   }
 }
-
+.AirportInfoArea {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 32px 32px;
+  @include mq(md) {
+    display: flex;
+    flex-direction: row;
+  }
+}

@@ -5,8 +5,8 @@ import Link from 'next/link';
 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import useSWR, { SWRConfig } from 'swr';
 import adobeLoader from '../../adobeLoader';
-import { supabase } from '../lib/createSupabaseClient';
 
 function MyApp({ Component, pageProps }) {
   // adobeフォントの設定

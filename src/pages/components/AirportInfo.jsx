@@ -21,7 +21,9 @@ function AirportInfo(props) {
       <div>
         <Link href={info.url}>
           <a className='airportName' rel='noopener noreferrer' target='_blank'>
-            <div> {info.name} </div>
+            <div
+
+            > {info.name} </div>
             <p>
               <FaExternalLinkAlt size={12} color={'#414b5a'} />
             </p>
@@ -65,7 +67,7 @@ function AirportInfo(props) {
           font-style: normal;
           display: flex;
           gap: 16px;
-          &::first-letter {
+          &:first-letter {
             font-size: 1.5em;
             color: #4fa7ff;
           }

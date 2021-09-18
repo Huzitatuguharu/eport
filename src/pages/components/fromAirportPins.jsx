@@ -5,7 +5,9 @@ import { RiMapPin3Fill } from 'react-icons/ri';
 import { Marker } from 'react-map-gl';
 
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
-function SelectedPins(props) {
+
+
+function FromAirportPins(props) {
   const { data } = props;
 
   return (
@@ -19,4 +21,4 @@ function SelectedPins(props) {
   );
 }
 
-export default React.memo(SelectedPins);
+export default React.memo(FromAirportPins);

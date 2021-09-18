@@ -13,16 +13,12 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
-import useSWR, { SWRConfig } from 'swr';
+import AirportInfo from './components/AirportInfo';
+import FromAirportPins from './components/fromAirportPins';
+import Pins from './components/pins';
+import { ToAirportPins } from './components/toAirportPins';
+import { useAirport, useRoute, useCompany } from './hooks/useConnectSupabase';
 
-import AirportInfo from '../components/AirportInfo';
-import { LoadingAnime } from '../components/Loading';
-import Company from '../components/company';
-import FromAirportInfo from '../components/fromAirportInfo';
-import Pins from '../components/pins';
-import SelectedPins from '../components/selectedPins';
-import ToAirportInfo from '../components/toAirportInfo';
-import { ToAirportPins } from '../components/toAirportPins';
 // /* ==========================================================================
 //  mapboxの設定
 //   ========================================================================== */
@@ -53,60 +49,23 @@ const scaleControlStyle = {
 };
 
 // /* ==========================================================================
-//   airportData;の取得
-//   ========================================================================== */
-
-const fetcher = (...args) => fetch(...args).then((res) => res.json());
-
-export const useAirport = () => {
-  // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('./api/airport', fetcher, { revalidateOnMount: true });
-  console.log(data);
-
-  return {
-    airportData: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-};
-
-// /* ==========================================================================
-//   路線データの取得
-//   ========================================================================== */
-
-export const useRoute = () => {
-  // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('./api/route', fetcher, { revalidateOnMount: true });
-  return {
-    routeData: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-};
-
-// /* ==========================================================================
-//   会社情報の取得
-//   ========================================================================== */
-
-export const useCompany = () => {
-  // useSWR(アクセス先,関数,オプション)
-  const { data, error } = useSWR('./api/company', fetcher, { revalidateOnMount: true });
-  return {
-    companyData: data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-};
-
-// /* ==========================================================================
 //   ここからページ
 //   ========================================================================== */
 export default function App() {
   const { routeData } = useRoute();
-  const { companyData } = useCompany();
   const { airportData, isLoading } = useAirport();
+
+  // 地図のviewportの設定
+  const [viewport, setViewport] = useState({
+    latitude: 35,
+    longitude: 135,
+    zoom: 3.8,
+    // 北から反時計回りに度で測定された、マップの初期方位（回転）
+    // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
+  });
+
   // fromAirport
-  const [fromAirport, setFomAirport] = useState(null);
+  const [fromAirport, setFromAirport] = useState(null);
 
   // 行先空港リスト
   const [toAirportLists, setToAirportLists] = useState([]);
@@ -125,33 +84,21 @@ export default function App() {
   }, [fromAirport]);
 
   //  空港テーブルから行先空港情報を取り出す
-  const getToAirportData = () => {
-    // 出発空港のidを定数に設定する
-    const fromAirportId = fromAirport.id;
+  const getToAirportData = (fromAirportId) => {
     // 路線テーブルの検索
-    const data = routeData.filter(({ from }) => from === fromAirportId);
+    let data = routeData.filter(({ from }) => from === fromAirportId);
     setSelectedRouteData(data);
-    console.log(data);
-    console.log(selectedRouteData);
-
-    // 行先空港情報
-    let toAirportsData = [];
-    for (let i = 0; i < data.length; i++) {
-      toAirportsData.push(airportData.find(({ id }) => id === data[i].to));
-    }
-    // toAirportListsIdにセットする
-    setToAirportLists(toAirportsData);
   };
 
   //  ボタン押したら行先空港のピンを表示する */
 
   const onClickGetToAirportData = () => {
-    getToAirportData();
+    getToAirportData(fromAirport.id);
     setIsRevealPins(true);
   };
 
   const onClickReset = () => {
-    setFomAirport(null);
+    setFromAirport(null);
   };
 
   const [toAirportInfo, setToAirportInfo] = useState(null);
@@ -159,17 +106,6 @@ export default function App() {
   useEffect(() => {
     setToAirportInfo(false);
   }, [fromAirport]);
-
-  // 地図のviewportの設定
-  const [viewport, setViewport] = useState({
-    latitude: 35,
-    longitude: 135,
-    zoom: 3.8,
-    // 北から反時計回りに度で測定された、マップの初期方位（回転）
-    // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
-  });
-
-  if (isLoading) return <LoadingAnime />;
 
   return (
     <>
@@ -199,19 +135,14 @@ export default function App() {
               mapboxApiAccessToken={TOKEN}
             >
               {/* onClickでクリックしたらfromAirportにクリックした空港のデータが入る */}
-              {airportData && <Pins data={airportData} onClick={setFomAirport} />}
-              {/* onClickでクリックした空港のピンの色が反転 */}
+              <Pins onClick={setFromAirport} />
 
-              {fromAirport && <SelectedPins data={fromAirport} />}
+              {/* onClickでクリックした空港のピンの色が反転 */}
+              {fromAirport && <FromAirportPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
               {isRevealPins && (
-                <ToAirportPins
-                  toAirportData={toAirportLists}
-                  routeData={selectedRouteData}
-                  onClick={setToAirportInfo}
-                />
+                <ToAirportPins routeData={selectedRouteData} onClick={setToAirportInfo} />
               )}
-
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
               <NavigationControl style={navStyle} />
@@ -235,9 +166,8 @@ export default function App() {
           {/* 空港情報表示する */}
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
           {fromAirport && (
+            // <InfoArea />
             <div className='infoArea'>
-              {/* <Company companyData={companyData} /> */}
-
               <div className='buttonArea'>
                 <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
                   <FaSearch size={18} color={'#414b5a'} />
@@ -275,7 +205,6 @@ export default function App() {
             flex-wrap: wrap;
             gap: 2em;
           }
-
           button {
             outline: none;
             border: none;
@@ -290,6 +219,7 @@ export default function App() {
             width: 60px;
             height: 58px;
             &:hover {
+              color: #fff;
               border-radius: 100px 30px 250px 100px;
               background-color: #c1e1ff;
               cursor: pointer;

@@ -5,11 +5,28 @@ import { IconContext } from 'react-icons';
 import { RiMapPin3Fill, RiMapPin3Line } from 'react-icons/ri';
 
 import { Marker } from 'react-map-gl';
+import useSWR, { SWRConfig } from 'swr';
+// /* ==========================================================================
+//   会社情報の取得
+//   ========================================================================== */
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
+
+export const useCompany = () => {
+  // useSWR(アクセス先,関数,オプション)
+  const { data, error } = useSWR('./api/company', fetcher, { revalidateOnMount: true });
+  console.log('useCompany', data);
+  return {
+    companyData: data,
+    isLoading: !error && !data,
+    isError: error,
+  };
+};
 
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
-function Company(props) {
-  const { companyData } = props;
-
+export function Company() {
+  // const { companyData } = props;
+  const { companyData } = useCompany();
+  console.log('companyData', companyData);
   return (
     <dov className='companyArea'>
       {companyData?.map((company, index) => (
@@ -56,5 +73,3 @@ function Company(props) {
     </dov>
   );
 }
-
-export default React.memo(Company);

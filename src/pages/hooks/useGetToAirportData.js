@@ -2,7 +2,8 @@ import { useAirport, useRoute, useCompany } from './useConnectSupabase';
 
 //  空港テーブルから行先空港情報を取り出す
 export const GetToAirportData = (props) => {
-  // 出発空港のidを定数に設定する
+  // 出発空港のidを定数に設定す
+  る
   const { fromAirportId } = props;
   const routeData = useRoute();
   const airportData = useAirport();

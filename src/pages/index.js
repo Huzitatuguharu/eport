@@ -14,8 +14,11 @@ import ReactMapGL, {
 } from 'react-map-gl';
 
 import AirportInfo from './components/AirportInfo';
+import { ButtonArea } from './components/InfoArea';
+import FromAirportInfo from './components/fromAirportInfo';
 import FromAirportPins from './components/fromAirportPins';
 import Pins from './components/pins';
+import ToAirportInfo from './components/toAirportInfo';
 import { ToAirportPins } from './components/toAirportPins';
 import { useAirport, useRoute, useCompany } from './hooks/useConnectSupabase';
 
@@ -52,8 +55,6 @@ const scaleControlStyle = {
 //   ここからページ
 //   ========================================================================== */
 export default function App() {
-  const { routeData } = useRoute();
-  const { airportData, isLoading } = useAirport();
 
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
@@ -67,39 +68,20 @@ export default function App() {
   // fromAirport
   const [fromAirport, setFromAirport] = useState(null);
 
-  // 行先空港リスト
-  const [toAirportLists, setToAirportLists] = useState([]);
+  // 行先空港リスト・路線
+  const [toAirports, setToAirports] = useState([]);
 
-  // 路線情報
-  const [selectedRouteData, setSelectedRouteData] = useState([]);
   useEffect(() => {
-    setSelectedRouteData(false);
+    setToAirports(false);
   }, [fromAirport]);
 
   // 行先空港リストの表示、非表示
   const [isRevealPins, setIsRevealPins] = useState(false);
+
   // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
   useEffect(() => {
     setIsRevealPins(false);
   }, [fromAirport]);
-
-  //  空港テーブルから行先空港情報を取り出す
-  const getToAirportData = (fromAirportId) => {
-    // 路線テーブルの検索
-    let data = routeData.filter(({ from }) => from === fromAirportId);
-    setSelectedRouteData(data);
-  };
-
-  //  ボタン押したら行先空港のピンを表示する */
-
-  const onClickGetToAirportData = () => {
-    getToAirportData(fromAirport.id);
-    setIsRevealPins(true);
-  };
-
-  const onClickReset = () => {
-    setFromAirport(null);
-  };
 
   const [toAirportInfo, setToAirportInfo] = useState(null);
   // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
@@ -140,9 +122,7 @@ export default function App() {
               {/* onClickでクリックした空港のピンの色が反転 */}
               {fromAirport && <FromAirportPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
-              {isRevealPins && (
-                <ToAirportPins routeData={selectedRouteData} onClick={setToAirportInfo} />
-              )}
+              {isRevealPins && <ToAirportPins toAirports={toAirports} onClick={setToAirportInfo} />}
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
               <NavigationControl style={navStyle} />
@@ -166,24 +146,23 @@ export default function App() {
           {/* 空港情報表示する */}
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
           {fromAirport && (
-            // <InfoArea />
-            <div className='infoArea'>
-              <div className='buttonArea'>
-                <button className='ButtonClickGetToAirportData' onClick={onClickGetToAirportData}>
-                  <FaSearch size={18} color={'#414b5a'} />
-                </button>
-                <button className='ButtonReset' onClick={onClickReset}>
-                  <FaUndoAlt size={18} color={'#414b5a'} />
-                </button>
+            <>
+              <div className='infoArea'>
+                <ButtonArea
+                  fromAirport={fromAirport}
+                  setFromAirport={setFromAirport}
+                  ToAirports={toAirports}
+                  setToAirports={setToAirports}
+                  isRevealPins={isRevealPins}
+                  setIsRevealPins={setIsRevealPins}
+                />
+                <div className='AirportInfoArea'>
+                  <FromAirportInfo info={fromAirport} />
+                  {/* ボタン押したら行先空港のピンを表示する */}
+                  {toAirportInfo && <ToAirportInfo info={toAirportInfo} />}
+                </div>
               </div>
-              <div className='AirportInfoArea'>
-                <AirportInfo info={fromAirport} direction={'from'} />
-
-                {/* ボタン押したら行先空港のピンを表示する */}
-                {/* 行先空港のデータ */}
-                {toAirportInfo && <AirportInfo info={toAirportInfo} direction={'to'} />}
-              </div>
-            </div>
+            </>
           )}
         </div>
       </div>
@@ -197,7 +176,7 @@ export default function App() {
             justify-content: center;
             align-items: flex-start;
             flex-direction: column;
-            gap: 30px 30px;
+            gap: 64px 0px;
           }
           .buttonArea {
             display: flex;

@@ -15,3 +15,4 @@ export const useCompany = () => {
     isError: error,
   };
 };
+

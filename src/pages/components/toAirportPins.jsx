@@ -6,16 +6,20 @@ import { Marker } from 'react-map-gl';
 
 import { useAirport } from '../hooks/useConnectSupabase';
 
-
 export const ToAirportPins = (props) => {
   const { airportData } = useAirport();
-  const { routeData, onClick } = props;
-  let toAirportsData=[];
+  const { toAirports, onClick } = props;
+  console.log(toAirports);
 
-  console.log('routeData', routeData);
-
-  for (let i = 0; i < routeData.length; i++) {
-    toAirportsData.push(airportData.find(({ id }) => id === routeData[i].to));
+  let toAirportsData = [];
+  if (toAirports) {
+    for (let i = 0; i < toAirports.length; i++) {
+      toAirportsData[i] = {
+        ...toAirports[i],
+        ...airportData.find(({ id }) => id === toAirports[i].to),
+      };
+    }
+    console.log('toAirportsData', toAirportsData);
   }
 
   if (toAirportsData) {

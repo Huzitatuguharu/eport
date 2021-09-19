@@ -45,6 +45,7 @@ function ToAirportInfo(props) {
           gap: 0.15em;
           width: 300px;
           height: 180px;
+          transform: rotate(-10deg);
         }
         .airportInfo {
           display: flex;

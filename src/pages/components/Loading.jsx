@@ -1,16 +1,22 @@
-import { Player, Controls } from '@lottiefiles/react-lottie-player';
+import { useSpring, Spring, animated } from 'react-spring';
 
-export const LoadingAnime = () => {
+export const Loading = () => {
+  const styles = useSpring({
+    loop: true,
+    from: { rotateZ: 0 },
+    to: { rotateZ: 180 },
+  });
+
   return (
-    <>
-      <Player
-        autoplay
-        loop
-        src='../../public/13484-airplane.json'
-        style={{ height: '300px', width: '300px' }}
-      >
-        <Controls visible={true} buttons={['play', 'repeat', 'frame', 'debug']} />
-      </Player>
-    </>
+    // <animated.div
+    <animated.div
+      style={{
+        width: 80,
+        height: 80,
+        backgroundColor: '#46e891',
+        borderRadius: 16,
+        ...styles,
+      }}
+    />
   );
 };

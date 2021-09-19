@@ -14,9 +14,9 @@ function FromAirportInfo(props) {
         <span className='title_text'></span>
       </div>
       <div>
-        <Link href={info.url}>
+        <Link href={info.airporturl}>
           <a className='airportName' rel='noopener noreferrer' target='_blank'>
-            {info.name}
+            {info.airportname}
             <p>
               <FaExternalLinkAlt size={12} color={'#414b5a'} />
             </p>
@@ -24,8 +24,8 @@ function FromAirportInfo(props) {
         </Link>
       </div>
       <div className='airportInfo'>
-        <p className='airportIcao'> {info.icao} </p>
-        <p className='airportIata'> {info.iata} </p>
+        <p className='airportIcao'> {info.airporticao} </p>
+        <p className='airportIata'> {info.airportiata} </p>
         {info.lounge == 1 && (
           <p className='airportLounge'>
             <FaCoffee size={18} color={'#606f86'} />

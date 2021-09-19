@@ -595,7 +595,7 @@ template {
 
 .container_half_right {
   background: linear-gradient(118.47deg, #edfafd 0.61%, #edfafd 100%);
-  padding: 32px;
+  padding: 64px;
 
   @include mq(xl) {
     min-width: 700px;
@@ -614,9 +614,8 @@ template {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  @include mq(xl) {
+  @include mq(md) {
     display: flex;
     flex-direction: row;
-
   }
 }

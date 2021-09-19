@@ -5,7 +5,6 @@ import { useContactForm } from '../hooks/useGetContactForm';
 // Important for perf: the markers never change, avoid rerender when the map viewport changes
 export const FormContent = () => {
   const { data, isLoading, isError } = useContactForm();
-  console.log(data);
 
   if (isError) return <div>failed to load</div>;
   if (!data) return <div>loading...</div>;

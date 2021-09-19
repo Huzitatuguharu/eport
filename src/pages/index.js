@@ -6,7 +6,6 @@ import { useState, useEffect } from 'react';
 import { render } from 'react-dom';
 import { FaPlane, FaUndoAlt, FaSearch } from 'react-icons/fa';
 import ReactMapGL, {
-  Popup,
   NavigationControl,
   FullscreenControl,
   ScaleControl,
@@ -14,13 +13,14 @@ import ReactMapGL, {
 } from 'react-map-gl';
 
 import AirportInfo from './components/AirportInfo';
-import { ButtonArea } from './components/InfoArea';
+import { ButtonArea } from './components/ButtonArea';
+import { CompanyList } from './components/CompanyList';
+import { Loading } from './components/Loading';
 import FromAirportInfo from './components/fromAirportInfo';
 import FromAirportPins from './components/fromAirportPins';
 import Pins from './components/pins';
 import ToAirportInfo from './components/toAirportInfo';
 import { ToAirportPins } from './components/toAirportPins';
-import { useAirport, useRoute, useCompany } from './hooks/useConnectSupabase';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -55,7 +55,6 @@ const scaleControlStyle = {
 //   ここからページ
 //   ========================================================================== */
 export default function App() {
-
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
     latitude: 35,
@@ -65,11 +64,20 @@ export default function App() {
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
 
-  // fromAirport
+  // クリックした空港
   const [fromAirport, setFromAirport] = useState(null);
 
-  // 行先空港リスト・路線
+  // fromAirportから行けるすべての行先空港リスト・路線　虫眼鏡クリックしたらsetToAirports
   const [toAirports, setToAirports] = useState([]);
+
+  // toAirportsの中でクリックした行先空港
+  const [selectedToAirports, setSelectedToAirports] = useState(null);
+
+  // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
+  useEffect(() => {
+    setSelectedToAirports(false);
+  }, [fromAirport]);
+  // fromAirportが変わったら変化する
 
   useEffect(() => {
     setToAirports(false);
@@ -83,11 +91,7 @@ export default function App() {
     setIsRevealPins(false);
   }, [fromAirport]);
 
-  const [toAirportInfo, setToAirportInfo] = useState(null);
-  // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
-  useEffect(() => {
-    setToAirportInfo(false);
-  }, [fromAirport]);
+  // if (isLoading) return <Loading />;
 
   return (
     <>
@@ -122,7 +126,9 @@ export default function App() {
               {/* onClickでクリックした空港のピンの色が反転 */}
               {fromAirport && <FromAirportPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
-              {isRevealPins && <ToAirportPins toAirports={toAirports} onClick={setToAirportInfo} />}
+              {isRevealPins && (
+                <ToAirportPins toAirports={toAirports} onClick={setSelectedToAirports} />
+              )}
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
               <NavigationControl style={navStyle} />
@@ -143,6 +149,7 @@ export default function App() {
         </div>
         {/* <!-- Right content --> */}
         <div className='container_half_right'>
+          {/* <Loading /> */}
           {/* 空港情報表示する */}
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
           {fromAirport && (
@@ -158,9 +165,9 @@ export default function App() {
                 />
                 <div className='AirportInfoArea'>
                   <FromAirportInfo info={fromAirport} />
-                  {/* ボタン押したら行先空港のピンを表示する */}
-                  {toAirportInfo && <ToAirportInfo info={toAirportInfo} />}
+                  {selectedToAirports && <ToAirportInfo info={selectedToAirports} />}
                 </div>
+                {selectedToAirports && <CompanyList info={selectedToAirports} />}
               </div>
             </>
           )}
@@ -183,31 +190,6 @@ export default function App() {
             justify-content: start;
             flex-wrap: wrap;
             gap: 2em;
-          }
-          button {
-            outline: none;
-            border: none;
-            color: #414b5a;
-            font-family: mamelon, sans-serif;
-            font-weight: 500;
-            font-style: normal;
-            padding: 12px;
-            border-radius: 20px;
-            background: #edfafd;
-            box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
-            width: 60px;
-            height: 58px;
-            &:hover {
-              color: #fff;
-              border-radius: 100px 30px 250px 100px;
-              background-color: #c1e1ff;
-              cursor: pointer;
-            }
-            &:active {
-              background: #edfafd;
-              box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
-              border-radius: 100px 30px 250px 100px;
-            }
           }
         `}
       </style>

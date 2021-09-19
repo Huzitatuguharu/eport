@@ -7,29 +7,36 @@ import { useAirport, useRoute, useCompany } from '../hooks/useConnectSupabase';
 
 export const ButtonArea = (props) => {
   const { airportData } = useAirport();
-  const { fromAirport, setFromAirport, todAirports, setToAirports, isRevealPins, setIsRevealPins } =
-    props;
+  const { routeData } = useRoute();
+  const { companyData } = useCompany();
+  const { fromAirport, setFromAirport, setToAirports, setIsRevealPins } = props;
 
   //  空港テーブルから行先空港情報を取り出す
-  const { routeData } = useRoute();
 
   const getToAirportData = () => {
     // 路線テーブルの検索
-    let makeRouteData = routeData.filter(({ from }) => from === fromAirport.id);
-    console.log(makeRouteData);
-    setToAirports(makeRouteData);
-    setIsRevealPins(true);
+    let makeRouteData = routeData.filter(({ from }) => from === fromAirport.airportid);
 
     let toAirportsData = [];
     if (makeRouteData) {
       for (let i = 0; i < makeRouteData.length; i++) {
         toAirportsData[i] = {
+          ...airportData.find(({ airportid }) => airportid === makeRouteData[i].to),
           ...makeRouteData[i],
-          ...airportData.find(({ id }) => id === makeRouteData[i].to),
         };
       }
-      console.log('toAirportsData', toAirportsData);
+      for (let j = 0; j < toAirportsData.length; j++) {
+        toAirportsData[j] = {
+          ...toAirportsData[j],
+          ...companyData.find(({ companyid }) =>companyid === toAirportsData[j].routecompany),
+        };
+      }
     }
+
+    console.log('toAirportsData!!', toAirportsData);
+    setToAirports(toAirportsData);
+
+    setIsRevealPins(true);
   };
 
   return (
@@ -63,14 +70,12 @@ export const ButtonArea = (props) => {
             height: 58px;
             &:hover {
               color: #fff;
-              border-radius: 100px 30px 250px 100px;
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
               background: #edfafd;
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
-              border-radius: 100px 30px 250px 100px;
             }
           }
         `}

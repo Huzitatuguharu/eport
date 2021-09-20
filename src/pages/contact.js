@@ -4,8 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useMemo } from 'react';
 import useSWR from 'swr';
-import { FormContent } from '../components/Form';
-import { useContactForm } from '../hooks/useGetContactForm';
 
 
 
@@ -37,7 +35,6 @@ export default function Contact() {
       </Head>
       {data && (
         <form action='送信先のURL'>
-          <FormContent />
           {/* <h1 className='title'>{data.form.name}</h1>
           <h2 className='subtitle'>{data.form.description}</h2>
           <div>

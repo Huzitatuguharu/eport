@@ -18,20 +18,21 @@ export function CompanyList(props) {
   const newArr = allInfo.filter(({ airportname }) => airportname === info.airportname);
 
   console.log(newArr);
+  if (newArr) {
 
-  return (
-    <>
-      <div className='companyArea'>
-        {newArr?.map((company, index) => (
-          <button className='companyName' key={`company-${index}`}>
-            <Link href={company.companyurl}>
-              <a rel='noopener noreferrer' target='_blank'>
-                {company.companyicao}
-              </a>
-            </Link>
-          </button>
-        ))}
-        {/* <div className='companyArea'>
+    return (
+      <>
+        <div className='companyArea'>
+          {newArr?.map((company, index) => (
+            <button className='companyName' key={`company-${index}`}>
+              <Link href={company.companyurl}>
+                <a rel='noopener noreferrer' target='_blank'>
+                  {company.companyicao}
+                </a>
+              </Link>
+            </button>
+          ))}
+          {/* <div className='companyArea'>
         {companyData?.map((company, index) => (
           <button className='companyName' key={`company-${index}`}>
             <Link href={company.companyurl}>
@@ -41,8 +42,8 @@ export function CompanyList(props) {
             </Link>
           </button>
         ))} */}
-        <style jsx>
-          {`
+          <style jsx>
+            {`
             .companyArea {
               display: flex;
               justify-content: start;
@@ -72,9 +73,10 @@ export function CompanyList(props) {
               }
             }
           `}
-        </style>
-      </div>
-    </>
-  );
+          </style>
+        </div>
+      </>
+    );
+  }
 }
 export default React.memo(CompanyList);

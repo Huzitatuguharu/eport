@@ -12,13 +12,13 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
-import { ButtonArea } from './components/ButtonArea';
-import { CompanyList } from './components/CompanyList';
-import FromAirportInfo from './components/fromAirportInfo';
-import FromAirportPins from './components/fromAirportPins';
-import Pins from './components/pins';
-import ToAirportInfo from './components/toAirportInfo';
-import { ToAirportPins } from './components/toAirportPins';
+import { ButtonArea } from '../components/ButtonArea';
+import { CompanyList } from '../components/CompanyList';
+import FromAirportInfo from '../components/fromAirportInfo';
+import FromAirportPins from '../components/fromAirportPins';
+import Pins from '../components/pins';
+import ToAirportInfo from '../components/toAirportInfo';
+import { ToAirportPins } from '../components/toAirportPins';
 
 // /* ==========================================================================
 //  mapboxの設定

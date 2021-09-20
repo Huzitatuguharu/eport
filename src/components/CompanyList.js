@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import * as React from 'react';
-import { useCompany } from '../../hooks/useConnectSupabase';
+import { useCompany } from '../hooks/useConnectSupabase';
 
 export function CompanyList(props) {
   const { info, allInfo } = props;

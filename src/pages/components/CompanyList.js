@@ -6,7 +6,7 @@ import { RiMapPin3Fill, RiMapPin3Line } from 'react-icons/ri';
 
 import { Marker } from 'react-map-gl';
 import useSWR, { SWRConfig } from 'swr';
-import { useCompany } from '../hooks/useConnectSupabase';
+import { useCompany } from '../../hooks/useConnectSupabase';
 
 export function CompanyList(props) {
   const { info, allInfo } = props;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { FaPlane, FaUndoAlt, FaSearch } from 'react-icons/fa';
-import { useAirport, useRoute, useCompany } from '../hooks/useConnectSupabase';
+import { useAirport, useRoute, useCompany } from '../../hooks/useConnectSupabase';
 
 // /* ==========================================================================
 //   コンポーネント

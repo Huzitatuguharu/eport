@@ -57,9 +57,9 @@ const scaleControlStyle = {
 export default function App() {
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
-    latitude: 35,
-    longitude: 135,
-    zoom: 3.8,
+    latitude: 33,
+    longitude: 132,
+    zoom: 5,
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
@@ -116,7 +116,7 @@ export default function App() {
               width='90%'
               height='90vh'
               // satellite、light 、dark 、streets 、outdoors
-              mapStyle='mapbox://styles/mapbox/light-v10'
+              mapStyle='mapbox://styles/mapbox/streets-v10'
               onViewportChange={setViewport}
               mapboxApiAccessToken={TOKEN}
             >
@@ -128,6 +128,7 @@ export default function App() {
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
               {isRevealPins && (
                 <ToAirportPins toAirports={toAirports} onClick={setSelectedToAirports} />
+                // <ToAirportPins toAirports={toAirports}  />
               )}
               <GeolocateControl style={geolocateStyle} />
               <FullscreenControl style={fullscreenControlStyle} />
@@ -165,9 +166,13 @@ export default function App() {
                 />
                 <div className='AirportInfoArea'>
                   <FromAirportInfo info={fromAirport} />
-                  {selectedToAirports && <ToAirportInfo info={selectedToAirports} />}
+                  {selectedToAirports && (
+                    <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
+                  )}
                 </div>
-                {selectedToAirports && <CompanyList info={selectedToAirports} />}
+                {selectedToAirports && (
+                  <CompanyList info={selectedToAirports} allInfo={toAirports} />
+                )}
               </div>
             </>
           )}

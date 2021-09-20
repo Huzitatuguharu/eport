@@ -5,7 +5,8 @@ import * as React from 'react';
 import { FaPlaneArrival, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
 function ToAirportInfo(props) {
-  const { info } = props;
+  const { info, allInfo } = props;
+  console.log('allInfo', allInfo);
 
   return (
     <div className='airportCard'>

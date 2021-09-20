@@ -28,12 +28,13 @@ export const ButtonArea = (props) => {
       for (let j = 0; j < toAirportsData.length; j++) {
         toAirportsData[j] = {
           ...toAirportsData[j],
-          ...companyData.find(({ companyid }) =>companyid === toAirportsData[j].routecompany),
+          ...companyData.find(({ companyid }) => companyid === toAirportsData[j].routecompany),
         };
       }
+      // return toAirportsData;
     }
 
-    console.log('toAirportsData!!', toAirportsData);
+    console.log('setToAirports', setToAirports);
     setToAirports(toAirportsData);
 
     setIsRevealPins(true);
@@ -41,10 +42,13 @@ export const ButtonArea = (props) => {
 
   return (
     <div className='buttonArea'>
-      <button className='ButtonClickGetToAirportData' onClick={getToAirportData}>
+      <button className='Button_search tooltip' onClick={getToAirportData}>
+        <span className='tooltip-text'>直行便を検索</span>
         <FaSearch size={18} color={'#414b5a'} />
       </button>
-      <button className='ButtonReset' onClick={() => setFromAirport(null)}>
+      <button className='Button_reset tooltip' onClick={() => setFromAirport(null)}>
+        <span className='tooltip-text'>空港を選びなおす</span>
+
         <FaUndoAlt size={18} color={'#414b5a'} />
       </button>
       <style jsx>
@@ -56,7 +60,6 @@ export const ButtonArea = (props) => {
             gap: 2em;
           }
           button {
-            outline: none;
             border: none;
             color: #414b5a;
             font-family: mamelon, sans-serif;
@@ -76,6 +79,41 @@ export const ButtonArea = (props) => {
             &:active {
               background: #edfafd;
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
+            }
+          }
+          .tooltip {
+            position: relative;
+            cursor: pointer;
+            &:hover .tooltip-text {
+              opacity: 1;
+              visibility: visible;
+            }
+          }
+          .tooltip-text {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: -50px;
+            display: inline-block;
+            padding: 8px;
+            white-space: nowrap;
+            font-size: 14px;
+            line-height: 1.3;
+            background: #c1e1ff;
+            color: #333;
+            border-radius: 3px;
+            transition: 0.3s ease-in;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            &:before {
+              content: '';
+              position: absolute;
+              top: -13px;
+              left: 50%;
+              margin-left: -7px;
+              border: 7px solid transparent;
+              border-bottom: 7px solid #c1e1ff;
             }
           }
         `}

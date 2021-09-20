@@ -9,16 +9,29 @@ import useSWR, { SWRConfig } from 'swr';
 import { useCompany } from '../hooks/useConnectSupabase';
 
 export function CompanyList(props) {
-  const { info } = props;
+  const { info, allInfo } = props;
   const { companyData } = useCompany();
+  console.log('info', info);
+  console.log('allInfo', allInfo);
+
+  const newArr = allInfo.filter(({ airportname }) => airportname === info.airportname);
+
+  console.log(newArr);
 
   return (
     <>
       <div>
-        <p>{info.companyname}</p>
-        <p>{info.companyicao}</p>
+        {newArr?.map((company, index) => (
+          <button className='companyName' key={`company-${index}`}>
+            <Link href={company.companyurl}>
+              <a rel='noopener noreferrer' target='_blank'>
+                {company.companyicao}
+              </a>
+            </Link>
+          </button>
+        ))}
       </div>
-      <dov className='companyArea'>
+      <div className='companyArea'>
         {companyData?.map((company, index) => (
           <button className='companyName' key={`company-${index}`}>
             <Link href={company.companyurl}>
@@ -33,7 +46,7 @@ export function CompanyList(props) {
             .companyArea {
               display: flex;
               justify-content: start;
-              gap: 2em;
+              gap: 24px;
               flex-wrap: wrap;
             }
             button {
@@ -60,7 +73,7 @@ export function CompanyList(props) {
             }
           `}
         </style>
-      </dov>
+      </div>
     </>
   );
 }

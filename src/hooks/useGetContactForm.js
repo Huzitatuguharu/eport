@@ -9,6 +9,7 @@ const fetcher = async (url, config) => {
     res = await fetch(url);
   }
 
+  
   if (!res.ok) {
     const error = new Error('An error occurred while fetching the data.');
 

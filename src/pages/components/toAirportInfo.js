@@ -7,6 +7,8 @@ import { FaPlaneArrival, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 function ToAirportInfo(props) {
   const { info, allInfo } = props;
   console.log('allInfo', allInfo);
+  console.log('info', info);
+
   if (info) {
     return (
       <div className='airportCard'>
@@ -43,7 +45,7 @@ function ToAirportInfo(props) {
             box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
             display: grid;
             gap: 0.15em;
-            width: 300px;
+            width: 260px;
             height: 180px;
             transform: rotate(-10deg);
           }

@@ -165,13 +165,11 @@ export default function App() {
                 <div className='AirportInfoArea'>
                   <FromAirportInfo info={fromAirport} />
                   {selectedToAirports && (
-                    <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
+                    <>
+                      <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
+                      <CompanyList info={selectedToAirports} allInfo={toAirports} />
+                    </>
                   )}
-                </div>
-                <div className='companyArea'>
-                  {/* {selectedToAirports && (
-                    <CompanyList info={selectedToAirports} allInfo={toAirports} />
-                  )} */}
                 </div>
               </div>
             </>

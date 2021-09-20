@@ -168,9 +168,11 @@ export default function App() {
                     <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
                   )}
                 </div>
-                {selectedToAirports && (
-                  <CompanyList info={selectedToAirports} allInfo={toAirports} />
-                )}
+                <div className='companyArea'>
+                  {/* {selectedToAirports && (
+                    <CompanyList info={selectedToAirports} allInfo={toAirports} />
+                  )} */}
+                </div>
               </div>
             </>
           )}
@@ -178,6 +180,12 @@ export default function App() {
       </div>
       <style jsx>
         {`
+          .companyArea {
+            display: flex;
+            justify-content: start;
+            gap: 24px;
+            flex-wrap: wrap;
+          }
           .infoArea {
             font-family: vdl-v7marugothic, sans-serif;
             font-weight: 500;

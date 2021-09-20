@@ -20,7 +20,7 @@ export function CompanyList(props) {
 
   return (
     <>
-      <div>
+      <div className='companyArea'>
         {newArr?.map((company, index) => (
           <button className='companyName' key={`company-${index}`}>
             <Link href={company.companyurl}>
@@ -30,8 +30,7 @@ export function CompanyList(props) {
             </Link>
           </button>
         ))}
-      </div>
-      <div className='companyArea'>
+        {/* <div className='companyArea'>
         {companyData?.map((company, index) => (
           <button className='companyName' key={`company-${index}`}>
             <Link href={company.companyurl}>
@@ -40,7 +39,7 @@ export function CompanyList(props) {
               </a>
             </Link>
           </button>
-        ))}
+        ))} */}
         <style jsx>
           {`
             .companyArea {

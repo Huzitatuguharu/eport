@@ -8,6 +8,7 @@ import { Marker } from 'react-map-gl';
 import useSWR, { SWRConfig } from 'swr';
 import { useCompany } from '../../hooks/useConnectSupabase';
 
+
 export function CompanyList(props) {
   const { info, allInfo } = props;
   const { companyData } = useCompany();

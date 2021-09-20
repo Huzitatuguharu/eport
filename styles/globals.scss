@@ -598,14 +598,17 @@ template {
   padding: 64px;
 
   @include mq(xl) {
-    min-width: 700px;
-    flex: 1;
+    // min-width: 700px;
+    flex: 0 1 30%;
+    // width:30%;
+    //  flex-basis: 200px;
   }
 }
 .container_half_left {
   padding: 24px;
   @include mq(xl) {
     flex: 1;
+    flex: 0 1 70%;
   }
 }
 
@@ -614,8 +617,4 @@ template {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  @include mq(md) {
-    display: flex;
-    flex-direction: row;
-  }
 }

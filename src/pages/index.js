@@ -12,7 +12,6 @@ import ReactMapGL, {
   GeolocateControl,
 } from 'react-map-gl';
 
-import AirportInfo from './components/AirportInfo';
 import { ButtonArea } from './components/ButtonArea';
 import { CompanyList } from './components/CompanyList';
 import FromAirportInfo from './components/fromAirportInfo';

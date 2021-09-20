@@ -15,7 +15,6 @@ import ReactMapGL, {
 import AirportInfo from './components/AirportInfo';
 import { ButtonArea } from './components/ButtonArea';
 import { CompanyList } from './components/CompanyList';
-import { Loading } from './components/Loading';
 import FromAirportInfo from './components/fromAirportInfo';
 import FromAirportPins from './components/fromAirportPins';
 import Pins from './components/pins';

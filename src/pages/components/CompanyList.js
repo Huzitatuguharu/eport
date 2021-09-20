@@ -76,3 +76,4 @@ export function CompanyList(props) {
     </>
   );
 }
+export default React.memo(CompanyList);

@@ -121,3 +121,4 @@ export const ButtonArea = (props) => {
     </div>
   );
 };
+export default React.memo(ButtonArea);

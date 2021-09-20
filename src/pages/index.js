@@ -106,35 +106,6 @@ export default function App() {
         ></link>
       </Head>
       <div className='container'>
-        {/* <!-- Right content --> */}
-        <div className='container_half_right'>
-          {/* <Loading /> */}
-          {/* 空港情報表示する */}
-          {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
-          {fromAirport && (
-            <>
-              <div className='infoArea'>
-                <ButtonArea
-                  fromAirport={fromAirport}
-                  setFromAirport={setFromAirport}
-                  ToAirports={toAirports}
-                  setToAirports={setToAirports}
-                  isRevealPins={isRevealPins}
-                  setIsRevealPins={setIsRevealPins}
-                />
-                <div className='AirportInfoArea'>
-                  <FromAirportInfo info={fromAirport} />
-                  {selectedToAirports && (
-                    <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
-                  )}
-                </div>
-                {selectedToAirports && (
-                  <CompanyList info={selectedToAirports} allInfo={toAirports} />
-                )}
-              </div>
-            </>
-          )}
-        </div>
         {/* <!-- Left content --> */}
         <div className='container_half_left'>
           <div className='map'>
@@ -174,6 +145,35 @@ export default function App() {
               <a>お問い合わせ</a>
             </Link>
           </div> */}
+        </div>
+        {/* <!-- Right content --> */}
+        <div className='container_half_right'>
+          {/* <Loading /> */}
+          {/* 空港情報表示する */}
+          {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
+          {fromAirport && (
+            <>
+              <div className='infoArea'>
+                <ButtonArea
+                  fromAirport={fromAirport}
+                  setFromAirport={setFromAirport}
+                  ToAirports={toAirports}
+                  setToAirports={setToAirports}
+                  isRevealPins={isRevealPins}
+                  setIsRevealPins={setIsRevealPins}
+                />
+                <div className='AirportInfoArea'>
+                  <FromAirportInfo info={fromAirport} />
+                  {selectedToAirports && (
+                    <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
+                  )}
+                </div>
+                {selectedToAirports && (
+                  <CompanyList info={selectedToAirports} allInfo={toAirports} />
+                )}
+              </div>
+            </>
+          )}
         </div>
       </div>
       <style jsx>

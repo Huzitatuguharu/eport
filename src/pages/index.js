@@ -50,16 +50,18 @@ export default function App() {
   // 地図のviewportの設定
   const [viewport, setViewport] = useState({
     latitude: 33,
-    longitude: 132,
+    longitude: 135,
     zoom: 5,
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
 
   // クリックした空港
-  const [fromAirport, setFromAirport] = useState(null);
+  const [fromAirport, setFromAirport] = useState([]);
 
+  const [clickAirport, setClickAirport] = useState();
   // fromAirportから行けるすべての行先空港リスト・路線　虫眼鏡クリックしたらsetToAirports
+  // const [toAirports, setToAirports] = useState([]);
   const [toAirports, setToAirports] = useState([]);
 
   // toAirportsの中でクリックした行先空港
@@ -71,10 +73,6 @@ export default function App() {
   }, [fromAirport]);
   // fromAirportが変わったら変化する
 
-  useEffect(() => {
-    setToAirports(false);
-  }, [fromAirport]);
-
   // 行先空港リストの表示、非表示
   const [isRevealPins, setIsRevealPins] = useState(false);
 
@@ -83,11 +81,7 @@ export default function App() {
     setIsRevealPins(false);
   }, [fromAirport]);
 
-  function getCursor({ isHovering }) {
-    return  isHovering ? 'pointer' : 'default';
-  };
   // if (isLoading) return <Loading />;
-
   return (
     <>
       <Head>
@@ -111,21 +105,26 @@ export default function App() {
               width='90%'
               height='90vh'
               // satellite、light 、dark 、streets 、outdoors
-              mapStyle='mapbox://styles/mapbox/streets-v10'
+              mapStyle='mapbox://styles/mapbox/light-v10'
               onViewportChange={setViewport}
               cursor='pointer'
               mapboxApiAccessToken={TOKEN}
             >
               {/* onClickでクリックしたらfromAirportにクリックした空港のデータが入る */}
-              <Pins onClick={setFromAirport} />
-
+              <Pins
+                setViewport={setViewport}
+                setClickAirport={setClickAirport}
+                clickAirport={clickAirport}
+                setToAirports={setToAirports}
+                toAirports={toAirports}
+                setSelectedToAirports={setSelectedToAirports}
+                selectedToAirports={selectedToAirports}
+              />
               {/* onClickでクリックした空港のピンの色が反転 */}
-              {fromAirport && <FromAirportPins data={fromAirport} />}
               {/* onClickでクリックした空港の直行できる空港のピン立てる */}
-              {isRevealPins && (
-                <ToAirportPins toAirports={toAirports} onClick={setSelectedToAirports} />
-                // <ToAirportPins toAirports={toAirports}  />
-              )}
+              {/* {toAirports && (
+                <ToAirportPins toAirports={toAirports}  />
+              )} */}
               <GeolocateControl style={geolocateStyle} />
               <NavigationControl style={navStyle} />
               <ScaleControl style={scaleControlStyle} />
@@ -148,19 +147,19 @@ export default function App() {
           {/* <Loading /> */}
           {/* 空港情報表示する */}
           {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
-          {fromAirport && (
+          {clickAirport && (
             <>
               <div className='infoArea'>
-                <ButtonArea
-                  fromAirport={fromAirport}
+                {/* <ButtonArea
+                  clickAirport={fromAirport}
                   setFromAirport={setFromAirport}
                   ToAirports={toAirports}
                   setToAirports={setToAirports}
                   isRevealPins={isRevealPins}
                   setIsRevealPins={setIsRevealPins}
-                />
+                /> */}
                 <div className='AirportInfoArea'>
-                  <FromAirportInfo info={fromAirport} />
+                  <FromAirportInfo clickAirport={clickAirport} />
                   {selectedToAirports && (
                     <>
                       <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />

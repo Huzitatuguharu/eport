@@ -17,3 +17,4 @@
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "src/pages/index.tsx", "src/components/city-info.js", "src/pages/index.js", "src/pages/api/supabaseAPI.js", "src/pages/_app.jsx"],
   "exclude": ["node_modules"]
 }
+

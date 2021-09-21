@@ -5,8 +5,8 @@ import * as React from 'react';
 import { FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
 function FromAirportInfo(props) {
-  const { info } = props;
-  if (info) {
+  const { clickAirport } = props;
+  if (clickAirport) {
     return (
       <div className='airportCard '>
         <div className='title'>
@@ -14,9 +14,9 @@ function FromAirportInfo(props) {
           <span className='title_text'></span>
         </div>
         <div>
-          <Link href={info.airporturl}>
+          <Link href={clickAirport.airporturl}>
             <a className='airportName' rel='noopener noreferrer' target='_blank'>
-              {info.airportname}
+              {clickAirport.airportname}
               <p>
                 <FaExternalLinkAlt size={12} color={'#414b5a'} />
               </p>
@@ -24,9 +24,9 @@ function FromAirportInfo(props) {
           </Link>
         </div>
         <div className='airportInfo'>
-          <p className='airportIcao'> {info.airporticao} </p>
-          <p className='airportIata'> {info.airportiata} </p>
-          {info.lounge == 1 && (
+          <p className='airportIcao'> {clickAirport.airporticao} </p>
+          <p className='airportIata'> {clickAirport.airportiata} </p>
+          {clickAirport.lounge == 1 && (
             <p className='airportLounge'>
               <FaCoffee size={18} color={'#606f86'} />
             </p>

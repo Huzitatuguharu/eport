@@ -102,8 +102,8 @@ export default function App() {
           <div className='map'>
             <ReactMapGL
               {...viewport}
-              width='90%'
-              height='90vh'
+              width='100%'
+              height='100vh'
               // satellite、light 、dark 、streets 、outdoors
               mapStyle='mapbox://styles/mapbox/light-v10'
               onViewportChange={setViewport}

@@ -579,7 +579,7 @@ template {
 }
 
 .map {
-  padding: 16px;
+  // padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -596,19 +596,21 @@ template {
 .container_half_right {
   background: linear-gradient(118.47deg, #edfafd 0.61%, #edfafd 100%);
   padding: 64px;
+  z-index: 10;
 
   @include mq(xl) {
     // min-width: 700px;
+    width:180px;
     flex: 0 1 30%;
     // width:30%;
     //  flex-basis: 200px;
   }
 }
 .container_half_left {
-  padding: 24px;
+  // padding: 24px;
   @include mq(xl) {
     flex: 1;
-    flex: 0 1 70%;
+    flex: 0 1 95%;
   }
 }
 

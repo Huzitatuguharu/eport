@@ -34,12 +34,9 @@ export const ButtonArea = (props) => {
         };
       }
       // return toAirportsData;
+      setToAirports(toAirportsData);
+      setIsRevealPins(true);
     }
-
-    console.log('setToAirports', setToAirports);
-    setToAirports(toAirportsData);
-
-    setIsRevealPins(true);
   };
 
   return (

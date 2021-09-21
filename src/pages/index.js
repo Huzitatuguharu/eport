@@ -31,12 +31,6 @@ const geolocateStyle = {
   padding: '10px',
 };
 
-const fullscreenControlStyle = {
-  top: 36,
-  left: 0,
-  padding: '10px',
-};
-
 const navStyle = {
   top: 72,
   left: 0,
@@ -89,6 +83,9 @@ export default function App() {
     setIsRevealPins(false);
   }, [fromAirport]);
 
+  function getCursor({ isHovering }) {
+    return  isHovering ? 'pointer' : 'default';
+  };
   // if (isLoading) return <Loading />;
 
   return (
@@ -116,6 +113,7 @@ export default function App() {
               // satellite、light 、dark 、streets 、outdoors
               mapStyle='mapbox://styles/mapbox/streets-v10'
               onViewportChange={setViewport}
+              cursor='pointer'
               mapboxApiAccessToken={TOKEN}
             >
               {/* onClickでクリックしたらfromAirportにクリックした空港のデータが入る */}
@@ -129,7 +127,6 @@ export default function App() {
                 // <ToAirportPins toAirports={toAirports}  />
               )}
               <GeolocateControl style={geolocateStyle} />
-              <FullscreenControl style={fullscreenControlStyle} />
               <NavigationControl style={navStyle} />
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>

@@ -12,6 +12,7 @@ export function CompanyList(props) {
   let newArr = all.filter(({ airportname }) => airportname === fromAirport);
 
   console.log(newArr);
+  // console.log(newArr[0]companyurl);
   return (
     <>
       <div className='companyArea'>
@@ -30,10 +31,11 @@ export function CompanyList(props) {
         {`
           .companyArea {
             display: flex;
-            justify-content: start;
+            justify-content: flex-end;
+
             gap: 24px;
             flex-wrap: wrap;
-            margin-top:64px;
+            margin-top: 64px;
           }
           button {
             font-family: 'Ubuntu', sans-serif;

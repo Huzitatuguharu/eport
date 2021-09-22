@@ -29,4 +29,4 @@ export const ToAirportPins = (props) => {
     ));
   }
 };
-export default React.memo(ToAirportPins);
+ React.memo(ToAirportPins);

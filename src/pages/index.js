@@ -81,6 +81,8 @@ export default function App() {
     setIsRevealPins(false);
   }, [fromAirport]);
 
+  console.log(selectedToAirports);
+
   // if (isLoading) return <Loading />;
   return (
     <>
@@ -97,8 +99,7 @@ export default function App() {
         ></link>
       </Head>
       <div className='container'>
-        {/* <!-- Left content --> */}
-        <div className='container_half_left'>
+        <div className='container_map'>
           <div className='map'>
             <ReactMapGL
               {...viewport}
@@ -130,27 +131,11 @@ export default function App() {
               <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
-          <div className='contactArea'>
-            <Link href='https://www.google.com/flights?hl=ja'>
-              <a>GoogleFlight</a>
-            </Link>
-          </div>
-
-          {/* <div className='contactArea'>
-            <Link href='/contact'>
-              <a>お問い合わせ</a>
-            </Link>
-          </div> */}
         </div>
         {/* <!-- Right content --> */}
-        <div className='container_half_right'>
-          {/* <Loading /> */}
-          {/* 空港情報表示する */}
-          {/* クリックしたらfromAirportにクリックした空港のデータが入る */}
-          {clickAirport && (
-            <>
-              <div className='infoArea'>
-                {/* <ButtonArea
+        {clickAirport && (
+          <div className='container_information'>
+              {/* <ButtonArea
                   clickAirport={fromAirport}
                   setFromAirport={setFromAirport}
                   ToAirports={toAirports}
@@ -158,44 +143,38 @@ export default function App() {
                   isRevealPins={isRevealPins}
                   setIsRevealPins={setIsRevealPins}
                 /> */}
-                <div className='AirportInfoArea'>
-                  <FromAirportInfo clickAirport={clickAirport} />
-                  {selectedToAirports && (
-                    <>
-                      <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
-                      <CompanyList info={selectedToAirports} allInfo={toAirports} />
-                    </>
-                  )}
-                </div>
+              <div className='AirportInfoArea'>
+                <FromAirportInfo clickAirport={clickAirport} />
+                {selectedToAirports && (
+                  <ToAirportInfo info={selectedToAirports} allInfo={toAirports} />
+                )}
               </div>
-            </>
-          )}
-        </div>
+              {selectedToAirports && <CompanyList info={selectedToAirports} allInfo={toAirports} />}
+          </div>
+        )}
       </div>
       <style jsx>
         {`
-          .companyArea {
-            display: flex;
-            justify-content: start;
-            gap: 24px;
-            flex-wrap: wrap;
-          }
-          .infoArea {
+          // .companyArea {
+          //   display: flex;
+          //   justify-content: start;
+          //   gap: 24px;
+          //   flex-wrap: wrap;
+          // }
+          .AirportInfoArea {
             font-family: vdl-v7marugothic, sans-serif;
             font-weight: 500;
             font-style: normal;
             display: flex;
             justify-content: center;
-            align-items: flex-start;
-            flex-direction: column;
-            gap: 64px 0px;
+            align-items: flex-end;
           }
-          .buttonArea {
-            display: flex;
-            justify-content: start;
-            flex-wrap: wrap;
-            gap: 2em;
-          }
+          // .buttonArea {
+          //   display: flex;
+          //   justify-content: start;
+          //   flex-wrap: wrap;
+          //   gap: 2em;
+          // }
         `}
       </style>
       {/* <ControlPanel /> */}

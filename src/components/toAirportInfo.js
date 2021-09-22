@@ -5,20 +5,18 @@ import * as React from 'react';
 import { FaPlaneArrival, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
 function ToAirportInfo(props) {
-  const { info, allInfo } = props;
-  console.log('allInfo', allInfo);
-  console.log('info', info);
+  const { selectedToAirports} = props;
 
-  if (info) {
+  if (selectedToAirports) {
     return (
       <div className='airportCard'>
         <div className='title'>
           <FaPlaneArrival size={24} color={'#414b5a'} />
         </div>
         <div>
-          <Link href={info.airporturl}>
+          <Link href={selectedToAirports.airporturl}>
             <a className='airportName' rel='noopener noreferrer' target='_blank'>
-              {info.airportname}
+              {selectedToAirports.airportname}
               <p>
                 <FaExternalLinkAlt size={12} color={'#414b5a'} />
               </p>
@@ -26,9 +24,9 @@ function ToAirportInfo(props) {
           </Link>
         </div>
         <div className='airportInfo'>
-          <p className='airportIcao'>{info.airporticao} </p>
-          <p className='airportIata'>{info.airportiata} </p>
-          {info.lounge == 1 && (
+          <p className='airportIcao'>{selectedToAirports.airporticao} </p>
+          <p className='airportIata'>{selectedToAirports.airportiata} </p>
+          {selectedToAirports.lounge == 1 && (
             <p className='airportLounge'>
               <FaCoffee size={18} color={'#606f86'} />
             </p>
@@ -47,7 +45,7 @@ function ToAirportInfo(props) {
             gap: 0.15em;
             width: 180px;
             height: 170px;
-            transform:translateX(20px) translateY(10px) rotate(10deg);
+            transform: translateX(20px) translateY(10px) rotate(10deg);
           }
           .airportInfo {
             display: flex;

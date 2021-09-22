@@ -16,6 +16,8 @@ export const ButtonArea = (props) => {
   //  空港テーブルから行先空港情報を取り出す
 
   const getToAirportData = () => {
+
+    
     // 路線テーブルの検索
     let makeRouteData = routeData.filter(({ from }) => from === fromAirport.airportid);
 

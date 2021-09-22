@@ -3,20 +3,15 @@ import * as React from 'react';
 import { useCompany } from '../hooks/useConnectSupabase';
 
 export function CompanyList(props) {
-  const { info, allInfo } = props;
-  const { companyData } = useCompany();
-  console.log('info', info);
-  console.log('allInfo', allInfo);
-  const fromAirport = info.airportname;
-  const all = allInfo;
-  let newArr = all.filter(({ airportname }) => airportname === fromAirport);
+  const { selectedToAirports, toAirportsData } = props;
+  const fromAirport = selectedToAirports.airportname;
+  const all = toAirportsData;
+  let companyArr = all.filter(({ airportname }) => airportname === fromAirport);
 
-  console.log(newArr);
-  // console.log(newArr[0]companyurl);
   return (
     <>
       <div className='companyArea'>
-        {newArr?.map((company, index) => (
+        {companyArr?.map((company, index) => (
           <button className='companyName' key={`company-${index}`}>
             <Link href={company.companyurl}>
               <a rel='noopener noreferrer' target='_blank'>
@@ -65,15 +60,3 @@ export function CompanyList(props) {
   );
 }
 export default React.memo(CompanyList);
-{
-  /* <div className='companyArea'>
-        {companyData?.map((company, index) => (
-          <button className='companyName' key={`company-${index}`}>
-            <Link href={company.companyurl}>
-              <a rel='noopener noreferrer' target='_blank'>
-                {company.companyicao}
-              </a>
-            </Link>
-          </button>
-        ))} */
-}

@@ -9,52 +9,63 @@ function FromAirportInfo(props) {
   const { clickAirport } = props;
   if (clickAirport) {
     return (
-      <div className='airportCard '>
-        <div className='title'>
-          <FaPlaneDeparture size={20} color={'#414b5a'} />
+      <div className='airportCard'>
+        <div className='airportCard_left'>
+          <button className='title_icon'>
+            <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '16px' }}>
+              <FaPlaneDeparture />
+            </IconContext.Provider>
+          </button>
         </div>
-        <div>
-          <Link href={clickAirport.airporturl}>
-            <a className='airportName' rel='noopener noreferrer' target='_blank'>
-              {clickAirport.airportname}
-              <div className='title_icon'>
-                <p className='link_icon'>
-                  <FaExternalLinkAlt size={12} color={'#414b5a'} />
-                </p>
-              </div>
+        <div className='airportCard_right'>
+          <div className='airportCard_right_top'>
+            <p className='airportName'>{clickAirport.airportname}</p>
+            <a href={clickAirport.airporturl} rel='noopener noreferrer' target='_blank'>
+              <p className='link_icon'>
+                <FaExternalLinkAlt size={12} color={'#414b5a'} />
+              </p>
             </a>
-          </Link>
-        </div>
-        <div className='airportInfo'>
-          <span className='airportIcao'> {clickAirport.airporticao} </span>
-          <span className='airportIata'> {clickAirport.airportiata} </span>
-          {clickAirport.lounge == 1 && (
-            <p className='airportLounge'>
-              <FaCoffee size={16} color={'#606f86'} />
-            </p>
-          )}
+            {clickAirport.lounge == 1 && (
+              <p className='airportLounge'>
+                <FaCoffee size={16} color={'#414b5a'} />
+              </p>
+            )}
+          </div>
+
+          <div className='airportInfo_right_under'>
+            <span className='airportIcao'> {clickAirport.airporticao} </span>
+            <span className='airportIata'> {clickAirport.airportiata} </span>
+          </div>
         </div>
 
         {/* gap1つ目が行間、2つ目が列間 */}
         <style jsx>{`
           .airportCard {
-            outline: none;
-            border: none;
+            font-family: mamelon, sans-serif;
             padding: 20px;
-            background: #edfafd;
-            box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
+            width: 250px;
             border-radius: 20px;
-            display: grid;
-            width: 180px;
-            height: 170px;
-            transform: translateX(10px) translateY(20px) rotate(10deg);
-          }
-          .airportInfo {
+            box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
             display: flex;
-            gap: 8px 16px;
+            gap: 16px;
           }
+          .airportCard_right {
+            display: flex;
+            flex-direction: column;
+          }
+          .airportCard_right_top {
+            display: flex;
+            gap: 1em;
+          }
+          .airportInfo_right_under {
+            display: flex;
+            gap: 1em;
+            font-size: 0.9em;
+            color: #606f86;
+            font-family: 'Ubuntu', sans-serif;
+          }
+
           .airportName {
-            font-size: 1.2em;
             color: #414b5a;
             font-family: mamelon, sans-serif;
             font-weight: 500;
@@ -62,32 +73,19 @@ function FromAirportInfo(props) {
             display: flex;
             gap: 16px;
           }
-          .airportIcao {
-            font-size: 0.9em;
-            color: #606f86;
-            font-family: 'Ubuntu', sans-serif;
-          }
-          .airportIata {
-            font-size: 0.9em;
-            color: #606f86;
-            font-family: 'Ubuntu', sans-serif;
-          }
-          .link_icon {
-            padding: 0 0 0 9px;
-          }
           .title_icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 99999px;
+            border: none;
             background: #edfafd;
-            box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
+            border-radius: 99999px;
+            width: 40px;
+            height: 40px;
+            box-shadow: 5px 5px 10px #bccdd1, -5px -5px 10px #ffffff;
             &:hover {
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
               background: #edfafd;
-              box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
             }
           }
         `}</style>

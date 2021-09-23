@@ -26,11 +26,9 @@ export function CompanyList(props) {
         {`
           .companyArea {
             display: flex;
-            justify-content: flex-end;
-
             gap: 24px;
             flex-wrap: wrap;
-            margin-top: 64px;
+
           }
           button {
             font-family: 'Ubuntu', sans-serif;

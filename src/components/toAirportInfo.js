@@ -2,6 +2,8 @@ import Link from 'next/link';
 import * as React from 'react';
 
 // アイコン
+import { IconContext } from 'react-icons';
+
 import { FaPlaneArrival, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
 function ToAirportInfo(props) {
@@ -10,51 +12,61 @@ function ToAirportInfo(props) {
   if (selectedToAirports) {
     return (
       <div className='airportCard'>
-        <div className='title'>
-          <FaPlaneArrival size={20} color={'#414b5a'} />
+        <div className='airportCard_left'>
+          <button className='title_icon'>
+            <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '16px' }}>
+              <FaPlaneArrival />
+            </IconContext.Provider>
+          </button>
         </div>
-        <div>
-          <Link href={selectedToAirports.airporturl}>
-            <a className='airportName' rel='noopener noreferrer' target='_blank'>
-              {selectedToAirports.airportname}
-              <p className='title_icon'>
-                <p className='link_icon'>
-                  <FaExternalLinkAlt size={12} color={'#414b5a'} />
-                </p>
+        <div className='airportCard_right'>
+          <div className='airportCard_right_top'>
+            <p className='airportName'>{selectedToAirports.airportname}</p>
+            <a href={selectedToAirports.airporturl} rel='noopener noreferrer' target='_blank'>
+              <p className='link_icon'>
+                <FaExternalLinkAlt size={12} color={'#414b5a'} />
               </p>
             </a>
-          </Link>
-        </div>
+            {selectedToAirports.lounge == 1 && (
+              <p className='airportLounge'>
+                <FaCoffee size={16} color={'#414b5a'} />
+              </p>
+            )}
+          </div>
 
-        <div className='airportInfo'>
-          <p className='airportIcao'>{selectedToAirports.airporticao} </p>
-          <p className='airportIata'>{selectedToAirports.airportiata} </p>
-          {selectedToAirports.lounge == 1 && (
-            <p className='airportLounge'>
-              <FaCoffee size={16} color={'#606f86'} />
-            </p>
-          )}
+          <div className='airportInfo_right_under'>
+            <span className='airportIcao'> {selectedToAirports.airporticao} </span>
+            <span className='airportIata'> {selectedToAirports.airportiata} </span>
+          </div>
         </div>
 
         <style jsx>{`
           .airportCard {
-            outline: none;
-            border: none;
+            font-family: mamelon, sans-serif;
             padding: 20px;
+            width: 250px;
             border-radius: 20px;
-            background: #edfafd;
-            box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
-            display: grid;
-            width: 180px;
-            height: 170px;
-            transform: translateX(10px) translateY(20px) rotate(10deg);
-          }
-          .airportInfo {
+            box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
             display: flex;
-            gap: 8px 16px;
+            gap: 16px;
           }
+          .airportCard_right {
+            display: flex;
+            flex-direction: column;
+          }
+          .airportCard_right_top {
+            display: flex;
+            gap: 1em;
+          }
+          .airportInfo_right_under {
+            display: flex;
+            gap: 1em;
+            font-size: 0.9em;
+            color: #606f86;
+            font-family: 'Ubuntu', sans-serif;
+          }
+
           .airportName {
-            font-size: 1.2em;
             color: #414b5a;
             font-family: mamelon, sans-serif;
             font-weight: 500;
@@ -62,35 +74,19 @@ function ToAirportInfo(props) {
             display: flex;
             gap: 16px;
           }
-          .airportIcao {
-            font-size: 0.9em;
-            color: #606f86;
-            font-family: 'Ubuntu', sans-serif;
-          }
-          .airportIata {
-            font-size: 0.9em;
-            color: #606f86;
-            font-family: 'Ubuntu', sans-serif;
-          }
-          .airportLounge {
-            color: #606f86;
-          }
-          .link_icon {
-            padding: 0 0 0 9px;
-          }
           .title_icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 99999px;
+            border: none;
             background: #edfafd;
-            box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
+            border-radius: 99999px;
+            width: 40px;
+            height: 40px;
+            box-shadow: 5px 5px 10px #bccdd1, -5px -5px 10px #ffffff;
             &:hover {
               background-color: #c1e1ff;
               cursor: pointer;
             }
             &:active {
               background: #edfafd;
-              box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
             }
           }
         `}</style>

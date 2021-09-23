@@ -602,7 +602,7 @@ template {
 }
 
 .container_information {
-  height: 30vh;
+  height: 50vh;
   width: 100%;
   position: absolute;
   z-index: 10;
@@ -612,6 +612,10 @@ template {
   left: 0;
   position: fixed;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
   @include mq(xl) {
     width: 300px;
     height: 100vh;
@@ -625,9 +629,11 @@ template {
   font-weight: 500;
   font-style: normal;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+
   // gap: 64px 0px;
-  align-items: flex-end;
+  // gap: 64px 0px;
   @include mq(xl) {
     display: flex;
     flex-direction: column;

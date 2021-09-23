@@ -62,19 +62,15 @@ export default function App() {
   useEffect(() => {
     setSelectedToAirports(false);
   }, [clickAirport]);
-  // fromAirportが変わったら変化する
-  useEffect(() => {
-    setHoverAirport(false);
-  }, []);
-console.log(hoverAirport);
+
   return (
     <>
       <Head>
-        <title>空港</title>
+        <title>AirportMap</title>
         {/* ファビコン */}
         <link
           rel='icon'
-          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>🐈</text></svg>'
+          href='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>空</text></svg>'
         ></link>
         <link
           href='https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500&display=swap'
@@ -139,14 +135,7 @@ console.log(hoverAirport);
       </div>
       <style jsx>
         {`
-          .AirportInfoArea {
-            font-family: vdl-v7marugothic, sans-serif;
-            font-weight: 500;
-            font-style: normal;
-            display: flex;
-            justify-content: center;
-            align-items: flex-end;
-          }
+          
         `}
       </style>
       {/* <ControlPanel /> */}

@@ -38,7 +38,6 @@ export function CompanyList(props) {
             outline: none;
             border: none;
             color: #414b5a;
-            color: #414b5a;
             padding: 12px;
             border-radius: 16px;
             background: #edfafd;

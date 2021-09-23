@@ -82,34 +82,45 @@ function Pins(props) {
       zoom: 3.75,
     });
   };
+  // return role === ADMIN ? <AdminUser /> : <NormalUser />;
+
+  const simplePin = (airportData, color) => {
+    clickAirport === undefined ? (color = '#4B5563') : (color = '#9CA3AF');
+    console.log(clickAirport);
+    return airportData?.map((city, index) => (
+      <Marker
+        key={`marker-${index}`}
+        value={city.airportid}
+        longitude={city.longitude}
+        latitude={city.latitude}
+      >
+        <svg
+          height={pin_size_normal}
+          viewBox='0 0 24 24'
+          style={{
+            cursor: 'pointer',
+            fill: color,
+            stroke: '#333',
+
+            transform: `translate(${-pin_size_normal / 2}px,${-pin_size_normal}px)`,
+          }}
+          // onClick={getToAirportData(city)}
+          onClick={() => getToAirportData(city)}
+        >
+          <path d={ICON} />
+        </svg>
+      </Marker>
+    ));
+  };
 
   if (isLoading) return <p>ロード中</p>;
   return (
     <>
-      {airportData?.map((city, index) => (
-        <Marker
-          key={`marker-${index}`}
-          value={city.airportid}
-          longitude={city.longitude}
-          latitude={city.latitude}
-        >
-          <svg
-            height={pin_size_normal}
-            viewBox='0 0 24 24'
-            style={{
-              cursor: 'pointer',
-              fill: '#65666e',
-              stroke: 'none',
-              transform: `translate(${-pin_size_normal / 2}px,${-pin_size_normal}px)`,
-            }}
-            onClick={() => getToAirportData(city)}
-          >
-            <path d={ICON} />
-          </svg>
-        </Marker>
-      ))}
+      {simplePin(airportData)}
       {/* FromAirportPinsが設定されたらピンの色を変える */}
       {clickAirport && <FromAirportPins clickAirport={clickAirport} />}
+      {/* {clickAirport &&(  {simplePin(clickAirport)})} */}
+
       {/* FromAirportPinsからいける空港のピンの表示 */}
       {toAirportsData && (
         <ToAirportPins toAirports={toAirportsData} onClick={setSelectedToAirports} />

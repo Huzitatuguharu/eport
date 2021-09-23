@@ -21,8 +21,8 @@ export const FromAirportPins = (props) => {
         viewBox='0 0 24 24'
         style={{
           cursor: 'pointer',
-          fill: '#819DF1',
-          stroke: 'none',
+          fill: '#93C5FD',
+          stroke: '#333',
           transform: `translate(${-pin_size_normal / 2}px,${-pin_size_normal}px)`,
         }}
       >

@@ -3,8 +3,8 @@ import * as React from 'react';
 import { useCompany } from '../hooks/useConnectSupabase';
 
 export function CompanyList(props) {
-  const { selectedToAirports, toAirportsData } = props;
-  const fromAirport = selectedToAirports.airportname;
+  const { selectedToAirport, toAirportsData } = props;
+  const fromAirport = selectedToAirport.airportname;
   const all = toAirportsData;
   let companyArr = all.filter(({ airportname }) => airportname === fromAirport);
 
@@ -26,9 +26,8 @@ export function CompanyList(props) {
         {`
           .companyArea {
             display: flex;
-            gap: 24px;
             flex-wrap: wrap;
-
+            gap: 16px;
           }
           button {
             font-family: 'Ubuntu', sans-serif;

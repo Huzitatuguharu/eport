@@ -1,31 +1,45 @@
 import Link from 'next/link';
 import * as React from 'react';
 
-// アイコン//IconContextをインポート
+// アイコン
 import { IconContext } from 'react-icons';
-import { FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 
-function FromAirportInfo(props) {
-  const { clickAirport } = props;
-  if (clickAirport) {
+import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
+
+function AirportInfo(props) {
+  const { airport, direction } = props;
+  console.log(direction);
+
+  let icon;
+  if (direction == 'from') {
+     icon = (
+      <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '16px' }}>
+        <FaPlaneDeparture />
+      </IconContext.Provider>
+    );
+  } else {
+     icon = (
+      <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '18px' }}>
+        <FaPlaneArrival />
+      </IconContext.Provider>
+    );
+  }
+
+  if (airport) {
     return (
       <div className='airportCard'>
         <div className='airportCard_left'>
-          <button className='title_icon'>
-            <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '16px' }}>
-              <FaPlaneDeparture />
-            </IconContext.Provider>
-          </button>
+          <button className='title_icon'>{icon}</button>
         </div>
         <div className='airportCard_right'>
           <div className='airportCard_right_top'>
-            <p className='airportName'>{clickAirport.airportname}</p>
-            <a href={clickAirport.airporturl} rel='noopener noreferrer' target='_blank'>
+            <p className='airportName'>{airport.airportname}</p>
+            <a href={airport.airporturl} rel='noopener noreferrer' target='_blank'>
               <p className='link_icon'>
                 <FaExternalLinkAlt size={12} color={'#414b5a'} />
               </p>
             </a>
-            {clickAirport.lounge == 1 && (
+            {airport.lounge == 1 && (
               <p className='airportLounge'>
                 <FaCoffee size={16} color={'#414b5a'} />
               </p>
@@ -33,17 +47,16 @@ function FromAirportInfo(props) {
           </div>
 
           <div className='airportInfo_right_under'>
-            <span className='airportIcao'> {clickAirport.airporticao} </span>
-            <span className='airportIata'> {clickAirport.airportiata} </span>
+            <span className='airportIcao'> {airport.airporticao} </span>
+            <span className='airportIata'> {airport.airportiata} </span>
           </div>
         </div>
 
-        {/* gap1つ目が行間、2つ目が列間 */}
         <style jsx>{`
           .airportCard {
             font-family: mamelon, sans-serif;
             padding: 20px;
-            width: 250px;
+            width: 260px;
             border-radius: 20px;
             box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
             display: flex;
@@ -94,4 +107,4 @@ function FromAirportInfo(props) {
   }
 }
 
-export default React.memo(FromAirportInfo);
+export default React.memo(AirportInfo);

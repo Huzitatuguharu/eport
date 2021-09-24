@@ -32,7 +32,7 @@ function Pins(props) {
     setToAirportsData,
     clickAirport,
     toAirportsData,
-    setSelectedToAirports,
+    setSelectedToAirport,
     setHoverAirport,
     hoverAirport,
   } = props;
@@ -43,7 +43,7 @@ function Pins(props) {
 
   const getToAirportData = (city) => {
     // 選択している行先空港のpinをリセット
-    setSelectedToAirports(null);
+    setSelectedToAirport(null);
 
     // クリックしたピンを出発空港に設定する
     setClickAirport(city);
@@ -130,7 +130,7 @@ function Pins(props) {
 
       {/* FromAirportPinsからいける空港のピンの表示 */}
       {toAirportsData && (
-        <ToAirportPins toAirports={toAirportsData} onClick={setSelectedToAirports} />
+        <ToAirportPins toAirports={toAirportsData} onClick={setSelectedToAirport} />
       )}
     </>
   );

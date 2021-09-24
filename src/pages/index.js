@@ -7,10 +7,9 @@ import { render } from 'react-dom';
 import { FaPlane, FaUndoAlt, FaSearch } from 'react-icons/fa';
 import ReactMapGL, { NavigationControl, Popup, ScaleControl, GeolocateControl } from 'react-map-gl';
 
+import AirportInfo from '../components/AirportInfo';
 import { CompanyList } from '../components/CompanyList';
-import FromAirportInfo from '../components/fromAirportInfo';
 import Pins from '../components/pins';
-import ToAirportInfo from '../components/toAirportInfo';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -29,12 +28,6 @@ const navStyle = {
   padding: '10px',
 };
 
-const scaleControlStyle = {
-  bottom: 36,
-  left: 0,
-  padding: '10px',
-};
-
 // /* ==========================================================================
 //   ここからページ
 //   ========================================================================== */
@@ -49,18 +42,19 @@ export default function App() {
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
 
+  // クリックした空港
   const [clickAirport, setClickAirport] = useState();
 
-  // fromAirportから行けるすべての行先空港リスト・路線　虫眼鏡クリックしたらsetToAirports
+  // clickAirportから行けるすべての行先空港リスト
   const [toAirportsData, setToAirportsData] = useState([]);
 
-  // toAirportsDataの中でクリックした行先空港
-  const [selectedToAirports, setSelectedToAirports] = useState(null);
+  // toAirportsDataの空港でクリックした行先空港
+  const [selectedToAirport, setSelectedToAirport] = useState(null);
   const [hoverAirport, setHoverAirport] = useState();
 
   // 行先空港リストの表示、非表示、fromAirportが変わったらfalseにする
   useEffect(() => {
-    setSelectedToAirports(false);
+    setSelectedToAirport(false);
   }, [clickAirport]);
 
   return (
@@ -96,8 +90,8 @@ export default function App() {
                 clickAirport={clickAirport}
                 setToAirportsData={setToAirportsData}
                 toAirportsData={toAirportsData}
-                setSelectedToAirports={setSelectedToAirports}
-                selectedToAirports={selectedToAirports}
+                setSelectedToAirport={setSelectedToAirport}
+                selectedToAirport={selectedToAirport}
                 hoverAirport={hoverAirport}
                 setHoverAirport={setHoverAirport}
               />
@@ -108,37 +102,27 @@ export default function App() {
                   closeButton={false}
                   className='hoverAirport_info'
                 >
-
                   {hoverAirport.airportname}
                 </Popup>
               )}
               <GeolocateControl style={geolocateStyle} />
               <NavigationControl style={navStyle} />
-              <ScaleControl style={scaleControlStyle} />
             </ReactMapGL>
           </div>
         </div>
         {clickAirport && (
           <div className='container_information'>
             <div className='AirportInfoArea'>
-              <FromAirportInfo clickAirport={clickAirport} />
-              {selectedToAirports && <ToAirportInfo selectedToAirports={selectedToAirports} />}
+              <AirportInfo airport={clickAirport} direction={'from'} />
+              {selectedToAirport && <AirportInfo airport={selectedToAirport} direction={'to'} />}
             </div>
-            {selectedToAirports && (
-              <CompanyList
-                selectedToAirports={selectedToAirports}
-                toAirportsData={toAirportsData}
-              />
+            {selectedToAirport && (
+              <CompanyList selectedToAirport={selectedToAirport} toAirportsData={toAirportsData} />
             )}
           </div>
         )}
       </div>
-      <style jsx>
-        {`
-          
-        `}
-      </style>
-      {/* <ControlPanel /> */}
+      <style jsx>{``}</style>
     </>
   );
 }

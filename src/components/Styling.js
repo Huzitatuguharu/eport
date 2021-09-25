@@ -21,9 +21,10 @@ const AirplaneIcon = (props) => {
         <Image
           src='/Vector.svg'
           alt='Picture of the author'
-          width={30}
-          height={24}
-          layout='fixed'
+          width={300}
+          height={300}
+          layout='responsive'
+          objectPosition={'50% 50%;'}
         />
         <style jsx>{`
           .title_icon {
@@ -34,6 +35,7 @@ const AirplaneIcon = (props) => {
             width: 40px;
             height: 40px;
             box-shadow: 5px 5px 10px #bccdd1, -5px -5px 10px #ffffff;
+            margin: auto;
             &:hover {
               background-color: #c1e1ff;
               cursor: pointer;
@@ -47,15 +49,20 @@ const AirplaneIcon = (props) => {
     );
   } else {
     icon = (
-     <button className='title_icon'>
+      <button className='button_parent'>
         <Image
+          className='button_icon'
           src='/Vector.svg'
           alt='Picture of the author'
-          width={36}
-          height={36}
+          width={28}
+          height={28}
+          layout='fixed'
         />
         <style jsx>{`
-          .title_icon {
+          .button_icon {
+            margin: auto;
+          }
+          .button_parent {
             transform: rotate(23deg);
             border: none;
             background: #edfafd;
@@ -63,6 +70,7 @@ const AirplaneIcon = (props) => {
             width: 40px;
             height: 40px;
             box-shadow: 5px 5px 10px #bccdd1, -5px -5px 10px #ffffff;
+
             &:hover {
               background-color: #c1e1ff;
               cursor: pointer;
@@ -72,14 +80,11 @@ const AirplaneIcon = (props) => {
             }
           }
         `}</style>
-      </button>)
+      </button>
+    );
   }
 
-  return (
-    <div className='airportCard_left'>
-    {icon}
-    </div>
-  );
+  return <div className='airportCard_left'>{icon}</div>;
 };
 
 export default React.memo(AirplaneIcon);

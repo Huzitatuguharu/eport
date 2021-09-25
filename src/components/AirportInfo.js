@@ -3,9 +3,9 @@ import Link from 'next/link';
 import * as React from 'react';
 // アイコン
 import { IconContext } from 'react-icons';
-
 import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import useMedia from 'use-media';
+import  AirplaneIcon  from './Styling';
 
 // Alternatively, you can import as:
 // import {useMedia} from 'use-media';
@@ -14,21 +14,6 @@ function AirportInfo(props) {
   const { airport, direction } = props;
   const isWide = useMedia({ minWidth: '1200px' });
 
-  let icon;
-  if (direction == 'from') {
-    icon = (
-      <Image src='/airplane.svg' alt='Picture of the author' width={36} height={36} />
-      // <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '16px' }}>
-      //   <FaPlaneDeparture />
-      // </IconContext.Provider>
-    );
-  } else {
-    icon = (
-      <IconContext.Provider className='icon_plane' value={{ color: '#1E40AF', size: '18px' }}>
-        <FaPlaneArrival />
-      </IconContext.Provider>
-    );
-  }
 
   const AirportSubInfo = () => {
     // Accepts an object of features to test
@@ -55,7 +40,7 @@ function AirportInfo(props) {
     return (
       <div className='airportCard'>
         <div className='airportCard_left'>
-          <button className='title_icon'>{icon}</button>
+          <AirplaneIcon direction={direction} />
         </div>
         <div className='airportCard_right'>
           <div className='airportCard_right_top'>

@@ -21,8 +21,9 @@ const AirplaneIcon = (props) => {
         <Image
           src='/Vector.svg'
           alt='Picture of the author'
-          width={36}
-          height={36}
+          width={30}
+          height={24}
+          layout='fixed'
         />
         <style jsx>{`
           .title_icon {

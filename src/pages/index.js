@@ -124,7 +124,8 @@ export default function App() {
           </div>
         )}
       </div>
-      <style jsx>{``}</style>
+      <style jsx>{`
+      `}</style>
     </>
   );
 }

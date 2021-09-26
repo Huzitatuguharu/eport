@@ -3,6 +3,7 @@ import Link from 'next/link';
 import * as React from 'react';
 // アイコン
 import { IconContext } from 'react-icons';
+import theme from '../../styles/theme';
 
 import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import useMedia from 'use-media';
@@ -17,23 +18,20 @@ const AirplaneIcon = (props) => {
   let icon;
   if (direction == 'from') {
     icon = (
+      <div className='airportCard_title'>
       <p className='icon_parent'>
-        <Image src='/Vector.svg' alt='Picture of the author' width={30} height={30} />
+        <Image src='/depature.svg' alt='Picture of the author' width={30} height={30} size='fixed'/>
+        </p>
+        {/* <p>FROM</p> */}
         <style jsx>{`
-          .icon_parent {
-            transform: rotate(-23deg);
-          }
         `}</style>
-      </p>
+        </div>
     );
   } else {
     icon = (
       <p className='icon_parent'>
-        <Image src='/Vector.svg' alt='Picture of the author' width={30} height={30} />
+        <Image src='/arrival.svg' alt='Picture of the author' width={30} height={30}size='fixed' />
         <style jsx>{`
-          .icon_parent {
-            transform: rotate(23deg);
-          }
         `}</style>
       </p>
     );

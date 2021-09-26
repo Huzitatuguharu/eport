@@ -68,33 +68,25 @@ function AirportInfo(props) {
             box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
             display: flex;
             align-items: center;
-            position: relative;
             padding: 14px;
-            gap: 16px;
+            flex-direction: column;
+            gap: 0 16px;
           }
           .airportCard_right {
-            position: absolute;
             display: flex;
             flex-direction: column;
             z-index: 0;
-            left: 30%;
           }
           .airportCard_right_top {
-            gap: 0.5em;
+            gap: 8px;
             display: flex;
-            justify-content: space-between;
-          }
-          .link_icon {
-            vertical-align: -5px;
           }
           .airportName {
             font-size: 1.1em;
-
             font-family: ${theme.fontFamily.japan};
             color: #414b5a;
             font-weight: 500;
             font-style: normal;
-            display: flex;
           }
           .airportInfo_right_under {
             font-family: ${theme.fontFamily.english};

@@ -1,4 +1,3 @@
-
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
@@ -46,6 +45,7 @@ export function CompanyList(props) {
             gap: 16px 24px;
           }
           .companyCard {
+            width:100%;
             outline: none;
             display: flex;
             flex-direction: column;

@@ -18,7 +18,7 @@ export function CompanyList(props) {
           <div className='companyCard' key={`company-${index}`}>
 
             <div className='companyCard_top' key={`company-${index}`}>
-            <Image src='/check.svg' alt='Picture of the author' width={24} height={24} />
+            <Image src='/check.svg' alt='Picture of the author' width={20} height={20} />
               <p className='companyName'>{company.companyname}</p>
               <a
                 className='companyLinkIcon'

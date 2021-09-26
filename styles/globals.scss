@@ -627,10 +627,4 @@ template {
   gap: 20px;
   width: 100%;
 
-  @include mq(xl) {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-
-  }
 }

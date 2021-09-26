@@ -20,7 +20,7 @@ function AirportInfo(props) {
     // Or a regular media query string
     return (
       <div className='airportInfo_right_under'>
-        <span className='airportIcao'> {airport.airporticao} </span>
+        {/* <span className='airportIcao'> {airport.airporticao} </span> */}
         <span className='airportIata'> {airport.airportiata} </span>
         {airport.lounge == 1 && (
           <p className='airportLounge'>
@@ -62,7 +62,7 @@ function AirportInfo(props) {
 
         <style jsx>{`
           .airportCard {
-            width: 80%;
+            width: 50%;
             border-radius: 12px;
             background: #edfafd;
             box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
@@ -70,12 +70,13 @@ function AirportInfo(props) {
             align-items: center;
             padding: 14px;
             flex-direction: column;
+
             gap: 0 16px;
           }
           .airportCard_right {
             display: flex;
             flex-direction: column;
-            z-index: 0;
+            justify-content: center;
           }
           .airportCard_right_top {
             gap: 8px;

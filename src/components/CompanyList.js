@@ -1,5 +1,8 @@
+
+import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import theme from '../../styles/theme';
 import { useCompany } from '../hooks/useConnectSupabase';
 
@@ -14,11 +17,22 @@ export function CompanyList(props) {
       <div className='companyArea'>
         {companyArr?.map((company, index) => (
           <div className='companyCard' key={`company-${index}`}>
-            <p className='companyName'>{company.companyname}</p>
-            <p className='companyicao'>{company.companyicao}</p>
-            <a href={company.companyurl} rel='noopener noreferrer' target='_blank'>
-              公式サイト
-            </a>
+
+            <div className='companyCard_top' key={`company-${index}`}>
+            <Image src='/check.svg' alt='Picture of the author' width={24} height={24} />
+              <p className='companyName'>{company.companyname}</p>
+              <a
+                className='companyLinkIcon'
+                href={company.companyurl}
+                rel='noopener noreferrer'
+                target='_blank'
+              >
+                <FaExternalLinkAlt size={14} color={'#414b5a'} />
+              </a>
+            </div>
+            {/* <div className='companyCard_under' key={`company-${index}`}>
+              <p className='companyicao'>{company.companyicao}</p>
+            </div> */}
           </div>
         ))}
       </div>
@@ -27,20 +41,18 @@ export function CompanyList(props) {
         {`
           .companyArea {
             display: flex;
-            flex-direction: column;
             flex-wrap: wrap;
-            gap: 16px;
+            justify-content: flex-start;
+            gap: 16px 24px;
           }
           .companyCard {
-            margin: auto;
-            width: 80%;
             outline: none;
             display: flex;
             flex-direction: column;
             gap: 8px;
             border: none;
             color: #414b5a;
-            padding: 12px;
+            padding: 18px;
             border-radius: 16px;
             background: #edfafd;
             box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
@@ -55,15 +67,27 @@ export function CompanyList(props) {
           }
           .companyName {
             font-size: 1.1em;
-            font-family: ${theme.fontFamily.japan};
+            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
             color: #414b5a;
             font-weight: 500;
             font-style: normal;
-            display: flex;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            width: 100%;
+            display: flex;
+            gap: 0.2em;
+          }
+          .companyCard_top {
+            display: flex;
+            gap: 0.5em;
+          }
+          .companyicao {
+            font-family: ${theme.fontFamily.english};
+            font-weight: 500;
+            display: flex;
+            gap: 1em;
+            font-size: 0.9em;
+            color: #606f86;
           }
         `}
       </style>

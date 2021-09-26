@@ -69,8 +69,7 @@ function AirportInfo(props) {
             display: flex;
             align-items: center;
             position: relative;
-            margin: auto;
-            padding: 8px;
+            padding: 18px;
             gap: 16px;
           }
           .airportCard_right {

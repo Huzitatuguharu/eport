@@ -80,8 +80,8 @@ function Pins(props) {
     // Viewportの設定の変更
 
     setViewport({
-      latitude: city.latitude - 3,
-      longitude: city.longitude - 2,
+      latitude: city.airportlatitude - 3,
+      longitude: city.airportlongitude - 2,
       zoom: 3.99,
       transitionDuration: 600,
     });
@@ -96,8 +96,8 @@ function Pins(props) {
       <Marker
         key={`marker-${index}`}
         value={city.airportid}
-        longitude={city.longitude}
-        latitude={city.latitude}
+        longitude={city.airportlongitude}
+        latitude={city.airportlatitude}
       >
         <svg
           height={pin_size_normal}

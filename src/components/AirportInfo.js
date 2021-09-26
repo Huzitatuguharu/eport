@@ -54,7 +54,7 @@ function AirportInfo(props) {
               rel='noopener noreferrer'
               target='_blank'
             >
-              <FaExternalLinkAlt size={14} color={'#414b5a'} />
+              <FaExternalLinkAlt size={12} color={'#414b5a'} />
             </a>
           </div>
           {isWide && <AirportSubInfo />}
@@ -69,7 +69,7 @@ function AirportInfo(props) {
             display: flex;
             align-items: center;
             position: relative;
-            padding: 18px;
+            padding: 14px;
             gap: 16px;
           }
           .airportCard_right {
@@ -77,7 +77,7 @@ function AirportInfo(props) {
             display: flex;
             flex-direction: column;
             z-index: 0;
-            left: 25%;
+            left: 30%;
           }
           .airportCard_right_top {
             gap: 0.5em;
@@ -85,7 +85,7 @@ function AirportInfo(props) {
             justify-content: space-between;
           }
           .link_icon {
-            vertical-align: -3px;
+            vertical-align: -5px;
           }
           .airportName {
             font-size: 1.1em;

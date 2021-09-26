@@ -18,7 +18,7 @@ const AirplaneIcon = (props) => {
   if (direction == 'from') {
     icon = (
       <p className='icon_parent'>
-        <Image src='/Vector.svg' alt='Picture of the author' width={36} height={36} />
+        <Image src='/Vector.svg' alt='Picture of the author' width={30} height={30} />
         <style jsx>{`
           .icon_parent {
             transform: rotate(-23deg);
@@ -29,7 +29,7 @@ const AirplaneIcon = (props) => {
   } else {
     icon = (
       <p className='icon_parent'>
-        <Image src='/Vector.svg' alt='Picture of the author' width={36} height={36} />
+        <Image src='/Vector.svg' alt='Picture of the author' width={30} height={30} />
         <style jsx>{`
           .icon_parent {
             transform: rotate(23deg);

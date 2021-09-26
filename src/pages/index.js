@@ -99,8 +99,8 @@ export default function App() {
               />
               {hoverAirport && (
                 <Popup
-                  longitude={hoverAirport.longitude}
-                  latitude={hoverAirport.latitude}
+                  longitude={hoverAirport.airportlongitude}
+                  latitude={hoverAirport.airportlatitude}
                   closeButton={false}
                   className='hoverAirport_info'
                 >

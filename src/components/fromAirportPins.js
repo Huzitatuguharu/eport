@@ -14,7 +14,7 @@ export const FromAirportPins = (props) => {
 
   // if (clickAirport.longitude > 0) {
   return (
-    <Marker longitude={clickAirport.longitude} latitude={clickAirport.latitude}>
+    <Marker longitude={clickAirport.airportlongitude} latitude={clickAirport.airportlatitude}>
       {/* <Marker longitude={135} latitude={38}> */}
       <svg
         height={pin_size_normal}

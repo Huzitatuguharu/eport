@@ -27,7 +27,7 @@ export function CompanyList(props) {
                 rel='noopener noreferrer'
                 target='_blank'
               >
-                <FaExternalLinkAlt size={14} color={'#414b5a'} />
+                <FaExternalLinkAlt size={12} color={'#414b5a'} />
               </a>
             </div>
             {/* <div className='companyCard_under' key={`company-${index}`}>

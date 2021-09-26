@@ -3,10 +3,10 @@ import Link from 'next/link';
 import * as React from 'react';
 // アイコン
 import { IconContext } from 'react-icons';
-import theme from '../../styles/theme';
 
 import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import useMedia from 'use-media';
+import theme from '../../styles/theme';
 
 // Alternatively, you can import as:
 // import {useMedia} from 'use-media';

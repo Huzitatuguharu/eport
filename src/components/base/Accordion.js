@@ -13,17 +13,19 @@ export const Accordion = (props) => {
   return (
     <div className='accordion'>
       <div className='accordion-title' onClick={toggle}>
-        <Image src='/check.svg' alt='Picture of the author' width={20} height={20} />
-
         <p className='companyName'>{companyName} </p>
         <p className='toggle' aria-expanded={isOpen}>
-          開
+          <Image src='/check.svg' alt='Picture of the author' width={20} height={20} />
         </p>
       </div>
       <div className='accordion-content' aria-expanded={!isOpen}>
         {props.children}
       </div>
-
+      <style jsx>{`
+        .companyName {
+          transform: ${isOpen == false ? 'rotate(0deg)' : 'rotate(-3deg)'};
+        }
+      `}</style>
       <style jsx>
         {`
           .accordion {
@@ -31,7 +33,6 @@ export const Accordion = (props) => {
             outline: none;
             display: flex;
             flex-direction: column;
-            gap: 8px;
             border: none;
             color: #414b5a;
             padding: 18px;
@@ -47,21 +48,6 @@ export const Accordion = (props) => {
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
             }
           }
-          .companyName {
-            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
-            color: #414b5a;
-            font-weight: 500;
-            font-style: normal;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: flex;
-            gap: 0.2em;
-          }
-          .accordion:nth-of-type(1) {
-            border-top-width: 1px;
-          }
-
           .accordion-title {
             font-size: 18px;
             color: #3e4e50;
@@ -73,22 +59,45 @@ export const Accordion = (props) => {
             cursor: pointer;
           }
 
+          .companyName {
+            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
+            color: #414b5a;
+            font-weight: 500;
+            font-style: normal;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            gap: 0.2em;
+          }
+
+          .accordion:nth-of-type(1) {
+            border-top-width: 1px;
+          }
+
           .accordion .toggle {
             width: 16px;
             height: 16px;
             align-self: center;
             margin-left: auto;
             transition: all 0.35s ease;
+            vertical-align: middle;
           }
 
           .accordion .toggle[aria-expanded='true'] {
-            transform: rotateZ(90deg);
+            transform: rotateZ(180deg);
           }
 
           .accordion-content {
+            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
+            font-weight: 200;
             overflow: hidden;
             max-height: 1000px;
             transition: max-height 1s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            // padding: 30px 0 0;
           }
 
           .accordion-content[aria-expanded='true'] {

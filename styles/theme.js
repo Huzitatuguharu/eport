@@ -1,6 +1,7 @@
 const theme = {
   fontFamily: {
     japan: 'mamelon',
+    // 200300400500
     english: 'Varela Round',
   },
   colors: {

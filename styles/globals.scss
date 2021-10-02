@@ -626,5 +626,21 @@ template {
   display: flex;
   gap: 20px;
   width: 100%;
+}
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  background: #edfafd;
+  box-shadow: inset 5px 5px 7px #e1eef0, inset -5px -5px 7px #f9ffff;
+  // background-color: #e4e4e4;
+  // border-radius: 100px;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 100px;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #8070d4;
 }

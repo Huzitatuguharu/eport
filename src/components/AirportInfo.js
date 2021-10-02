@@ -62,7 +62,7 @@ function AirportInfo(props) {
 
         <style jsx>{`
           .airportCard {
-            width: 50%;
+            width: 45%;
             border-radius: 12px;
             background: #edfafd;
             box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;

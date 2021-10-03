@@ -9,7 +9,8 @@ import ReactMapGL, { NavigationControl, Popup, ScaleControl, GeolocateControl } 
 
 import AirportInfo from '../components/AirportInfo';
 import { CompanyList } from '../components/CompanyList';
-import Pins from '../components/pins';
+import { Navigation } from '../components/Navigation';
+import Pins from '../components/Pins';
 
 // /* ==========================================================================
 //  mapboxの設定
@@ -38,6 +39,7 @@ export default function App() {
     longitude: 135,
     zoom: 5,
     transitionDuration: 5000,
+    clickRadius: 1000000,
     // 北から反時計回りに度で測定された、マップの初期方位（回転）
     // 画面の平面（0-85）からの角度で測定されたマップの初期ピッチ（傾斜）
   });
@@ -112,20 +114,29 @@ export default function App() {
             </ReactMapGL>
           </div>
         </div>
-        {clickAirport && (
-          <div className='container_information'>
-            <div className='AirportInfoArea'>
-              <AirportInfo airport={clickAirport} direction={'from'} />
-              {selectedToAirport && <AirportInfo airport={selectedToAirport} direction={'to'} />}
-            </div>
-            {selectedToAirport && (
-              <CompanyList selectedToAirport={selectedToAirport} toAirportsData={toAirportsData} />
-            )}
-          </div>
-        )}
+        <div className='container_information'>
+          <Navigation
+            setClickAirport={setClickAirport}
+            setSelectedToAirport={setSelectedToAirport}
+            setToAirportsData={setToAirportsData}
+          />
+          {clickAirport && (
+            <>
+              <div className='AirportInfoArea'>
+                <AirportInfo airport={clickAirport} direction={'from'} />
+                {selectedToAirport && <AirportInfo airport={selectedToAirport} direction={'to'} />}
+              </div>
+              {selectedToAirport && (
+                <CompanyList
+                  selectedToAirport={selectedToAirport}
+                  toAirportsData={toAirportsData}
+                />
+              )}
+            </>
+          )}
+        </div>
       </div>
-      <style jsx>{`
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 }

@@ -11,7 +11,11 @@ export const ToAirportPins = (props) => {
 
   if (toAirports) {
     return toAirports.map((city, index) => (
-      <Marker key={`marker-${index}`} longitude={city.airportlongitude} latitude={city.airportlatitude}>
+      <Marker
+        key={`marker-${index}`}
+        longitude={city.airportlongitude}
+        latitude={city.airportlatitude}
+      >
         <svg
           height={pin_size_big}
           viewBox='0 0 24 24'
@@ -28,4 +32,4 @@ export const ToAirportPins = (props) => {
     ));
   }
 };
- React.memo(ToAirportPins);
+React.memo(ToAirportPins);

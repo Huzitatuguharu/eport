@@ -11,24 +11,25 @@ export const Accordion = (props) => {
   };
 
   return (
-    <div className='accordion'>
-      <div className='accordion-title' onClick={toggle}>
+    <div className='accordion' onClick={toggle}>
+      <div className='accordion-title'>
         <p className='companyName'>{companyName} </p>
         <p className='toggle' aria-expanded={isOpen}>
-          <Image src='/check.svg' alt='Picture of the author' width={20} height={20} />
+          <Image className='icon_toggle' src='/toggle.svg' alt='toggle' width={20} height={20} />
         </p>
       </div>
       <div className='accordion-content' aria-expanded={!isOpen}>
         {props.children}
       </div>
-      <style jsx>{`
+      {/* <style jsx>{`
         .companyName {
           transform: ${isOpen == false ? 'rotate(0deg)' : 'rotate(-3deg)'};
         }
-      `}</style>
+      `}</style> */}
       <style jsx>
         {`
           .accordion {
+            cursor: pointer;
             width: 100%;
             outline: none;
             display: flex;
@@ -39,10 +40,6 @@ export const Accordion = (props) => {
             border-radius: 16px;
             background: #edfafd;
             box-shadow: 13px 13px 21px #e1eef0, -13px -13px 21px #f9ffff;
-            &:hover {
-              background-color: #c1e1ff;
-              cursor: pointer;
-            }
             &:active {
               background: #edfafd;
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
@@ -53,10 +50,8 @@ export const Accordion = (props) => {
             color: #3e4e50;
             font-weight: 500;
             display: flex;
-          }
-
-          .accordion-title:hover {
-            cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
           }
 
           .companyName {
@@ -64,28 +59,25 @@ export const Accordion = (props) => {
             color: #414b5a;
             font-weight: 500;
             font-style: normal;
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
             display: flex;
-            gap: 0.2em;
-          }
-
-          .accordion:nth-of-type(1) {
-            border-top-width: 1px;
           }
 
           .accordion .toggle {
             width: 16px;
             height: 16px;
-            align-self: center;
-            margin-left: auto;
             transition: all 0.35s ease;
-            vertical-align: middle;
+            position: relative;
           }
 
           .accordion .toggle[aria-expanded='true'] {
             transform: rotateZ(180deg);
+          }
+
+          .icon_toggle {
+            position: absolute;
+            top: 50%;
           }
 
           .accordion-content {
@@ -96,8 +88,7 @@ export const Accordion = (props) => {
             transition: max-height 1s ease-in-out;
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            // padding: 30px 0 0;
+            gap: 8px;
           }
 
           .accordion-content[aria-expanded='true'] {

@@ -3,8 +3,8 @@ import { useState, useCallback } from 'react';
 import { Marker } from 'react-map-gl';
 import { useAirport, useRoute, useCompany } from '../hooks/useConnectSupabase';
 
-import { FromAirportPins } from './fromAirportPins';
-import { ToAirportPins } from './toAirportPins';
+import { FromAirportPins } from './FromAirportPins';
+import { ToAirportPins } from './ToAirportPins';
 
 // /* ==========================================================================
 //   pinの設定
@@ -42,6 +42,10 @@ function Pins(props) {
   //   ========================================================================== */
 
   const getToAirportData = (city) => {
+    console.log('123', airportData);
+    console.log('456', routeData);
+    console.log('789', companyData);
+
     // 選択している行先空港のpinをリセット
     setSelectedToAirport(null);
 
@@ -73,9 +77,8 @@ function Pins(props) {
       }
     }
 
-    // setToAirportsにすべての情報の配列を格納する
-
     setToAirportsData(toAirportsArray);
+    console.log('12123', toAirportsData);
 
     // Viewportの設定の変更
 
@@ -118,7 +121,6 @@ function Pins(props) {
       </Marker>
     ));
   };
-  console.log(hoverAirport);
 
   if (isLoading) return <p>ロード中</p>;
   return (
@@ -127,11 +129,11 @@ function Pins(props) {
       {/* FromAirportPinsが設定されたらピンの色を変える */}
       {clickAirport && <FromAirportPins clickAirport={clickAirport} />}
       {/* {clickAirport &&(  {simplePin(clickAirport)})} */}
-
-      {/* FromAirportPinsからいける空港のピンの表示 */}
       {toAirportsData && (
         <ToAirportPins toAirports={toAirportsData} onClick={setSelectedToAirport} />
       )}
+
+      {/* FromAirportPinsからいける空港のピンの表示 */}
     </>
   );
 }

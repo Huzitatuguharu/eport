@@ -23,6 +23,7 @@ const geolocateStyle = {
   padding: '10px',
 };
 
+
 const navStyle = {
   top: 72,
   left: 0,

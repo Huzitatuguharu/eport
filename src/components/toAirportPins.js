@@ -9,6 +9,7 @@ const pin_size_big = 18;
 export const ToAirportPins = (props) => {
   const { toAirports, onClick } = props;
 
+  
   if (toAirports) {
     return toAirports.map((city, index) => (
       <Marker

@@ -7,6 +7,7 @@ const ICON =
 
 const pin_size_normal = 18;
 
+
 export const FromAirportPins = (props) => {
   const { clickAirport } = props;
   console.log(clickAirport.longitude);

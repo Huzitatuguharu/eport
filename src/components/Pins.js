@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useCallback } from 'react';
 import { Marker } from 'react-map-gl';
 import { useAirport, useRoute, useCompany } from '../hooks/useConnectSupabase';
 

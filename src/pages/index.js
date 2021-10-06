@@ -1,11 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
 
 import * as React from 'react';
 import { useState, useEffect, useCallback } from 'react';
 import { render } from 'react-dom';
-import { FaPlane, FaUndoAlt, FaSearch } from 'react-icons/fa';
-import ReactMapGL, { NavigationControl, Popup, ScaleControl, GeolocateControl } from 'react-map-gl';
+import ReactMapGL, { NavigationControl, Popup, GeolocateControl } from 'react-map-gl';
 
 import AirportInfo from '../components/AirportInfo';
 import { CompanyList } from '../components/CompanyList';
@@ -22,7 +20,6 @@ const geolocateStyle = {
   left: 0,
   padding: '10px',
 };
-
 
 const navStyle = {
   top: 72,
@@ -78,7 +75,7 @@ export default function App() {
       />
       <div className='container'>
         <div className='container_map'>
-          <div className='map'>
+          <main className='map'>
             <ReactMapGL
               {...viewport}
               width='100%'
@@ -113,7 +110,7 @@ export default function App() {
               <GeolocateControl style={geolocateStyle} />
               <NavigationControl style={navStyle} />
             </ReactMapGL>
-          </div>
+          </main>
         </div>
         <div className='container_information'>
           <Navigation

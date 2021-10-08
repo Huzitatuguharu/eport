@@ -109,7 +109,7 @@ function Pins(props) {
           onMouseOver={() => setHoverAirport(city)}
           onMouseLeave={() => setHoverAirport()}
         >
-          <path d={ICON} />
+          <circle cx='10' cy='10' r='5' />
         </svg>
       </Marker>
     ));

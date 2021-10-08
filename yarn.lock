@@ -107,13 +107,6 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.0.tgz#87de7af9c231826fdd68ac7258f77c429e0e5fcf"
   integrity sha512-wdppn25U8z/2yiaT6YGquE6X8sSv7hNMWSXYSSU1jGv/yd6XqjXgTDJ8KP4NgjTXfJ3GbRjeeb8RTV7a/VpM+w==
 
-"@lottiefiles/react-lottie-player@^3.4.1":
-  version "3.4.1"
-  resolved "https://registry.yarnpkg.com/@lottiefiles/react-lottie-player/-/react-lottie-player-3.4.1.tgz#e0735aa451a6bb518c7e425a8a43fc527d372f37"
-  integrity sha512-HKhclI0dScyaJHPEKSyMaC7J8ZaTvVKy3f7Ru6h+Ygavvr4Zy7Jyd/YK+jYtulKIsxQC/gF6qGmWcsp65zYx+w==
-  dependencies:
-    lottie-web "^5.7.8"
-
 "@mapbox/geojson-rewind@^0.5.0":
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/@mapbox/geojson-rewind/-/geojson-rewind-0.5.1.tgz#adbe16dc683eb40e90934c51a5e28c7bbf44f4e1"
@@ -263,91 +256,6 @@
   dependencies:
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
-
-"@react-spring/animated@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.2.4.tgz#062ecc0fdfef89f2541a42d8500428b70035f879"
-  integrity sha512-AfV6ZM8pCCAT29GY5C8/1bOPjZrv/7kD0vedjiE/tEYvNDwg9GlscrvsTViWR2XykJoYrDfdkYArrldWpsCJ5g==
-  dependencies:
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/core@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/core/-/core-9.2.4.tgz#275a4a065e3a315a4f5fb28c9a6f62ce718c25d6"
-  integrity sha512-R+PwyfsjiuYCWqaTTfCpYpRmsP0h87RNm7uxC1Uxy7QAHUfHEm2sAHn+AdHPwq/MbVwDssVT8C5yf2WGcqiXGg==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/konva@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/konva/-/konva-9.2.4.tgz#e467b24b3b110ba496526c9001439ce561641e0d"
-  integrity sha512-19anDOIkfjcydDTfGgVIuZ3lruZxKubYGs9oHCswaP8SRLj7c1kkopJHUr/S4LXGxiIdqdF0XucWm0iTEPEq4w==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/native@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/native/-/native-9.2.4.tgz#0fd335a44c05023f5428df444d8f1aa3da7abfc9"
-  integrity sha512-xKJWKh5qOhSclpL3iuGwJRLoZzTNvlBEnIrMs8yh8xvX6z9Lmnu4uGu5DpfrnM1GzBvRoktoCoLEx/VcEYFSng==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/rafz@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/rafz/-/rafz-9.2.4.tgz#44793e9adc14dd0dcd1573d094368af11a89d73a"
-  integrity sha512-SOKf9eue+vAX+DGo7kWYNl9i9J3gPUlQjifIcV9Bzw9h3i30wPOOP0TjS7iMG/kLp2cdHQYDNFte6nt23VAZkQ==
-
-"@react-spring/shared@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/shared/-/shared-9.2.4.tgz#f9cc66ac5308a77293330a18518e34121f4008c1"
-  integrity sha512-ZEr4l2BxmyFRUvRA2VCkPfCJii4E7cGkwbjmTBx1EmcGrOnde/V2eF5dxqCTY3k35QuCegkrWe0coRJVkh8q2Q==
-  dependencies:
-    "@react-spring/rafz" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/three@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/three/-/three-9.2.4.tgz#849c97658a6e1410b6f823ad21e2ee33feada820"
-  integrity sha512-ljFig7XW099VWwRPKPUf+4yYLivp/sSWXN3oO5SJOF/9BSoV1quS/9chZ5Myl5J14od3CsHf89Tv4FdlX5kHlA==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/types@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/types/-/types-9.2.4.tgz#2365ce9d761f548a9adcb2cd68714bf26765a5de"
-  integrity sha512-zHUXrWO8nweUN/ISjrjqU7GgXXvoEbFca1CgiE0TY0H/dqJb3l+Rhx8ecPVNYimzFg3ZZ1/T0egpLop8SOv4aA==
-
-"@react-spring/web@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/web/-/web-9.2.4.tgz#c6d5464a954bfd0d7bc90117050f796a95ebfa08"
-  integrity sha512-vtPvOalLFvuju/MDBtoSnCyt0xXSL6Amyv82fljOuWPl1yGd4M1WteijnYL9Zlriljl0a3oXcPunAVYTD9dbDQ==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
-
-"@react-spring/zdog@~9.2.0":
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/@react-spring/zdog/-/zdog-9.2.4.tgz#db1d1924fe9920e917d889c4d3bb138bd0885cf1"
-  integrity sha512-rv7ptedS37SHr6yuCbRkUErAzAhebdgt8f4KUtZWzseC+7qLNkaZWf+uujgsb881qAuX9b9yz8rre9UKeYepgw==
-  dependencies:
-    "@react-spring/animated" "~9.2.0"
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/shared" "~9.2.0"
-    "@react-spring/types" "~9.2.0"
 
 "@rushstack/eslint-patch@^1.0.6":
   version "1.0.6"
@@ -698,14 +606,6 @@ axobject-query@^2.2.0:
   resolved "https://registry.yarnpkg.com/axobject-query/-/axobject-query-2.2.0.tgz#943d47e10c0b704aa42275e20edf3722648989be"
   integrity sha512-Td525n+iPOOyUQIeBfcASuG6uJsDOITl7Mds5gFyerkWiX7qhUTdYUBlSgNMyVqtSJqwpt1kXGLdUt6SykLMRA==
 
-babel-runtime@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
-  integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
-  dependencies:
-    core-js "^2.4.0"
-    regenerator-runtime "^0.11.0"
-
 balanced-match@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.2.tgz#e83e3a7e3f300b34cb9d87f615fa0cbf357690ee"
@@ -1013,11 +913,6 @@ core-js-pure@^3.16.0:
   version "3.16.4"
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.16.4.tgz#8b23122628d88c560f209812b9b2d9ebbce5e29c"
   integrity sha512-bY1K3/1Jy9D8Jd12eoeVahNXHLfHFb4TXWI8SQ4y8bImR9qDPmGITBAfmcffTkgUvbJn87r8dILOTWW5kZzkgA==
-
-core-js@^2.4.0:
-  version "2.6.12"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.12.tgz#d9333dfa7b065e347cc5682219d6f690859cc2ec"
-  integrity sha512-Kb2wC0fvsWfQrgk8HU5lW6U/Lcs8+9aaYcy4ZFc6DDlo4nZ7n70dEgE5rtR0oG6ufKDUnrwfWL1mXR5ljDatrQ==
 
 core-util-is@~1.0.0:
   version "1.0.3"
@@ -2275,11 +2170,6 @@ loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
-lottie-web@^5.1.3, lottie-web@^5.7.8:
-  version "5.7.13"
-  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.7.13.tgz#c4087e4742c485fc2c4034adad65d1f3fcd438b0"
-  integrity sha512-6iy93BGPkdk39b0jRgJ8Zosxi8QqcMP5XcDvg1f0XAvEkke6EMCl6BUO4Lu78dpgvfG2tzut4QJ+0vCrfbrldQ==
-
 lru-cache@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-6.0.0.tgz#6d6fe6570ebd96aaf90fcad1dafa3b2566db3a94"
@@ -2969,11 +2859,6 @@ raw-body@2.4.1:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-react-accessible-accordion@^3.3.5:
-  version "3.3.5"
-  resolved "https://registry.yarnpkg.com/react-accessible-accordion/-/react-accessible-accordion-3.3.5.tgz#5d035994a261c832a57e7822f1bbacf914c5a5cc"
-  integrity sha512-yCh3tx+jNuOPs+m58LOBFTGDEaGvM8UfuCNznr855FDAWzwV8V/ZH/TVBvgqH0npP58KrrVrHpj4jcy0EE5hEw==
-
 react-dom@17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
@@ -2998,14 +2883,6 @@ react-is@^16.8.1:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
-react-lottie@^1.2.3:
-  version "1.2.3"
-  resolved "https://registry.yarnpkg.com/react-lottie/-/react-lottie-1.2.3.tgz#8544b96939e088658072eea5e12d912cdaa3acc1"
-  integrity sha512-qLCERxUr8M+4mm1LU0Ruxw5Y5Fn/OmYkGfnA+JDM/dZb3oKwVAJCjwnjkj9TMHtzR2U6sMEUD3ZZ1RaHagM7kA==
-  dependencies:
-    babel-runtime "^6.26.0"
-    lottie-web "^5.1.3"
-
 react-map-gl@^6.1.16:
   version "6.1.16"
   resolved "https://registry.yarnpkg.com/react-map-gl/-/react-map-gl-6.1.16.tgz#47e1a200b4dea7f981f2be36f96933f202e6bd7e"
@@ -3024,18 +2901,6 @@ react-refresh@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.8.3.tgz#721d4657672d400c5e3c75d063c4a85fb2d5d68f"
   integrity sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg==
-
-react-spring@^9.2.4:
-  version "9.2.4"
-  resolved "https://registry.yarnpkg.com/react-spring/-/react-spring-9.2.4.tgz#9d89b0321664d594f957dca9459b13d94b3dfa39"
-  integrity sha512-bMjbyTW0ZGd+/h9cjtohLqCwOGqX2OuaTvalOVfLCGmhzEg/u3GgopI3LAm4UD2Br3MNdVdGgNVoESg4MGqKFQ==
-  dependencies:
-    "@react-spring/core" "~9.2.0"
-    "@react-spring/konva" "~9.2.0"
-    "@react-spring/native" "~9.2.0"
-    "@react-spring/three" "~9.2.0"
-    "@react-spring/web" "~9.2.0"
-    "@react-spring/zdog" "~9.2.0"
 
 react@17.0.2:
   version "17.0.2"
@@ -3097,11 +2962,6 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
-
-regenerator-runtime@^0.11.0:
-  version "0.11.1"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
-  integrity sha512-MguG95oij0fC3QV3URf4V2SDYGJhJnJGqvIIgdECeODCT98wSWDAJ94SSuVpYQUoTcGUIL6L4yNB7j1DFFHSBg==
 
 regenerator-runtime@^0.13.4:
   version "0.13.9"

@@ -7,8 +7,8 @@ const ICON =
 
 const pin_size_normal = 24;
 
-const icon_width = 30;
-const icon_height = 30;
+const icon_width = 50;
+const icon_height = 50;
 
 export const FromAirportPins = (props) => {
   const { clickAirport } = props;

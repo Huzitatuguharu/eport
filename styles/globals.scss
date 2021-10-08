@@ -580,6 +580,9 @@ template {
 }
 
 .container {
+  font-family: mamelon, sans-serif;
+  font-weight: 500;
+  font-style: normal;
   color: #414b5a;
   position: relative;
   width: 100%;
@@ -615,7 +618,7 @@ template {
   flex-direction: column;
   padding: 32px 16px;
   overflow-x: scroll;
-  gap: 60px 8px;
+  gap: 35px 8px;
   @include mq(xl) {
     width: 320px;
     height: 100vh;

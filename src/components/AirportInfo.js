@@ -1,11 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
-// アイコン
-import { IconContext } from 'react-icons';
 import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import useMedia from 'use-media';
-import theme from '../../styles/theme';
 import AirplaneIcon from './Styling';
 
 // Alternatively, you can import as:

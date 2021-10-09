@@ -2,7 +2,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import * as React from 'react';
-import theme from '../../styles/theme';
 
 import { Accordion } from './base/Accordion';
 

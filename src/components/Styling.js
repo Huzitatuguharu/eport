@@ -5,7 +5,6 @@ import * as React from 'react';
 import { IconContext } from 'react-icons';
 
 import useMedia from 'use-media';
-import theme from '../../styles/theme';
 
 const AirplaneIcon = (props) => {
   const { direction } = props;

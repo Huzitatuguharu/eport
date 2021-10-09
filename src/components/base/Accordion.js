@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { useState } from 'react';
 import * as React from 'react';
-import theme from '../../../styles/theme';
 
 export const Accordion = (props) => {
   const { companyName } = props;

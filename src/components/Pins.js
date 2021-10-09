@@ -101,7 +101,6 @@ function Pins(props) {
           style={{
             cursor: 'pointer',
             fill: color,
-            stroke: '#333',
             transform: `translate(${-pin_size_normal / 2}px,${-pin_size_normal}px)`,
           }}
           // onClick={getToAirportData(city)}

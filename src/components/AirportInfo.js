@@ -86,8 +86,8 @@ function AirportInfo(props) {
             font-style: normal;
           }
           .airportInfo_right_under {
-            font-family: 'Varela Round';
-            font-weight: 500;
+            font-family: filson-soft, sans-serif;
+            font-weight: 400;
             display: flex;
             gap: 1em;
             font-size: 0.9em;

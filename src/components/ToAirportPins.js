@@ -25,12 +25,11 @@ export const ToAirportPins = (props) => {
           viewBox='0 0 24 24'
           style={{
             cursor: 'pointer',
-            fill: '#59A4FD',
             transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 7}px)`,
           }}
           onClick={() => onClick(city)}
         >
-          <path d={ICON} fill='#5D5FEF' />
+          <path d={ICON} fill='#3EEEF8' />
         </svg>
       </Marker>
     ));

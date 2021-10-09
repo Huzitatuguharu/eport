@@ -7,7 +7,6 @@ const ICON =
 const pin_size_normal = 18;
 
 export const Navigation = (props) => {
-  console.log(props);
   const { setClickAirport, setSelectedToAirport, setToAirportsData } = props;
 
   const clickAirportReset = () => {

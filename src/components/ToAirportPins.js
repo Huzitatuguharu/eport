@@ -15,23 +15,25 @@ export const ToAirportPins = (props) => {
 
   if (toAirports) {
     return toAirports.map((city, index) => (
-      <Marker
-        key={`marker-${index}`}
-        longitude={city.airportlongitude}
-        latitude={city.airportlatitude}
-      >
-        <svg
-          height={pin_size_big}
-          viewBox='0 0 24 24'
-          style={{
-            cursor: 'pointer',
-            transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 7}px)`,
-          }}
-          onClick={() => onClick(city)}
+      <>
+        <Marker
+          key={`toAirport-${index}`}
+          longitude={city.airportlongitude}
+          latitude={city.airportlatitude}
         >
-          <path d={ICON} fill='#F2709C' />
-        </svg>
-      </Marker>
+          <svg
+            height={pin_size_big}
+            viewBox='0 0 24 24'
+            style={{
+              cursor: 'pointer',
+              transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 7}px)`,
+            }}
+            onClick={() => onClick(city)}
+          >
+            <path d={ICON} fill='#F2709C' />
+          </svg>
+        </Marker>
+      </>
     ));
   }
 };

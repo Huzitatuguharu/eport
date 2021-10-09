@@ -69,44 +69,43 @@ export default function App() {
       </Head>
 
       <div className='container'>
-        <div className='container_map'>
-          <main className='map'>
-            <ReactMapGL
-              {...viewport}
-              width='100%'
-              height='100vh'
-              // satellite、light 、dark 、streets 、outdoors
-              mapStyle='mapbox://styles/mapbox/light-v10'
-              onViewportChange={setViewport}
-              cursor='pointer'
-              mapboxApiAccessToken={TOKEN}
-            >
-              <Pins
-                setViewport={setViewport}
-                setClickAirport={setClickAirport}
-                clickAirport={clickAirport}
-                setToAirportsData={setToAirportsData}
-                toAirportsData={toAirportsData}
-                setSelectedToAirport={setSelectedToAirport}
-                selectedToAirport={selectedToAirport}
-                hoverAirport={hoverAirport}
-                setHoverAirport={setHoverAirport}
-              />
-              {hoverAirport && (
-                <Popup
-                  longitude={hoverAirport.airportlongitude}
-                  latitude={hoverAirport.airportlatitude}
-                  closeButton={false}
-                  className='hoverAirport_info'
-                >
-                  {hoverAirport.airportname}
-                </Popup>
-              )}
-              <GeolocateControl style={geolocateStyle} />
-              <NavigationControl style={navStyle} />
-            </ReactMapGL>
-          </main>
-        </div>
+        <main className='container_map'>
+          <ReactMapGL
+            {...viewport}
+            width='100%'
+            height='100vh'
+            // satellite、light 、dark 、streets 、outdoors
+            mapStyle='mapbox://styles/mapbox/light-v10'
+            onViewportChange={setViewport}
+            cursor='pointer'
+            mapboxApiAccessToken={TOKEN}
+          >
+            <Pins
+              setViewport={setViewport}
+              setClickAirport={setClickAirport}
+              clickAirport={clickAirport}
+              setToAirportsData={setToAirportsData}
+              toAirportsData={toAirportsData}
+              setSelectedToAirport={setSelectedToAirport}
+              selectedToAirport={selectedToAirport}
+              hoverAirport={hoverAirport}
+              setHoverAirport={setHoverAirport}
+            />
+            {hoverAirport && (
+              <Popup
+                longitude={hoverAirport.airportlongitude}
+                latitude={hoverAirport.airportlatitude}
+                closeButton={false}
+                className='hoverAirport_info'
+              >
+                {hoverAirport.airportname}
+              </Popup>
+            )}
+            <GeolocateControl style={geolocateStyle} />
+            <NavigationControl style={navStyle} />
+          </ReactMapGL>
+        </main>
+
         <div className='container_information'>
           <Navigation
             setClickAirport={setClickAirport}

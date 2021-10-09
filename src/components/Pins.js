@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Marker } from 'react-map-gl';
 import { useAirport, useRoute, useCompany } from '../hooks/useConnectSupabase';
 
-import { FromAirportPins } from './FromAirportPins';
+import { FromAirportPin } from './FromAirportPins';
 import { ToAirportPins } from './ToAirportPins';
 
 // /* ==========================================================================
@@ -71,7 +71,6 @@ function Pins(props) {
     }
 
     setToAirportsData(toAirportsArray);
-    console.log('12123', toAirportsData);
 
     // Viewportの設定の変更
 
@@ -87,10 +86,9 @@ function Pins(props) {
   const simplePin = (airportData, color) => {
     // clickAirport === undefined ? (color = '#4B5563') : (color = '#9CA3AF');
     color = '#9CA3AF';
-    console.log(clickAirport);
-    return airportData?.map((city, index) => (
+    return airportData?.map((city) => (
       <Marker
-        key={`marker-${index}`}
+        key={city.airportid}
         value={city.airportid}
         longitude={city.airportlongitude}
         latitude={city.airportlatitude}
@@ -119,13 +117,22 @@ function Pins(props) {
     <>
       {simplePin(airportData)}
       {/* FromAirportPinsが設定されたらピンの色を変える */}
-      {clickAirport && <FromAirportPins clickAirport={clickAirport} />}
+      {clickAirport && <FromAirportPin className='FromAirportPin' clickAirport={clickAirport} />}
       {/* {clickAirport &&(  {simplePin(clickAirport)})} */}
       {toAirportsData && (
-        <ToAirportPins toAirports={toAirportsData} onClick={setSelectedToAirport} />
+        <ToAirportPins
+          className='ToAirportPin'
+          toAirports={toAirportsData}
+          onClick={setSelectedToAirport}
+        />
       )}
 
       {/* FromAirportPinsからいける空港のピンの表示 */}
+      <style jsx>{`
+
+
+
+      `}</style>
     </>
   );
 }

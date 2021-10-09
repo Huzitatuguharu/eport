@@ -10,10 +10,8 @@ const pin_size_normal = 24;
 const icon_width = 50;
 const icon_height = 50;
 
-export const FromAirportPins = (props) => {
+export const FromAirportPin = (props) => {
   const { clickAirport } = props;
-  console.log(clickAirport.longitude);
-  console.log('FromAirportPins', clickAirport);
 
   return (
     <>
@@ -47,13 +45,7 @@ export const FromAirportPins = (props) => {
         <path d={ICON} />
       </svg> */}
       </Marker>
-      <style jsx>{`
-        .icon_from {
-          position: relative;
-          top: -15px;
-          left: -15px;
-        }
-      `}</style>
     </>
   );
 };
+React.memo(FromAirportPin);

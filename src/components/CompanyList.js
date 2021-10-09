@@ -12,6 +12,22 @@ export function CompanyList(props) {
   const all = toAirportsData;
   let companyArr = all.filter(({ airportname }) => airportname === fromAirport);
 
+  // const theme = {
+  //   fontFamily: {
+  //     japan: 'mamelon',
+  //     // 300500
+  //     english: 'Varela Round',
+  //   },
+  //   colors: {
+  //     text: '#333',
+  //     background: '#fff',
+  //     link: '#1eaaf1',
+  //     linkHover: '#0d8ecf',
+  //     border: '#ddd',
+  //     warning: '#fff3cd',
+  //     success: '#d4edda',
+  //   },
+  // };
   return (
     <>
       <div className='companyArea'>
@@ -59,7 +75,7 @@ export function CompanyList(props) {
               gap: 16px 24px;
             }
             .company_code {
-              font-family: ${theme.fontFamily.english};
+              font-family:  'Varela Round';
               font-weight: 500;
               font-size: 0.8em;
               display: flex;
@@ -75,7 +91,7 @@ export function CompanyList(props) {
               justify-content: space-around;
             }
             .nav_comment {
-              font-family: ${theme.fontFamily.japan};
+              font-family: 'mamelon';
               color: #414b5a;
               font-size: 1.2em;
               font-weight: 500;

@@ -83,13 +83,13 @@ function AirportInfo(props) {
           }
           .airportName {
             font-size: 1.1em;
-            font-family: ${theme.fontFamily.japan};
+            font-family: 'mamelon';
             color: #414b5a;
             font-weight: 500;
             font-style: normal;
           }
           .airportInfo_right_under {
-            font-family: ${theme.fontFamily.english};
+            font-family: 'Varela Round';
             font-weight: 500;
             display: flex;
             gap: 1em;

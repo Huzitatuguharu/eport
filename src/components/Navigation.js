@@ -36,7 +36,8 @@ export const Navigation = (props) => {
           justify-content: space-around;
         }
         .nav_comment {
-          font-family: ${theme.fontFamily.japan};
+          font-family: 'mamelon';
+
           color: #414b5a;
           font-size: 1.2em;
           font-weight: 500;

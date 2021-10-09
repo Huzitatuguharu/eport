@@ -55,7 +55,7 @@ export const Accordion = (props) => {
           }
 
           .companyName {
-            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
+            font-family: 'Varela Round', 'mamelon';
             color: #414b5a;
             font-weight: 500;
             font-style: normal;
@@ -81,7 +81,7 @@ export const Accordion = (props) => {
           }
 
           .accordion-content {
-            font-family: ${theme.fontFamily.english}, ${theme.fontFamily.japan};
+            font-family: 'Varela Round', 'mamelon';
             font-weight: 200;
             overflow: hidden;
             max-height: 1000px;

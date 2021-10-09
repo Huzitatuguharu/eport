@@ -29,7 +29,7 @@ export const ToAirportPins = (props) => {
           }}
           onClick={() => onClick(city)}
         >
-          <path d={ICON} fill='#3EEEF8' />
+          <path d={ICON} fill='#F2709C' />
         </svg>
       </Marker>
     ));

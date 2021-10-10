@@ -83,7 +83,6 @@ export function CompanyList(props) {
             }
             details[open] summary {
               color: #0040a0;
-              border-radius: 16px;
               font-weight: 500;
               background: #edfafd;
               box-shadow: none;
@@ -97,7 +96,7 @@ export function CompanyList(props) {
               cursor: pointer;
             }
             details[open] summary:before {
-              transform: rotate(45deg);
+              transform: rotateZ(45deg);
             }
 
             .company_code {

@@ -61,8 +61,6 @@ export function CompanyList(props) {
               display: flex;
               align-items: center;
               gap: 10px;
-              -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-              -webkit-box-shadow: none;
             }
             summary:hover {
               background-color: #c1e1ff;

@@ -1,3 +1,33 @@
+## Recommended for people who like airports and airplanes.
+
+地図上の◍は日本の空港やヘリポートです。
+◍にmouseをホバーすると空港名が表示されます
+
+1. 地図上の◍をクリックする
+- 直行便のある空港に📍がたちます
+
+2. 📍をクリックする
+- 空港名が表示される
+- 就航している航空会社が表示されます
+
+3. 航空会社のリストの＋をクリックする
+- ICAOコード、IATAの表示
+- 公式サイト、航空会社の所有機種のサイトへのリンクの表示
+
+◍ on the map indicates airports and heliports in Japan.
+Hover mouse over the ◍ to display the airport name.
+
+1. Click on any ◍ on the map.
+- The airport with direct flights will have a 📍.
+
+2. click on the 📍.
+- The name of the airport will be displayed.
+- The airlines that serve the airport will be displayed. 
+
+3.Click on + in the list of airlines
+- Display ICAO code, IATA
+- Display of links to the official website and the website of the aircraft type owned by the airline
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started

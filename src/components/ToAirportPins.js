@@ -11,29 +11,39 @@ const ICON2 =
 const pin_size_big = 20;
 
 export const ToAirportPins = (props) => {
-  const { toAirports, onClick } = props;
+  const { toAirports, onClick, selectedToAirport } = props;
 
+  console.log(selectedToAirport);
   if (toAirports) {
     return toAirports.map((city, index) => (
-      <>
-        <Marker
-          key={`toAirport-${index}`}
-          longitude={city.airportlongitude}
-          latitude={city.airportlatitude}
+      <Marker
+        longitude={city.airportlongitude}
+        latitude={city.airportlatitude}
+        key={`toAirport-${index}`}
+      >
+        <svg
+          className='icon_to'
+          height={pin_size_big}
+          viewBox='0 0 30 30'
+          style={{
+            cursor: 'pointer',
+            transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 7}px)`,
+          }}
+          onClick={() => onClick(city)}
         >
-          <svg
-            height={pin_size_big}
-            viewBox='0 0 24 24'
-            style={{
-              cursor: 'pointer',
-              transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 7}px)`,
-            }}
-            onClick={() => onClick(city)}
-          >
-            <path d={ICON} fill='#F2709C' />
-          </svg>
-        </Marker>
-      </>
+          <path d={ICON} />
+        </svg>
+        <style jsx>{`
+          .icon_to {
+            fill: #615f72;
+            transition: all 2.5s;
+          }
+          .icon_to:hover {
+            fill: #ed819c;
+            transform: translateY(-0.1875em);
+          }
+        `}</style>
+      </Marker>
     ));
   }
 };

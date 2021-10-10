@@ -32,6 +32,7 @@ function Pins(props) {
     setSelectedToAirport,
     setHoverAirport,
     hoverAirport,
+    selectedToAirport,
   } = props;
 
   // /* ==========================================================================
@@ -94,6 +95,7 @@ function Pins(props) {
         latitude={city.airportlatitude}
       >
         <svg
+          key={city.airportid}
           height={pin_size_normal}
           viewBox='0 0 24 24'
           style={{
@@ -123,16 +125,13 @@ function Pins(props) {
         <ToAirportPins
           className='ToAirportPin'
           toAirports={toAirportsData}
+          selectedToAirport={selectedToAirport}
           onClick={setSelectedToAirport}
         />
       )}
 
       {/* FromAirportPinsからいける空港のピンの表示 */}
-      <style jsx>{`
-
-
-
-      `}</style>
+      <style jsx>{``}</style>
     </>
   );
 }

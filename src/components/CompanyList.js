@@ -1,9 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
-
 import * as React from 'react';
-
-import { Accordion } from './base/Accordion';
 
 export function CompanyList(props) {
   const { selectedToAirport, toAirportsData } = props;
@@ -15,39 +10,31 @@ export function CompanyList(props) {
     <>
       <div className='companyArea'>
         {companyArr?.map((company, index) => (
-          <Accordion
-            className='companycard'
-            companyName={company.companyname}
-            key={`company-${index}`}
-          >
+          <details key={`company-${index}`} className='companyCard'>
+            <summary className='summary'>{company.companyname}</summary>
             <div className='company_code'>
               <p>{company.companyicao}</p>
               <p>{company.companyiata}</p>
             </div>
-            <p className='companyLink'>
+            <div className='company_detail'>
               <a
-                className='companyLinkIcon'
+                className='companyLink'
                 href={company.companyurl}
                 rel='noopener noreferrer'
                 target='_blank'
               >
                 公式サイト
               </a>
-            </p>
-            <p>
               <a
-                className='companyairplane'
+                className='companyAirplane'
                 href={company.companyairplane}
                 rel='noopener noreferrer'
                 target='_blank'
               >
                 機体情報
               </a>
-            </p>
-            {/* <div className='companyCard_under' key={`company-${index}`}>
-              <p className='companyicao'>{company.companyicao}</p>
-            </div> */}
-          </Accordion>
+            </div>
+          </details>
         ))}
         <style jsx>
           {`
@@ -57,78 +44,99 @@ export function CompanyList(props) {
               justify-content: flex-start;
               gap: 16px 24px;
             }
+            .companyCard {
+              width: 100%;
+              display: flex;
+              gap: 10px;
+            }
+            .summary {
+              font-family: filson-soft, 'mamelon', sans-serif;
+              font-weight: 400;
+              color: #414b5a;
+              padding: 18px;
+              border-radius: 16px;
+              background: #edfafd;
+              box-shadow: -8px -8px 13px rgba(255, 255, 255, 0.8), 8px 8px 13px #d1dcdf;
+              margin: auto;
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+            summary:hover {
+              background-color: #c1e1ff;
+              cursor: pointer;
+            }
+            summary:active {
+              background: #edfafd;
+              box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
+            }
+            summary:before {
+              font-family: 'Material Icons';
+              content: '\e145';
+            }
+            details[open] {
+              color: #414b5a;
+              border-radius: 16px;
+              background: #edfafd;
+              box-shadow: -8px -8px 13px rgba(255, 255, 255, 0.8), 8px 8px 13px #d1dcdf;
+              margin: auto;
+            }
+            details[open] summary {
+              color: #0040a0;
+              border-radius: 16px;
+              font-weight: 500;
+              background: #edfafd;
+              box-shadow: none;
+              margin: auto;
+              display: flex;
+              align-items: center;
+            }
+
+            details[open] .summary:hover {
+              background-color: #c1e1ff;
+              cursor: pointer;
+            }
+            details[open] summary:before {
+              transform: rotate(45deg);
+            }
+
             .company_code {
               font-family: filson-soft, sans-serif;
               font-weight: 400;
-
               font-size: 0.8em;
               display: flex;
-              gap: 20px;
               color: #606f86;
+              padding: 10px 20px;
+              gap: 16px;
+            }
+            .company_detail {
+              font-family: 'mamelon', sans-serif;
+              color: #606f86;
+              padding: 0 20px 18px;
+              display: flex;
+              gap: 50px;
+            }
+            .company_detail > a :hover {
+              color: #0040a0;
+              cursor: pointer;
             }
             .companyLink {
-              margin: 16px 0 0;
-            }
-            .nav_box {
-              display: flex;
-              align-items: center;
-              justify-content: space-around;
-            }
-            .nav_comment {
-              font-family: 'mamelon';
-              color: #414b5a;
-              font-size: 1.2em;
-              font-weight: 500;
-              font-style: normal;
-            }
-            button {
-              border-radius: 16px;
-              border: none;
-              width: 50px;
-              height: 50px;
-              background: #edfafd;
-              box-shadow: 8px 8px 10px #e1eef0, -8px -8px 10px #f9ffff;
-              &:active {
-                background: #edfafd;
-                box-shadow: inset 8px 8px 10px #e1eef0, inset -8px -8px 10px #f9ffff;
-              }
-              &:hover {
-                background-color: #c1e1ff;
-                cursor: pointer;
-              }
-            }
-            .tooltip {
               position: relative;
             }
-            .tooltip_text {
-              opacity: 0;
-              visibility: hidden;
+            .companyLink:after {
+              font-family: 'Material Icons';
+              content: '\e89e';
               position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
-              bottom: -35px;
-              display: inline-block;
-              padding: 8px;
-              white-space: nowrap;
-              font-size: 0.7rem;
-              line-height: 1.3;
-              background: #000046;
-              color: #fff;
-              border-radius: 3px;
-              transition: 0.3s ease-in;
+              right: -20px;
             }
-            .tooltip:hover .tooltip_text {
-              opacity: 1;
-              visibility: visible;
+            .companyAirplane {
+              position: relative;
             }
-            .tooltip_text:before {
-              content: '';
+            .companyAirplane:after {
+              font-family: 'Material Icons';
+              content: '\e539';
               position: absolute;
-              top: -13px;
-              left: 50%;
-              margin-left: -7px;
-              border: 7px solid transparent;
-              border-bottom: 7px solid #000046;
+              right: -20px;
             }
           `}
         </style>

@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
-import { FaPlaneArrival, FaPlaneDeparture, FaCoffee, FaExternalLinkAlt } from 'react-icons/fa';
 import useMedia from 'use-media';
 import AirplaneIcon from './Styling';
 
@@ -20,9 +19,7 @@ function AirportInfo(props) {
         {/* <span className='airportIcao'> {airport.airporticao} </span> */}
         <span className='airportIata'> {airport.airportiata} </span>
         {airport.lounge == 1 && (
-          <p className='airportLounge'>
-            <FaCoffee size={16} color={'#414b5a'} />
-          </p>
+          <p className='airportLounge'>{/* <FaCoffee size={16} color={'#414b5a'} /> */}</p>
         )}
         <style jsx>{`
           .airportInfo_right_under {
@@ -42,18 +39,15 @@ function AirportInfo(props) {
     return (
       <div className='airportCard'>
         <AirplaneIcon direction={direction} />
-        <div className='airportCard_right'>
-          <div className='airportCard_right_top'>
-            <p className='airportName'>{airport.airportname}</p>
-            <a
-              className='link_icon'
-              href={airport.airporturl}
-              rel='noopener noreferrer'
-              target='_blank'
-            >
-              <FaExternalLinkAlt size={12} color={'#414b5a'} />
-            </a>
-          </div>
+        <div className='airportDetail'>
+          <a
+            className='airportLink airportName'
+            href={airport.airporturl}
+            rel='noopener noreferrer'
+            target='_blank'
+          >
+            {airport.airportname}
+          </a>
           {isWide && <AirportSubInfo />}
         </div>
 
@@ -65,33 +59,26 @@ function AirportInfo(props) {
             box-shadow: 8px 8px 13px #d1dcdf, -8px -8px 13px #ffffff;
             display: flex;
             align-items: center;
-            padding: 14px;
-            gap: 0 8px;
-            flex-direction: column;
-          }
-          .airportCard_right {
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-          }
-          .airportCard_right_top {
+            flex-direction: column;
+            padding: 14px;
             gap: 8px;
-            display: flex;
           }
           .airportName {
             font-size: 1.1em;
             font-family: 'mamelon';
             color: #414b5a;
             font-weight: 500;
-            font-style: normal;
+            margin-right: 20px;
           }
-          .airportInfo_right_under {
-            font-family: filson-soft, sans-serif;
-            font-weight: 400;
-            display: flex;
-            gap: 1em;
-            font-size: 0.9em;
-            color: #606f86;
+          .airportLink {
+            position: relative;
+          }
+          .airportLink:after {
+            font-family: 'Material Icons';
+            content: '\e89e';
+            position: absolute;
+            right: -20px;
           }
         `}</style>
       </div>

@@ -16,13 +16,7 @@ export const Navigation = (props) => {
   };
   return (
     <section className='nav_box'>
-      <p className='nav_comment'>
-        空港の
-        <svg height={pin_size_normal} viewBox='0 0 24 24'>
-          <path d={ICON} />
-        </svg>
-        を選択する
-      </p>
+      <p className='nav_comment'>空港を選択する</p>
       <button className='button_reset tooltip' onClick={clickAirportReset}>
         <span className='tooltip_text'>空港を選びなおす</span>
         <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />

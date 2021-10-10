@@ -70,7 +70,7 @@ export function CompanyList(props) {
               background: #edfafd;
               box-shadow: inset 13px 13px 21px #e1eef0, inset -13px -13px 21px #f9ffff;
             }
-            summary:before {
+            summary::before {
               font-family: 'Material Icons';
               content: '\e145';
             }
@@ -123,7 +123,7 @@ export function CompanyList(props) {
             .companyLink {
               position: relative;
             }
-            .companyLink:after {
+            .companyLink::after {
               font-family: 'Material Icons';
               content: '\e89e';
               position: absolute;
@@ -132,7 +132,7 @@ export function CompanyList(props) {
             .companyAirplane {
               position: relative;
             }
-            .companyAirplane:after {
+            .companyAirplane::after {
               font-family: 'Material Icons';
               content: '\e539';
               position: absolute;

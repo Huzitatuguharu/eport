@@ -53,7 +53,7 @@ export function CompanyList(props) {
               font-family: filson-soft, 'mamelon', sans-serif;
               font-weight: 400;
               color: #414b5a;
-              padding: 18px;
+              padding: 18px 36px;
               border-radius: 16px;
               background: #edfafd;
               box-shadow: -8px -8px 13px rgba(255, 255, 255, 0.8), 8px 8px 13px #d1dcdf;
@@ -61,6 +61,7 @@ export function CompanyList(props) {
               display: flex;
               align-items: center;
               gap: 10px;
+              position: relative;
             }
             summary:hover {
               background-color: #c1e1ff;
@@ -73,6 +74,8 @@ export function CompanyList(props) {
             summary::before {
               font-family: 'Material Icons';
               content: '\e145';
+              position: absolute;
+              left: 10px;
             }
             details[open] {
               color: #414b5a;

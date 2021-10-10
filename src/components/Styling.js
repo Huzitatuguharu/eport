@@ -1,8 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import * as React from 'react';
-// アイコン
-import { IconContext } from 'react-icons';
 
 import useMedia from 'use-media';
 

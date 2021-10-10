@@ -96,7 +96,8 @@ export function CompanyList(props) {
               cursor: pointer;
             }
             details[open] summary:before {
-              transform: rotateZ(45deg);
+              font-family: 'Material Icons';
+              content: '\e5cd';
             }
 
             .company_code {

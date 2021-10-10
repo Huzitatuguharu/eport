@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import * as React from 'react';
 
-export const Navigation = (props) => {
+export const Footer = (props) => {
   const { setClickAirport, setSelectedToAirport, setToAirportsData } = props;
 
   const clickAirportReset = () => {
@@ -10,28 +10,60 @@ export const Navigation = (props) => {
     setToAirportsData([]);
   };
   return (
-    <section className='nav_box'>
-      <p className='nav_comment'>空港を選択する</p>
-      <button className='button_reset tooltip' onClick={clickAirportReset}>
-        <span className='tooltip_text'>空港を選びなおす</span>
-        <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />
-      </button>
+    <>
+      <footer className='container_footer'>
+        <a
+          className='tooltip'
+          href='https://www.sorahapi.jp/?med_id=a8'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <span className='material-icons'>airplane_ticket</span>
+          <span className='tooltip_text'>ソラハピ</span>
+        </a>
+        <a
+          className='tooltip'
+          href='https://github.com/Huzitatuguharu/map_nextjs'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <span className='material-icons'>code</span>
+          <span className='tooltip_text'>GitHub</span>
+        </a>
+        <a
+          className='tooltip'
+          href='https://www.figma.com/@yuyuyu__0222'
+          rel='noopener noreferrer'
+          target='_blank'
+        >
+          <span className='material-icons'>brush</span>
+          <span className='tooltip_text'>Figma</span>
+        </a>
+      </footer>
+      {/* <section className='nav_box'>
+        <p className='nav_comment'>空港を選択する</p>
+        <button className='button_reset tooltip' onClick={clickAirportReset}>
+          <span className='tooltip_text'>空港を選びなおす</span>
+          <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />
+        </button> */}
       <style jsx>{`
-        .nav_box {
+        .container_footer {
           display: flex;
           align-items: center;
+          bottom: 20px;
+          left: 20px;
+          width: 100%;
           gap: 20px;
           padding: 0 10px;
         }
         .nav_comment {
           font-family: 'mamelon';
-
           color: #414b5a;
           font-size: 1.2em;
           font-weight: 500;
           font-style: normal;
         }
-        button {
+        a {
           border-radius: 16px;
           border: none;
           width: 50px;
@@ -56,7 +88,7 @@ export const Navigation = (props) => {
           position: absolute;
           left: 50%;
           transform: translateX(-50%);
-          bottom: -35px;
+          top: -35px;
           display: inline-block;
           padding: 8px;
           white-space: nowrap;
@@ -74,14 +106,20 @@ export const Navigation = (props) => {
         .tooltip_text:before {
           content: '';
           position: absolute;
-          top: -13px;
+          top: 100%;
           left: 50%;
           margin-left: -7px;
           border: 7px solid transparent;
-          border-bottom: 7px solid #000046;
+          border-top: 7px solid #000046;
+        }
+        .material-icons {
+          position: absolute;
+          top: 12px;
+          left: 12px;
         }
       `}</style>
-    </section>
+      {/* </section> */}
+    </>
   );
 };
-export default React.memo(Navigation);
+export default React.memo(Footer);

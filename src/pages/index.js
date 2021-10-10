@@ -7,6 +7,7 @@ import ReactMapGL, { NavigationControl, Popup, GeolocateControl } from 'react-ma
 
 import AirportInfo from '../components/AirportInfo';
 import { CompanyList } from '../components/CompanyList';
+import { Footer } from '../components/Footer';
 import { Navigation } from '../components/Navigation';
 import Pins from '../components/Pins';
 
@@ -127,9 +128,14 @@ export default function App() {
               )}
             </>
           )}
+          <Footer />
+          
         </div>
       </div>
-      <style jsx>{``}</style>
+      <style jsx>{`
+        .footer {
+        }
+      `}</style>
     </>
   );
 }

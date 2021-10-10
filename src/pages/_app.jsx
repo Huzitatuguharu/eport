@@ -1,11 +1,7 @@
 import '../../styles/globals.scss';
-// import type { AppProps } from 'next/app';
-import Head from 'next/head';
-import Link from 'next/link';
 
 import * as React from 'react';
-import { useState, useEffect } from 'react';
-import useSWR, { SWRConfig } from 'swr';
+import { useEffect } from 'react';
 import adobeLoader from '../../adobeLoader';
 
 function MyApp({ Component, pageProps }) {

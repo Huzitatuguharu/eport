@@ -129,13 +129,8 @@ export default function App() {
             </>
           )}
           <Footer />
-          
         </div>
       </div>
-      <style jsx>{`
-        .footer {
-        }
-      `}</style>
     </>
   );
 }

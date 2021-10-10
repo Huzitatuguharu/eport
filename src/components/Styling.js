@@ -77,8 +77,6 @@ const AirplaneIcon = (props) => {
             </defs>
           </svg>
         </p>
-        {/* <p>FROM</p> */}
-        <style jsx>{``}</style>
       </div>
     );
   } else {
@@ -149,13 +147,9 @@ const AirplaneIcon = (props) => {
             </linearGradient>
           </defs>
         </svg>
-
-        {/* <Image src='/arrival.svg' alt='Picture of the author' width={30} height={30} size='fixed' /> */}
-        <style jsx>{``}</style>
       </p>
     );
   }
-
   return <div className='airportCard_left'>{icon}</div>;
 };
 

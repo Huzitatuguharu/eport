@@ -4,9 +4,6 @@ import * as React from 'react';
 import useMedia from 'use-media';
 import AirplaneIcon from './Styling';
 
-// Alternatively, you can import as:
-// import {useMedia} from 'use-media';
-
 function AirportInfo(props) {
   const { airport, direction } = props;
   const isWide = useMedia({ minWidth: '1200px' });

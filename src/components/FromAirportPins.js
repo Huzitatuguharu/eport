@@ -1,18 +1,11 @@
-import Image from 'next/image';
 import * as React from 'react';
 import { Marker } from 'react-map-gl';
 
 const ICON =
   'M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z';
 
-const pin_size_normal = 24;
-
-const icon_width = 50;
-const icon_height = 50;
-
 export const FromAirportPin = (props) => {
   const { clickAirport } = props;
-
   return (
     <>
       <Marker longitude={clickAirport.airportlongitude} latitude={clickAirport.airportlatitude}>
@@ -44,17 +37,6 @@ export const FromAirportPin = (props) => {
               </linearGradient>
             </defs>
           </svg>
-        {/* <svg
-        height={pin_size_normal}
-        viewBox='0 0 24 24'
-        style={{
-          cursor: 'pointer',
-          fill: '#4B5563',
-          transform: `translate(${-pin_size_normal / 2}px,${-pin_size_normal}px)`,
-        }}
-      >
-        <path d={ICON} />
-      </svg> */}
       </Marker>
       <style jsx>{`
         .icon_from {

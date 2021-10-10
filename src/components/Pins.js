@@ -147,9 +147,6 @@ function Pins(props) {
           </svg>
         </Marker>
       )}
-
-      {/* FromAirportPinsからいける空港のピンの表示 */}
-      <style jsx>{``}</style>
     </>
   );
 }

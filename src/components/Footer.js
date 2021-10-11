@@ -13,11 +13,11 @@ export const Footer = (props) => {
       <footer className='container_footer'>
         <a
           className='tooltip'
-          href='https://www.sorahapi.jp/?med_id=a8'
+          href='https://www.google.com/flights?hl=ja'
           rel='noopener noreferrer'
           target='_blank'
         >
-          <span className='material-icons'>airplane_ticket</span>
+          <span className='material-icons'>GoogleFlights</span>
           <span className='tooltip_text'>ソラハピ</span>
         </a>
         <a

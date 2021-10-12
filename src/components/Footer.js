@@ -17,8 +17,8 @@ export const Footer = (props) => {
           rel='noopener noreferrer'
           target='_blank'
         >
-          <span className='material-icons'>GoogleFlights</span>
-          <span className='tooltip_text'>ソラハピ</span>
+          <span className='material-icons'>flight</span>
+          <span className='tooltip_text'>GoogleFlights</span>
         </a>
         <a
           className='tooltip'

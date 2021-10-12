@@ -71,6 +71,7 @@ function Pins(props) {
     }
 
     setToAirportsData(toAirportsArray);
+  console.log('toAirportsData', toAirportsArray);
 
     // Viewportの設定の変更
 

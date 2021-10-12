@@ -621,7 +621,7 @@ template {
   overflow: auto;
   gap: 35px 8px;
   @include mq(xl) {
-    width: 320px;
+    width: 350px;
     height: 100vh;
   }
 }

@@ -58,6 +58,7 @@ export default function App() {
     setSelectedToAirport(false);
   }, [clickAirport]);
 
+  console.log('toAirportsData',toAirportsData);
   return (
     <>
       <Head>

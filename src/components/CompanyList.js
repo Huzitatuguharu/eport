@@ -5,7 +5,7 @@ export function CompanyList(props) {
   const fromAirport = selectedToAirport.airportname;
   const all = toAirportsData;
   let companyArr = all.filter(({ airportname }) => airportname === fromAirport);
-
+  console.log('aaa', companyArr);
   return (
     <>
       <div className='companyArea'>

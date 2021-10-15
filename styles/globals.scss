@@ -24,8 +24,6 @@ $breakpoint: (
   }
 }
 
-
-
 // カラーパレット
 $color_dark: #333 !default;
 $color_light: #fafafa !default;
@@ -584,6 +582,7 @@ template {
 .container {
   font-family: 'Helvetica Neue', 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo,
     sans-serif;
+  font-display: block;
   color: #414b5a;
   position: relative;
   width: 100%;

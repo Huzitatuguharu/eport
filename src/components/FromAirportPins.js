@@ -9,7 +9,6 @@ export const FromAirportPin = (props) => {
   return (
     <>
       <Marker longitude={clickAirport.airportlongitude} latitude={clickAirport.airportlatitude}>
-        {/* <Marker longitude={135} latitude={38}> */}
           <svg
             className='icon_from'
             width='30'

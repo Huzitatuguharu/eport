@@ -2,12 +2,6 @@ import * as React from 'react';
 
 export const Footer = (props) => {
   const { setClickAirport, setSelectedToAirport, setToAirportsData } = props;
-
-  const clickAirportReset = () => {
-    setClickAirport();
-    setSelectedToAirport();
-    setToAirportsData([]);
-  };
   return (
     <>
       <footer className='container_footer'>
@@ -39,12 +33,6 @@ export const Footer = (props) => {
           <span className='tooltip_text'>Figma</span>
         </a>
       </footer>
-      {/* <section className='nav_box'>
-        <p className='nav_comment'>空港を選択する</p>
-        <button className='button_reset tooltip' onClick={clickAirportReset}>
-          <span className='tooltip_text'>空港を選びなおす</span>
-          <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />
-        </button> */}
       <style jsx>{`
         .container_footer {
           display: flex;
@@ -117,7 +105,6 @@ export const Footer = (props) => {
           left: 12px;
         }
       `}</style>
-      {/* </section> */}
     </>
   );
 };

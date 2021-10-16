@@ -9,8 +9,7 @@ function AirportInfo(props) {
   const isWide = useMedia({ minWidth: '1200px' });
 
   const AirportSubInfo = () => {
-    // Accepts an object of features to test
-    // Or a regular media query string
+ 
     return (
       <div className='airportInfo_right_under'>
         {/* <span className='airportIcao'> {airport.airporticao} </span> */}

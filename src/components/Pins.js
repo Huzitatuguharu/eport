@@ -141,7 +141,7 @@ function Pins(props) {
             style={{
               cursor: 'pointer',
               transform: `translate(${-pin_size_big / 2}px,${-pin_size_big + 4}px)`,
-              fill: '#ed819c',
+              fill: '#0064ec',
             }}
           >
             <path d={ICON} />

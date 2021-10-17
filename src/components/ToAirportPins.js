@@ -38,7 +38,7 @@ export const ToAirportPins = (props) => {
             background-color: ${(props) => (props.count > 1000 ? 'red' : 'blue')};
           }
           .normalPin:hover {
-            fill: #0064ec;
+            fill: #31b1ff;
           }
         `}</style>
       </Marker>

@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import * as React from 'react';
-
+const ICON =
+  'M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 11c-1.657 0-3-1.343-3-3s1.343-3 3-3 3 1.343 3 3-1.343 3-3 3z';
 export const Navigation = (props) => {
   const { setClickAirport, setSelectedToAirport, setToAirportsData } = props;
 
@@ -11,25 +12,73 @@ export const Navigation = (props) => {
   };
   return (
     <section className='nav_box'>
-      <p className='nav_comment'>空港を選択する</p>
-      <button className='button_reset tooltip' onClick={clickAirportReset}>
-        <span className='tooltip_text'>空港を選びなおす</span>
-        <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />
-      </button>
+      <div className='nav_comment_static'>
+        <p>空港を選択する</p>
+        <button className='button_reset tooltip' onClick={clickAirportReset}>
+          <span className='tooltip_text'>空港を選びなおす</span>
+          <Image src='/reset.svg' alt='reload' width={24} height={24} size='fixed' />
+        </button>
+      </div>
+      <div className='nav_comment_flexible'>
+        <p>
+          <svg
+            style={{
+              fill: '#9CA3AF',
+              width: '24px',
+              height: '24px',
+            }}
+          >
+            <circle cx='10' cy='10' r='5' />
+          </svg>
+          空港
+        </p>
+        <p>
+          <svg
+            style={{
+              fill: '#9CA3AF',
+              width: '24px',
+              height: '24px',
+            }}
+          >
+            <path d={ICON} />
+          </svg>
+          直行便あり
+        </p>
+        <p>
+          <svg
+            style={{
+              fill: '#31b1ff',
+              width: '24px',
+              height: '24px',
+            }}
+          >
+            <path d={ICON} />
+          </svg>
+          選択空港
+        </p>
+      </div>
+
       <style jsx>{`
         .nav_box {
+          padding: 0 10px;
+          display: grid;
+          gap: 20px;
+        }
+        .nav_comment_static {
+          font-family: 'mamelon';
+          color: #414b5a;
+          font-size: 1.2rem;
+          font-weight: 500;
           display: flex;
           align-items: center;
           gap: 20px;
-          padding: 0 10px;
         }
-        .nav_comment {
+        .nav_comment_flexible {
           font-family: 'mamelon';
-
           color: #414b5a;
-          font-size: 1.2em;
-          font-weight: 500;
-          font-style: normal;
+          font-size: 0.8rem;
+          display: flex;
+          gap: 15px;
         }
         button {
           border-radius: 16px;
